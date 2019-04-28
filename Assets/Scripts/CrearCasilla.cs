@@ -11,7 +11,7 @@ public class CrearCasilla : MonoBehaviour
     public Sprite[] sprites;
     public GameObject IconoPrefab;
     public Transform IconoParent;
-    public  bool condiFor=false;
+    public  bool condiFor=false, condIf=false;
 
     /// <summary>
     /// Crear
@@ -159,11 +159,8 @@ public class CrearCasilla : MonoBehaviour
                 for (int i = 0; i < total; i++)
                 {
                     if (casillas[i].GetComponent<Casilla>().esPintada == true)
-                    {
-                        Debug.Log(RestablecerCasilla.contPint);
-                       
+                    {                      
                         RestablecerCasilla.ponerPintada(i);
-                        Debug.Log(RestablecerCasilla.obtenerPintada(RestablecerCasilla.contPint - 1));
                     }
                 }
                 condiFor = true;
@@ -197,6 +194,17 @@ public class CrearCasilla : MonoBehaviour
             {
                 casillas[RestablecerCasilla.pintadas[i]].GetComponent<Casilla>().esPintada = true;
             }
+            RestablecerCasilla.inicializarPint();
+        }
+        if(GetComponent<Habilidades>().hayPint1 == true)
+        {
+            for (int i = 0; i <= RestablecerCasilla.contPint - 1; i++)
+            {
+                casillas[RestablecerCasilla.pintadas[i]].GetComponent<Casilla>().esPintada = true;
+                if (condIf == false) { GetComponent<Habilidades>().casiModif1 = RestablecerCasilla.pintadas[i];condIf = true; } else { GetComponent<Habilidades>().casiModif2 = RestablecerCasilla.pintadas[i]; }
+               
+            }
+            condIf = false;
             RestablecerCasilla.inicializarPint();
         }
     }

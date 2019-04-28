@@ -15,7 +15,8 @@ public class Habilidades : MonoBehaviour
     //Austin
     public GameObject btnCasillas;
     public List<GameObject> botones = new List<GameObject>();
-    private int casillaAPintar, dif, verifCasilla, dif1, dif2, casiModif1, casiModif2;
+    private int casillaAPintar, dif, verifCasilla, dif1, dif2;
+    public int casiModif1, casiModif2;
     public float casRecorridas;
     private bool condiHab1Au, presionado1, presionado2, condiHab1Aus;
     public bool hayPint, hayPint1;

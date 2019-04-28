@@ -197,11 +197,38 @@ public class CrearPersonaje : MonoBehaviour
             RestablecerValores.ponerCasilla(per.GetComponent<Personaje>().casillaActual); //casillaActual
 
         }
+        else
+        {
+            if (per.GetComponent<Personaje>().esPintado == true)
+            {
+                RestablecerValores.estados[0] = true;
+            }
+            if (per.GetComponent<Personaje>().esBloqueado == true)
+            {
+                RestablecerValores.estados[1] = true;
+            }
+            if (per.GetComponent<Personaje>().esInmune == true)
+            {
+                RestablecerValores.estados[2] = true;
+            }
+        }
     }
 
     public void asignarDatos()
     {
         per.GetComponent<Personaje>().ph = RestablecerValores.obtenerPH();
         per.GetComponent<Personaje>().casillaActual = RestablecerValores.obtenerCasilla();
+        if (RestablecerValores.estados[0] == true)
+        {
+            per.GetComponent<Personaje>().esPintado = true;
+        }
+        if (RestablecerValores.estados[1] == true)
+        {
+            per.GetComponent<Personaje>().esBloqueado = true;
+        }
+        if (RestablecerValores.estados[2] == true)
+        {
+            per.GetComponent<Personaje>().esInmune = true;
+        }
     }
 }
