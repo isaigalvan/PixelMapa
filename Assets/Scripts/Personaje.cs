@@ -8,7 +8,7 @@ public class Personaje : MonoBehaviour
 {
     public int casillaActual=0, ph=0;
     public SpriteRenderer spriteR;
-    public GameObject textCasilla, textPh,scripts, camera;
+    public GameObject textCasilla, textPh,scripts;
     public bool esPintado, esBloqueado, esBuff, esNerf, esInmune, esAtraido, verificado, condi;
     
 
@@ -23,20 +23,34 @@ public class Personaje : MonoBehaviour
         verificaCasilla();
        
     }
+
+    /// <summary>
+    /// Awake
+    /// este metodo se invoca al ejecutarse el programa
+    /// el objeto "textCasilla" se le asignara el objeto con la etiqueta "NumCasilla"
+    /// el objeto "textPh" se le asignara el objeto con la etiqueta "Ph"
+    /// el objeto "scripts" se le asignara el objeto con la etiqueta "Scripts"
+    /// </summary>
     private void Awake()
     {
         textCasilla = GameObject.FindGameObjectWithTag("NumCasilla");
-        camera = GameObject.FindGameObjectWithTag("MainCamera");
         textPh = GameObject.FindGameObjectWithTag("Ph");
         scripts = GameObject.Find("Scripts");
 
     }
     
+    /// <summary>
+    /// AsignarTamanos
+    /// Este metodo se invoca en el metodo "Crear" del script "CrearPersonaje"
+    /// Se toma el valor "idPersonaje" para entrar dentro de un switch, en el caso 0 y caso 5 se transforma la escala en .23, en el caso 1
+    /// en .25, en el caso 2 en .26, en el caso 3 en .29 y en el caso 4 en .24
+    /// </summary>
     public void AsignarTamanos()
     {
         switch (scripts.GetComponent<CrearPersonaje>().idPersonaje)
         {
             case 0:
+            case 5:
                 transform.localScale = new Vector3(0.23f, 0.23f, 1);
                 break;
             case 1:
@@ -50,9 +64,6 @@ public class Personaje : MonoBehaviour
                 break;
             case 4:
                 transform.localScale = new Vector3(0.24f, 0.24f, 1);
-                break;
-            case 5:
-                transform.localScale = new Vector3(0.23f, 0.23f, 1);
                 break;
             default:
                 break;

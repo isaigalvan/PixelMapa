@@ -15,12 +15,17 @@ public class CrearCasilla : MonoBehaviour
 
     /// <summary>
     /// Crear
-    /// Se invoca cuando se ejecuta el programa e invoca el metodo "Crear"
+    /// Se invoca cuando se ejecuta el programa e invoca el metodo "crearCas"
     /// </summary>
     void Start()
     {
         crearCas();
     }
+
+    /// <summary>
+    /// Update
+    /// Este metodo se invoca una vez cada frame, invoca el metodo "actualizar"
+    /// </summary>
     private void Update()
     {
         actualizar();
@@ -28,7 +33,7 @@ public class CrearCasilla : MonoBehaviour
 
     /// <summary>
     /// Crear
-    /// Este metodo es invocado por "Start", crea 200 casillas en forma de una fila asignandole una id a cada una de estas.
+    /// Este metodo es invocado por "crearCas", crea 200 casillas en forma de una fila asignandole una id a cada una de estas.
     /// Se fija en numero total de casillas guardado en la variable "total", se fija el punto de inicio de asignacion de las id guardado en la variable
     /// "cont" y se fija las posiciones de inicio para imprimir las casillas guardado en las variables "posy" y "posx", dentro de un for que comienza con 
     /// una variable creada llamada "i" con un valor de 0 y termina hasta que "i" sea menor que la variable "total", se le asignara una posicion al 
@@ -59,7 +64,13 @@ public class CrearCasilla : MonoBehaviour
         AsignarTexturas();
     }
 
-
+    /// <summary>
+    /// crearCas
+    /// Este metodo es invocado por "Start", en caso de que sea la primera vez creandose el mapa, se crea con los valores default de lo contrario
+    /// se adquieren los datos si hay casillas especiales creadas y se crea el mapa con esos valores adquiridos.
+    /// Si la variable booleana "respawn" de la clase estatica "RestablecerCasilla" es falso, se invoca el metodo "Crear" y se le otorga
+    /// el valor true a la variable "respawn". en caso de que "respawn" sea verdadero se invoca el metodo "Crear" y "asignarDatos"
+    /// </summary>
     public void crearCas()
     {
         if ((RestablecerCasilla.obtenerRespawn()) == false)
@@ -86,7 +97,9 @@ public class CrearCasilla : MonoBehaviour
     /// con posicion "i" de la lista, y la variable "esHabilidad" del script "Casilla" se le asigna el valor true, en caso de no ser habilidad se repite el proceso para
     /// una lista de valores en caso de ser Negra, Deshabilidad, y minijuego, en caso de ser negra se le asigna el sprite 3 de la lista y se le asigna el valor true a 
     /// la variable "esNegra", en caso de ser Deshabilidad se le asigna el sprite 2 de la lista y se le asigna el valor true a la variable "esDeshabilidad", en caso 
-    /// de ser Minijuego se le asigna el sprite 4 de la lista y se le asigna el valor true a la variable "esMinijuego", se llama al metodo "AsignarTextura" cada vez
+    /// de ser Minijuego se le asigna el sprite 4 de la lista y se le asigna el valor true a la variable "esMinijuego",en caso 
+    /// de ser inicio se le asigna el sprite 5 de la lista y se le asigna el valor true a la variable "esInicio", en caso 
+    /// de ser final se le asigna el sprite 6 de la lista y se le asigna el valor true a la variable "esFinal" se llama al metodo "AsignarTextura" cada vez
     /// que le asignamos un sprite a la casilla
     /// </summary>
     void AsignarTexturas()
@@ -130,7 +143,21 @@ public class CrearCasilla : MonoBehaviour
             }
         }
     }
-
+    /// <summary>
+    /// actualizar
+    /// este metodo se invoca en "Update", este metodo actualizara los valores de las casillas modificadas almacenandolas en una clase 
+    /// estatica.
+    /// Si la variable "caminando" es verdadeda, la variable "condiFor" se le asigna false, "casiModif" de la clase estatica se le asigna
+    /// el valor "casiModif" del script habilidades, "hayHab2" de la clase estatica se le asigna el valor "hayHab2Leonn" del script 
+    /// habilidades, si la casilla numero "casiModif" es su propiedad "esDesLeonn" es igual a true, "esDes1" de la clase estatica se le
+    /// asigna true, si la casilla numero "casiModif" es su propiedad "esDesLeonn2" es igual a true, "esDes2" de la clase estatica se le
+    /// asigna true.
+    /// si "caminando" es igual a false, "hayPint" de la clase estatica se le asigna el valor "hayPint" del script habilidades>,
+    /// "hayPint1" de la clase estatica se le asigna el valor "hayPint1" del script habilidades>, "casRec" de la clase estatica se le 
+    /// asigna el valor "casRecorridas" del script habilidades, si "condiFor" es igual a false se entrara a un for de 0 hasta "total"
+    /// con incremento 1, y dentro del for si la casilla numero "i", es pintada se llamara el metodo "ponerPintada" de la clase estatica
+    /// RestablecerCasilla con un parametro de entrada de valor "i"
+    /// </summary>
     public void actualizar()
     {
         if (GetComponent<Dado>().caminando == true)
@@ -169,7 +196,26 @@ public class CrearCasilla : MonoBehaviour
 
         }
     }
-
+    /// <summary>
+    /// asignaDatos
+    /// Este metodo es llamado por "crearCas",en caso de haber cambiado de escena se restableceran los valores de las casillas
+    /// que fueron cambiadas a partir de adquirir los valores guardados de una clase estatica.
+    /// la variable "hayHab2Leonn" del script habilidades guarda el valor de "hayHab2" de la clase estatica "RestablecerCasilla"
+    /// la variable "casiModif" del script habilidades guarda el valor de "casModif" de la clase estatica "RestablecerCasilla"
+    /// la variable "hayPint" del script habilidades guarda el valor de "hayPint" de la clase estatica "RestablecerCasilla"
+    /// la variable "hayPint1" del script habilidades guarda el valor de "hayPint1" de la clase estatica "RestablecerCasilla"
+    /// la variable "casRecorridas" del script habilidades guarda el valor de "casRecorridas" de la clase estatica "RestablecerCasilla"
+    /// Si "HayHab2Leonn" y la variable "esDes1" de la clase estatica "RestablecerCasilla" son verdaderas, la casilla numero "CasiModif"
+    /// en su propiedad "esDesLeonn" se le asignara true y despues se llamara al metodo "desLeonn" con el valor de entrada de "casiModif"
+    /// Si "HayHab2Leonn" y la variable "esDes2" de la clase estatica "RestablecerCasilla" son verdaderas, la casilla numero "CasiModif"
+    /// en su propiedad "esDesLeonn2" se le asignara true y despues se llamara al metodo "desLeonn" con el valor de entrada de "casiModif"
+    /// Si la variable "hayPint" es verdadera se entrara a un for de 0 hasta "contPint" con incremento de 1, dentro del for la casilla
+    /// numero "pintadas[i]" en su propiedad "esPintada" se asignara true, terminando el for se llamara el metodo "inicializasPint"
+    /// Si la variable "hayPint1" es verdadera se entrara a un for de 0 hasta "contPint" con incremento de 1, dentro del for la casilla
+    /// numero "pintadas[i]" en su propiedad "esPintada" se asignara true, si "condIf" es falso "casiModif" se le asignara el valor de
+    /// "pintadas[i]" y "condiIf" sera true, de lo contrario "casiModif2" se le asignara el valor de "pintadas[i]" terminando el for se llamara el metodo "inicializasPint" y "condIf"
+    /// se le asignara false
+    /// </summary>
     public void asignarDatos()
     {
         GetComponent<Habilidades>().hayHab2Leonn = RestablecerCasilla.hayHab2;

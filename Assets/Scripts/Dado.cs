@@ -24,7 +24,7 @@ public class Dado : MonoBehaviour
     /// <summary>
     ///  Update
     ///  Este metodo se llama una vez por frame
-    ///  Manda a llamar los metodos "estadoDado", "estadoHabilidades", "contador", "animaPH", ademas de incrementa la variable tiempo, 1 por segundo
+    ///  Manda a llamar los metodos "estadoDado", "estadoHabilidades", "contador", "animaPH", "caminar", "casillaOcupada" ademas de incrementa la variable tiempo, 1 por segundo
     ///  ademas busca al objeto con la etiqueta "Personaje" y lo guarda en el objeto "personaje" y  busca al objeto con la etiqueta "AnimaPH" y 
     ///  lo guarda en el objeto "objPH"
     /// </summary>
@@ -39,7 +39,7 @@ public class Dado : MonoBehaviour
         contador();
         animaPH();
         caminar();
-        
+        casillaOcupada();
     }
 
     /// <summary>
@@ -124,11 +124,20 @@ public class Dado : MonoBehaviour
         
 
     }
-
+    /// <summary>
+    /// casillaOcupada
+    /// este metodo es llamado por "Update", en caso de que un jugador este en cierta casilla esta se marcara como ocupada.
+    /// si la variable "yaTiro" es verdadera la casilla numero "casillaActual" en su campo "esOcupada" se le asignara false de lo contrario 
+    /// se le asignara true 
+    /// </summary>
     public void casillaOcupada(){
-        if (yaTiro == true)
+        if (yaTiro)
         {
-
+            GetComponent<CrearCasilla>().casillas[personaje.GetComponent<Personaje>().casillaActual].GetComponent<Casilla>().esOcupada = false;
+        }
+        if (caminando)
+        {
+            GetComponent<CrearCasilla>().casillas[personaje.GetComponent<Personaje>().casillaActual].GetComponent<Casilla>().esOcupada = true;
         }
     }
 
