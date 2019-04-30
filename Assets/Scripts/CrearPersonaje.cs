@@ -15,11 +15,20 @@ public class CrearPersonaje : MonoBehaviour
     public Transform IconoParent;
     public List<GameObject> iconos = new List<GameObject>();
 
-
+    /// <summary>
+    /// Update
+    /// Se llama una vez por cada frame e invoca el metodo "actualizar"
+    /// </summary>
     private void Update()
     {
         actualizar();
     }
+
+
+    /// <summary>
+    /// Start
+    /// Este metodo se invoca al ejecutar el programa e invoca a los metodos "crearPer" y "crearIconos"
+    /// </summary>
     void Start()
     {
         crearPer();
@@ -38,6 +47,14 @@ public class CrearPersonaje : MonoBehaviour
             AsignarTexturas();         
         
     }
+
+    /// <summary>
+    /// crearPer
+    /// Este metodo es invocado por "Start", en caso de que sea la primera vez creandose el personaje, se crea con los valores default de lo contrario
+    /// se adquieren los datos si hay datos modificados del personaje y se crea el personaje con esos valores adquiridos.
+    /// Si la variable booleana "respawn" de la clase estatica "RestablecerValores" es falso, se invoca el metodo "Crear" y se le otorga
+    /// el valor true a la variable "respawn". en caso de que "respawn" sea verdadero se invoca el metodo "Crear" y "asignarDatos"
+    /// </summary>
     public void crearPer()
     {
         if ((RestablecerValores.obtenerRespawn()) == false)
@@ -51,6 +68,10 @@ public class CrearPersonaje : MonoBehaviour
             asignarDatos();
         }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
     public void crearIconos()
     {
         total = 3;
@@ -67,6 +88,17 @@ public class CrearPersonaje : MonoBehaviour
         iconosPersonajes();
     }
 
+    /// <summary>
+    /// iconosPersonajes
+    /// este metodo es invocado por el metodo "crearIconos", se asignan los inconos de las habilidades en la barra inferior dependiendo del personaje, a partir del valor de la variable 
+    /// "idPersonaje" se entra en un switch en donde el caso 0 el "icono 0" se le asigna el sprite numero 0, el "icono 1" se le asigna
+    /// el sprite numero 1, el "icono 2" se le asigna el sprite 2, caso 1 el "icono 0" se le asigna el sprite numero 3, el "icono 1"
+    /// se le asigna el sprite numero 4, el "icono 2" se le asigna el sprite 5, caso 2 el "icono 0" se le asigna el sprite numero 6,
+    /// el "icono 1" se le asigna el sprite numero 7, el "icono 2" se le asigna el sprite 8, caso 3 el "icono 0" se le asigna el sprite 
+    /// numero 9, el "icono 1" se le asigna el sprite numero 10, el "icono 2" se le asigna el sprite 11, caso 4 el "icono 0" se le asigna
+    /// el sprite numero 12, el "icono 1" se le asigna el sprite numero 13, el "icono 2" se le asigna el sprite 14, caso 5 el "icono 0" 
+    /// se le asigna el sprite numero 15, el "icono 1" se le asigna sprite numero 16, el "icono 2" se le asigna el sprite 17
+    /// </summary>
     public void iconosPersonajes()
     {
         switch (idPersonaje)
@@ -106,11 +138,20 @@ public class CrearPersonaje : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// AsignarCoord
+    /// Este metodo es invocado por "Crear", Asigna la posicion en el eje y del personaje
+    /// A partir del valor de la variable "idPersonaje" se entra a un switch donde el caso 0, 4 y 5 la variable "posy" adquiere el valor
+    /// de 2.7, en el caso 1 "posy" adquiere el valor de 2.5, en el caso 2 "posy" adquiere el valor de de 2.4, en el caso 3 "posy" adquiere 
+    /// el valor de 2.1
+    /// </summary>
     public void AsignarCoord()
     {
         switch (idPersonaje)
         {
             case 0:
+            case 4:
+            case 5:
                 posy = 2.7f;
                 break;
             case 1:
@@ -122,17 +163,19 @@ public class CrearPersonaje : MonoBehaviour
             case 3:
                 posy = 2.1f;
                 break;
-            case 4:
-                posy = 2.7f;
-                break;
-            case 5:
-                posy = 2.7f;
-                break;
             default:
                 break;
         }
 
     }
+
+    /// <summary>
+    /// AsignaNombres
+    /// Este metodo es invocado por "Crear", llama al objeto del personaje dependiendo del personaje que se eligio
+    /// A partir del valor de la variable "idPersonaje" se entra a un switch donde en el caso 0 el objeto "personajeTemp" se nombra "Zorem"
+    /// caso 1 el objeto "personajeTemp" se nombra "Ian", caso 2 el objeto "personajeTemp" se nombra "Austin", caso 3 el objeto "personajeTemp"
+    /// se nombra "Rubi", caso 4 el objeto "personajeTemp" se nombra "Stella", caso 5 el objeto "personajeTemp" se nombra "Leonn"
+    /// </summary>
     public void AsignarNombres()
     {
         switch (idPersonaje)

@@ -7,7 +7,13 @@ public class CameraController : MonoBehaviour
     public GameObject scripts; 
     public float posx, posy;
 
-
+    /// <summary>
+    /// Update
+    /// este metodo se invoca una vez por cada frame
+    /// La camara seguira al personaje, se almacena en el objeto scripts el objeto con el nombre "scripts", la variable "posx" almacenara
+    /// el valor de "posx" del script "CrearPersonaje", la variable "posy" almacenara el valor de "posy" del script "CrearPersonaje", la
+    /// posicion de la camara se le asignara la cordenada "posx","posy",-10
+    /// </summary>
     private void Update()
     {
         scripts = GameObject.Find("Scripts");
