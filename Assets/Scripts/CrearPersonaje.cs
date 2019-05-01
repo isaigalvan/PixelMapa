@@ -35,6 +35,15 @@ public class CrearPersonaje : MonoBehaviour
         crearIconos();
     }
 
+
+    /// <summary>
+    /// Crear
+    /// Este metodo es llamado por "crearPer", crea un nuevo objeto el cual sera el personaje a jugar 
+    /// se obtiene el valor de la variable "posx" mediante el metodo "obtenerPosx" de la clase estatica RestablecerValores
+    /// se llama al metodo "AsignarCoord", se instancia en "personajeTemp" el objeto "personajeParent" con las cordenadas "posx" y "posy"
+    /// se manda a llamar el metodo "AsignarNombres", se guardara dentro de la variable "per" el objeto con la etiqueta "PerPref", se manda 
+    /// a llamar el metodo "AsignarTamanos" y por ultimo se manda a llamar el metodo "AsignarTexturas"
+    /// </summary>
     public void Crear()
     {
             posx = RestablecerValores.obtenerPosx();
@@ -70,7 +79,12 @@ public class CrearPersonaje : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// crearIconos
+    /// Este metodo es llamado por "Start", crea los objetos los cuales seran los iconos de las habilidades
+    /// se inicializa la variable "total" en 3, "posx2" en 2.57 y "posy2" en -1.45, despues se entra a un for comenzando con una variable "i"
+    /// hasta que "i" sea menor que total con un incremento de 1, dentro del for se instancia en "iconoTemp" el objeto "iconoPrefab" con las cordenadas
+    /// "posx2" y "posy2", se agrega el objeto "iconoTemp" a la lista "iconos" y por ultimo se le asigna a la variable "posx2" el valor "posx2"
+    /// + 1.92, despues del for se manda a llamar el metodo "iconosPersonajes"
     /// </summary>
     public void crearIconos()
     {
@@ -202,6 +216,15 @@ public class CrearPersonaje : MonoBehaviour
                 break;
         }
     }
+
+    /// <summary>
+    /// AsignarTexturas
+    /// Este metodo es invocado por "Crear", asigna valores a las variables del animator ya que este es el que controla los sprites y animaciones
+    /// A partir del valor de "idPersonaje" se entra a un switch donde en el caso 0 se le asigna el valor 1 a la variable "personaje" del animator
+    /// ,caso 1 se le asigna el valor 2 a la variable "personaje" del animator, caso 2 se le asigna el valor 3 a la variable "personaje" del animator
+    /// ,caso 3 se le asigna el valor 4 a la variable "personaje" del animator, caso 4 se le asigna el valor 5 a la variable "personaje" del animator
+    /// ,caso 5 se le asigna el valor 6 a la variable "personaje" del animator
+    /// </summary>
     public void AsignarTexturas()
     {
         switch (idPersonaje)
@@ -257,6 +280,15 @@ public class CrearPersonaje : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// asignarDatos
+    /// este metodo es invocado por "crearPer", se asignan los datos gurdados del personaje de una clase estatica en caso de que vuelva
+    /// a crear la escena, la variable "ph" del script "personaje" se le otorga el valor de "ph" de la clase "RestablecerValores", la 
+    /// variable "casillaActual" se le otorga el valor de "obtenerCasilla" de la clase "RestablecerValores"
+    /// en caso de que la variable "estado" numero 0 sea igual a true, el objeto "per" en su campo "esPintado" se le asigna el valor de true
+    /// en caso de que la variable "estado" numero 1 sea igual a true, el objeto "per" en su campo "esBloqueado" se le asigna el valor de true
+    /// en caso de que la variable "estado" numero 0 sea igual a true, el objeto "per" en su campo "esInmune" se le asigna el valor de true
+    /// </summary>
     public void asignarDatos()
     {
         per.GetComponent<Personaje>().ph = RestablecerValores.obtenerPH();
