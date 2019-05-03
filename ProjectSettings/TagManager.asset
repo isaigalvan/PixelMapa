@@ -18,6 +18,11 @@ TagManager:
   - tronco
   - granizo
   - dardo
+  - pas1
+  - pas2
+  - pas3
+  - pas4
+  - puerta
   layers:
   - Default
   - TransparentFX

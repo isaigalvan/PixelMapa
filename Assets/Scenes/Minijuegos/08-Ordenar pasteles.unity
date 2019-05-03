@@ -367,9 +367,10 @@ GameObject:
   m_Component:
   - component: {fileID: 376135485}
   - component: {fileID: 376135486}
+  - component: {fileID: 376135487}
   m_Layer: 0
-  m_Name: PuertaAbierta (2)
-  m_TagString: Untagged
+  m_Name: Puerta1
+  m_TagString: puerta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -436,6 +437,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &376135487
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376135484}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 5}
+    newSize: {x: 5, y: 5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5}
+  m_EdgeRadius: 0
 --- !u!1001 &515873153
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -769,6 +796,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d1c2432706d74b47a27c620f035dac2, type: 3}
+--- !u!1 &728454472
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 728454473}
+  m_Layer: 0
+  m_Name: Pasteles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &728454473
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728454472}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &747650377 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3261625404113706341, guid: 8b81ed6473479194b90ddcf5e773f00b,
@@ -1173,6 +1230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1109354023}
   - component: {fileID: 1109354022}
+  - component: {fileID: 1109354024}
   m_Layer: 0
   m_Name: scripts
   m_TagString: Untagged
@@ -1212,6 +1270,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1109354024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109354021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3f00fe95e3866847a23871b8330f5cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pastelPrefab:
+  - {fileID: 5637590603914127204, guid: 8f915713a640cca46ad09454919864ae, type: 3}
+  - {fileID: 5227364835969584753, guid: 174b3b72cfa286340ae438e292c32ac4, type: 3}
+  - {fileID: 5107340221318361763, guid: 979822642344c484cb5d392a9cd066da, type: 3}
+  - {fileID: 2017714599107757099, guid: f8321f34518fcb94d91f8a00d09fbe32, type: 3}
+  pastelParent: {fileID: 728454473}
+  tiempo: 0
+  tiempo1: 0
+  noPastel: 0
+  noPastel1: 0
 --- !u!1 &1111981803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,9 +2004,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1904250162}
   - component: {fileID: 1904250163}
+  - component: {fileID: 1904250165}
   m_Layer: 0
-  m_Name: PuertaAbierta (3)
-  m_TagString: Untagged
+  m_Name: Puerta2
+  m_TagString: puerta
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1981,7 +2062,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 3cba48145e2deb54a8ddd186309a4930, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1993,6 +2074,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1904250165
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904250161}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.086740494, y: 0.02168405}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 5}
+    newSize: {x: 5, y: 5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.2602234, y: 4.9566326}
+  m_EdgeRadius: 0
 --- !u!1001 &1921417114
 PrefabInstance:
   m_ObjectHideFlags: 0
