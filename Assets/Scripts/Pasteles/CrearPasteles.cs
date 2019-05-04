@@ -31,12 +31,12 @@ public class CrearPasteles : MonoBehaviour
             if (noPastel == 0)
             {
                 noPastel = 1;
-                GameObject pastelTemp = Instantiate(pastelPrefab[0], new Vector3(-10, 2.85f, 0), Quaternion.Euler(new Vector3(0, 180, 0)));
+                GameObject pastelTemp = Instantiate(pastelPrefab[2], new Vector3(-10, 2.85f, 0), Quaternion.Euler(new Vector3(0, 180, 0)));
                 pastelTemp.transform.parent = pastelParent;
             }
             else
             {
-                GameObject pastelTemp = Instantiate(pastelPrefab[1], new Vector3(-10, 2.85f, 0), Quaternion.Euler(new Vector3(0, 180, 0)));
+                GameObject pastelTemp = Instantiate(pastelPrefab[3], new Vector3(-10, 2.85f, 0), Quaternion.Euler(new Vector3(0, 180, 0)));
                 pastelTemp.transform.parent = pastelParent;
                 noPastel = 0;
             }
@@ -51,12 +51,12 @@ public class CrearPasteles : MonoBehaviour
             if (noPastel1 == 0)
             {
                 noPastel1 = 1;
-                GameObject pastelTemp1 = Instantiate(pastelPrefab[2], new Vector3(10, 2.85f, 0), Quaternion.Euler(new Vector3(0, 180, 0)));
+                GameObject pastelTemp1 = Instantiate(pastelPrefab[0], new Vector3(10, 2.85f, 0), Quaternion.Euler(new Vector3(0, 180, 0)));
                 pastelTemp1.transform.parent = pastelParent;
             }
             else
             {
-                GameObject pastelTemp1 = Instantiate(pastelPrefab[3], new Vector3(10, 2.85f, 0), Quaternion.Euler(new Vector3(0, 180, 0)));
+                GameObject pastelTemp1 = Instantiate(pastelPrefab[1], new Vector3(10, 2.85f, 0), Quaternion.Euler(new Vector3(0, 180, 0)));
                 pastelTemp1.transform.parent = pastelParent;
                 noPastel1 = 0;
             }
