@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PerPastel : MonoBehaviour
 {
+    public int paso=0;
+    public float tiempo;
+    public bool actTiempo;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +17,8 @@ public class PerPastel : MonoBehaviour
     void Update()
     {
         mover();
+        soltar();
+       if (actTiempo == true) { tiempo = Time.deltaTime + tiempo; }
     }
 
     public void mover()
@@ -41,6 +46,16 @@ public class PerPastel : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow)==false&& Input.GetKey(KeyCode.RightArrow) == false&& Input.GetKey(KeyCode.UpArrow) == false&&Input.GetKey(KeyCode.DownArrow) == false)
         {
             gameObject.GetComponent<Animator>().SetBool("caminando", false);
+        }
+    }
+
+    public void soltar()
+    {
+        if (tiempo >= 0.5f)
+        {
+            paso = 0;
+            actTiempo = false;
+            tiempo = 0;
         }
     }
 }
