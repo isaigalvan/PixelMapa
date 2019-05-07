@@ -11,7 +11,6 @@ public class Puntaje : MonoBehaviour
     public float tiempo;
     private void Start()
     {
-        tiempo = 10;
     }
     private void Update()
     {

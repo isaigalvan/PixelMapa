@@ -5,7 +5,7 @@ using UnityEngine;
 public class PastelDer : MonoBehaviour
 {
     public float posx = 10, posy = 2.85f, tiempo;
-    public int pasoPastel = 0;
+    public int pasoPastel = 0, idPastel;
     public GameObject per;
     public SpriteRenderer sr;
     public bool estaTocando, actTiempo;
@@ -82,12 +82,14 @@ public class PastelDer : MonoBehaviour
             sr = gameObject.GetComponent<SpriteRenderer>();
             sr.sortingOrder = 5;
             per.GetComponent<PerPastel>().paso = 1;
+            per.GetComponent<PerPastel>().idPastelTomado = gameObject.GetComponent<PastelDer>().idPastel;
             pasoPastel = 1;
             actTiempo = true;
         }
         else if (Input.GetKey(KeyCode.Space) && per.GetComponent<PerPastel>().paso == 1 && tiempo >= .5f && pasoPastel == 1)
         {
             per.GetComponent<PerPastel>().actTiempo = true;
+            per.GetComponent<PerPastel>().solto = true;
             actTiempo = false;
             tiempo = 0;
             Destroy(gameObject);

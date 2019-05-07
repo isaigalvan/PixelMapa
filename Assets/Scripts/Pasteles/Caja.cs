@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Borrar : MonoBehaviour
+public class Caja : MonoBehaviour
 {
+    public int idCaja;
     // Start is called before the first frame update
     void Start()
     {

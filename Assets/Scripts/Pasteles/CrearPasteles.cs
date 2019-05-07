@@ -23,7 +23,7 @@ public class CrearPasteles : MonoBehaviour
         tiempo1 = Time.deltaTime + tiempo1;
     }
 
-    public void crearPastelIzq()
+    public void crearPastelDer()
     {
         if (tiempo >= 1f)
         {
@@ -33,17 +33,20 @@ public class CrearPasteles : MonoBehaviour
                 noPastel = 1;
                 GameObject pastelTemp = Instantiate(pastelPrefab[0], new Vector3(-10, 2.85f, 0), Quaternion.Euler(new Vector3(0, 180, 0)));
                 pastelTemp.transform.parent = pastelParent;
+                pastelTemp.GetComponent<PastelDer>().idPastel = 4;
             }
             else
             {
                 GameObject pastelTemp = Instantiate(pastelPrefab[1], new Vector3(-10, 2.85f, 0), Quaternion.Euler(new Vector3(0, 180, 0)));
                 pastelTemp.transform.parent = pastelParent;
+                pastelTemp.GetComponent<PastelDer>().idPastel = 3;
                 noPastel = 0;
+               
             }
         }
     }
 
-    public void crearPastelDer()
+    public void crearPastelIzq()
     {
         if (tiempo1 >= 1f)
         {
@@ -53,11 +56,14 @@ public class CrearPasteles : MonoBehaviour
                 noPastel1 = 1;
                 GameObject pastelTemp1 = Instantiate(pastelPrefab[2], new Vector3(10, 2.85f, 0), Quaternion.Euler(new Vector3(0, 180, 0)));
                 pastelTemp1.transform.parent = pastelParent;
+                pastelTemp1.GetComponent<PastelIzq>().idPastel = 2;
+               
             }
             else
             {
                 GameObject pastelTemp1 = Instantiate(pastelPrefab[3], new Vector3(10, 2.85f, 0), Quaternion.Euler(new Vector3(0, 180, 0)));
                 pastelTemp1.transform.parent = pastelParent;
+                pastelTemp1.GetComponent<PastelIzq>().idPastel = 1;
                 noPastel1 = 0;
             }
         }

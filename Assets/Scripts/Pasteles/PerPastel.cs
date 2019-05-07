@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class PerPastel : MonoBehaviour
 {
-    public int paso=0;
+    public int paso=0, idPersonaje, idPastelTomado, puntos, idPastel;
     public float tiempo;
-    public bool actTiempo;
+    public bool actTiempo, solto;
+    public bool[] estaTocando = new bool[4];
+    public GameObject scripts;
     // Start is called before the first frame update
     void Start()
     {
-        
+        idPastel = Random.Range(1, 4);
     }
 
     // Update is called once per frame
     void Update()
     {
+        scripts = GameObject.Find("scripts");
         mover();
         soltar();
+        soltarEnCaja();
        if (actTiempo == true) { tiempo = Time.deltaTime + tiempo; }
     }
 
@@ -56,6 +60,98 @@ public class PerPastel : MonoBehaviour
             paso = 0;
             actTiempo = false;
             tiempo = 0;
+        }
+    }
+
+    public void soltarEnCaja()
+    {
+        if (solto)
+        {
+            if (estaTocando[0])
+            {
+                if (idPastelTomado == idPastel)
+                {
+                    scripts.GetComponent<Puntaje>().puntos++;
+                }
+                else
+                {
+                    scripts.GetComponent<Puntaje>().puntos--;
+                }
+            }
+            if (estaTocando[1])
+            {
+                if (idPastelTomado == idPastel)
+                {
+                    scripts.GetComponent<Puntaje>().puntos++;
+                }
+                else
+                {
+                    scripts.GetComponent<Puntaje>().puntos--;
+                }
+            }
+            if (estaTocando[2])
+            {
+                if (idPastelTomado == idPastel)
+                {
+                    scripts.GetComponent<Puntaje>().puntos++;
+                }
+                else
+                {
+                    scripts.GetComponent<Puntaje>().puntos--;
+                }
+            }
+            if (estaTocando[3])
+            {
+                if (idPastelTomado == idPastel)
+                {
+                    scripts.GetComponent<Puntaje>().puntos++;
+                }
+                else
+                {
+                    scripts.GetComponent<Puntaje>().puntos--;
+                }
+                    
+            }
+            solto = false;
+            idPastelTomado = 0;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "caja1")
+        {
+            estaTocando[0] = true;
+        }
+        if (collision.gameObject.name == "caja2")
+        {
+            estaTocando[1] = true;
+        }
+        if (collision.gameObject.name == "caja3")
+        {
+            estaTocando[2] = true;
+        }
+        if (collision.gameObject.name == "caja4")
+        {
+            estaTocando[3] = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "caja1")
+        {
+            estaTocando[0] = false;
+        }
+        if (collision.gameObject.name == "caja2")
+        {
+            estaTocando[1] = false;
+        }
+        if (collision.gameObject.name == "caja3")
+        {
+            estaTocando[2] = false;
+        }
+        if (collision.gameObject.name == "caja4")
+        {
+            estaTocando[3] = false;
         }
     }
 }

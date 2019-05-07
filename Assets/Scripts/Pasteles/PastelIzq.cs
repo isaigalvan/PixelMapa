@@ -5,7 +5,7 @@ using UnityEngine;
 public class PastelIzq : MonoBehaviour
 {
     public float posx=-10, posy=2.85f, tiempo;
-    public int pasoPastel = 0;
+    public int pasoPastel = 0, idPastel;
     public GameObject per;
     public SpriteRenderer sr;
     public bool estaTocando, actTiempo;
@@ -79,19 +79,21 @@ public class PastelIzq : MonoBehaviour
     }
     public void estado()
     {
-   
-            if (Input.GetKey(KeyCode.Space) && estaTocando == true&& per.GetComponent<PerPastel>().paso == 0)
-            {
-                Debug.Log("ME AGARROOO ACOSO!!");
-                gameObject.transform.localScale = new Vector3(0.4f, 0.4f);
-                sr = gameObject.GetComponent<SpriteRenderer>();
-                sr.sortingOrder = 5;
-                per.GetComponent<PerPastel>().paso = 1;
-                pasoPastel = 1;
-                actTiempo = true;
+
+        if (Input.GetKey(KeyCode.Space) && estaTocando == true && per.GetComponent<PerPastel>().paso == 0)
+        {
+            Debug.Log("ME AGARROOO ACOSO!!");
+            gameObject.transform.localScale = new Vector3(0.4f, 0.4f);
+            sr = gameObject.GetComponent<SpriteRenderer>();
+            sr.sortingOrder = 5;
+            per.GetComponent<PerPastel>().paso = 1;
+            per.GetComponent<PerPastel>().idPastelTomado = gameObject.GetComponent<PastelIzq>().idPastel;
+            pasoPastel = 1;
+            actTiempo = true;
             }else if (Input.GetKey(KeyCode.Space)&&per.GetComponent<PerPastel>().paso == 1&&tiempo>=.5f&&pasoPastel==1)
             {
             per.GetComponent<PerPastel>().actTiempo =true;
+            per.GetComponent<PerPastel>().solto = true;
             actTiempo = false;
             tiempo = 0;
             Destroy(gameObject);       
