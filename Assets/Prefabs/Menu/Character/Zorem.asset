@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9d94532c16e10440933011bf4808dd9, type: 3}
+  m_Script: {fileID: 11500000, guid: 15e430fa33c0e5644a281c35e49354af, type: 3}
   m_Name: Zorem
   m_EditorClassIdentifier: 
   characterName: Zorem
   characterSprite: {fileID: 21300000, guid: 87a23f8abbe433c4b875f84dbaaec897, type: 3}
   characterIcon: {fileID: 21300000, guid: d14582b13ba38904dbe5f675ed7ce97b, type: 3}
-  zoom: 0.6
+  zoom: 1.2

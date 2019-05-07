@@ -1,26 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using DG.Tweening;
 
-public class CharacterCSS : MonoBehaviour
-{
-  
+public class SmashCSS : MonoBehaviour {
 
-    /*private GridLayoutGroup gridLayout;
+    private GridLayoutGroup gridLayout;
     [HideInInspector]
     public Vector2 slotArtworkSize;
 
 
-    public static CharacterCSS instance;*/
+    public static SmashCSS instance;
     [Header("Characters List")]
     public List<Character> characters = new List<Character>();
     [Space]
     [Header("Public References")]
     public GameObject charCellPrefab;
-    /*public GameObject gridBgPrefab;
+    public GameObject gridBgPrefab;
     public Transform playerSlotsContainer;
     [Space]
     [Header("Current Confirmed Character")]
@@ -29,26 +28,25 @@ public class CharacterCSS : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }*/
-      /*
-    void Start()
-    {
+    }
 
+    void Start () {
+        /*
         gridLayout = GetComponent<GridLayoutGroup>();
         GetComponent<RectTransform>().sizeDelta = new Vector2(gridLayout.cellSize.x * 5, gridLayout.cellSize.y * 2);
         RectTransform gridBG = Instantiate(gridBgPrefab, transform.parent).GetComponent<RectTransform>();
         gridBG.transform.SetSiblingIndex(transform.GetSiblingIndex());
         gridBG.sizeDelta = GetComponent<RectTransform>().sizeDelta;
-
+        */
         slotArtworkSize = playerSlotsContainer.GetChild(0).Find("artwork").GetComponent<RectTransform>().sizeDelta;
 
-        foreach (Character character in characters)
+        foreach(Character character in characters)
         {
             SpawnCharacterCell(character);
         }
 
-    }
-    
+	}
+
     private void SpawnCharacterCell(Character character)
     {
         GameObject charCell = Instantiate(charCellPrefab, transform);
@@ -71,9 +69,9 @@ public class CharacterCSS : MonoBehaviour
 
         Color alpha = nullChar ? Color.clear : Color.white;
         Sprite artwork = nullChar ? null : character.characterSprite;
-        string name = nullChar ? string.Empty : character.characterName;
+        string name = nullChar ? string.Empty : character.characterName; 
         string playernickname = "Player " + (player + 1).ToString();
-        string playernumber = "P" + (player + 1).ToString();
+        string playernumber = "P" + (player+1).ToString();
 
         Transform slot = playerSlotsContainer.GetChild(player);
 
@@ -113,16 +111,15 @@ public class CharacterCSS : MonoBehaviour
         if (confirmedCharacter == null)
         {
             confirmedCharacter = character;
-            playerSlotsContainer.GetChild(player).DOPunchPosition(Vector3.down * 3, .3f, 10, 1);
+            playerSlotsContainer.GetChild(player).DOPunchPosition(Vector3.down * 3, .3f, 10,1);
         }
     }
 
-    public Vector2 uiPivot(Sprite sprite)
+    public Vector2 uiPivot (Sprite sprite)
     {
         Vector2 pixelSize = new Vector2(sprite.texture.width, sprite.texture.height);
         Vector2 pixelPivot = sprite.pivot;
         return new Vector2(pixelPivot.x / pixelSize.x, pixelPivot.y / pixelSize.y);
     }
 
-    */
 }

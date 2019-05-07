@@ -1,13 +1,12 @@
-﻿using DG.Tweening;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
 
-public class CursorDetection : MonoBehaviour
-{
-    /*
+public class CursorDetection : MonoBehaviour {
+
     private GraphicRaycaster gr;
     private PointerEventData pointerEventData = new PointerEventData(null);
 
@@ -16,17 +15,15 @@ public class CursorDetection : MonoBehaviour
     public Transform token;
     public bool hasToken;
 
-    void Start()
-    {
+	void Start () {
 
         gr = GetComponentInParent<GraphicRaycaster>();
 
-        CharacterCSS.instance.ShowCharacterInSlot(0, null);
+        SmashCSS.instance.ShowCharacterInSlot(0, null);
 
     }
 
-    void Update()
-    {
+    void Update () {
 
         //CONFIRM
         if (Input.GetKeyDown(KeyCode.Z))
@@ -34,14 +31,14 @@ public class CursorDetection : MonoBehaviour
             if (currentCharacter != null)
             {
                 TokenFollow(false);
-                CharacterCSS.instance.ConfirmCharacter(0, CharacterCSS.instance.characters[currentCharacter.GetSiblingIndex()]);
+                SmashCSS.instance.ConfirmCharacter(0, SmashCSS.instance.characters[currentCharacter.GetSiblingIndex()]);
             }
         }
 
         //CANCEL
         if (Input.GetKeyDown(KeyCode.X))
         {
-            CharacterCSS.instance.confirmedCharacter = null;
+            SmashCSS.instance.confirmedCharacter = null;
             TokenFollow(true);
         }
 
@@ -80,13 +77,13 @@ public class CursorDetection : MonoBehaviour
                 }
             }
         }
-
-    }
+		
+	}
 
     void SetCurrentCharacter(Transform t)
     {
-
-        if (t != null)
+        
+        if(t != null)
         {
             t.Find("selectedBorder").GetComponent<Image>().color = Color.white;
             t.Find("selectedBorder").GetComponent<Image>().DOColor(Color.red, .7f).SetLoops(-1);
@@ -97,18 +94,17 @@ public class CursorDetection : MonoBehaviour
         if (t != null)
         {
             int index = t.GetSiblingIndex();
-            Character character = CharacterCSS.instance.characters[index];
-            CharacterCSS.instance.ShowCharacterInSlot(0, character);
+            Character character = SmashCSS.instance.characters[index];
+            SmashCSS.instance.ShowCharacterInSlot(0, character);
         }
         else
         {
-            CharacterCSS.instance.ShowCharacterInSlot(0, null);
+            SmashCSS.instance.ShowCharacterInSlot(0, null);
         }
     }
 
-    void TokenFollow(bool trigger)
+    void TokenFollow (bool trigger)
     {
         hasToken = trigger;
     }
-    */
 }

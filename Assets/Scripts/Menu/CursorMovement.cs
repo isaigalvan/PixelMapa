@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CursorMovement : MonoBehaviour
-{
+public class CursorMovement : MonoBehaviour {
+
     public float speed;
 
-    void Update()
-    {
+	void Update () {
 
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
@@ -19,5 +18,7 @@ public class CursorMovement : MonoBehaviour
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -worldSize.x, worldSize.x),
             Mathf.Clamp(transform.position.y, -worldSize.y, worldSize.y),
             transform.position.z);
+
+
     }
 }

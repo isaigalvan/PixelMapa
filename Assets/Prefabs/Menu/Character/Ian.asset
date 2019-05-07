@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9d94532c16e10440933011bf4808dd9, type: 3}
+  m_Script: {fileID: 11500000, guid: 15e430fa33c0e5644a281c35e49354af, type: 3}
   m_Name: Ian
   m_EditorClassIdentifier: 
   characterName: Ian
   characterSprite: {fileID: 21300000, guid: 770dd11668fbf9d42a95c034acca6d4c, type: 3}
   characterIcon: {fileID: 21300000, guid: 34bb98482a1f411488328cd1ffd5a200, type: 3}
-  zoom: 1
+  zoom: 1.5
