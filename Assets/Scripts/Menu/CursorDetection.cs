@@ -23,9 +23,16 @@ public class CursorDetection : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// Esta funcion se encarga de identificar si el usuario confirmo un personaje por medio del token
+    /// que puede ser verificado a travez del inspector.
+    /// 
+    /// El token es un circulo que esta junto al cursor que es dejado en el slot del personaje una vez
+    /// es confirmado y se creara una pequeña animación, de lo contrario el token permanecera siguiendo al cursor.
+    /// </summary>
     void Update () {
 
-        //CONFIRM
+        //Confirma
         if (Input.GetKeyDown(KeyCode.Z))
         {
             if (currentCharacter != null)
@@ -35,7 +42,7 @@ public class CursorDetection : MonoBehaviour {
             }
         }
 
-        //CANCEL
+        //Cancela
         if (Input.GetKeyDown(KeyCode.X))
         {
             SmashCSS.instance.confirmedCharacter = null;
@@ -80,6 +87,11 @@ public class CursorDetection : MonoBehaviour {
 		
 	}
 
+    /// <summary>
+    /// Es una función que se encarga de hacer vibrar el prefab de playerSlotsContainer mientras que lo cambia de color
+    /// generando una animación que indica que se ha confirmado un personaje
+    /// </summary>
+    /// <param name="t"></param>
     void SetCurrentCharacter(Transform t)
     {
         

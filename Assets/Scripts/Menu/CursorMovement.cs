@@ -6,6 +6,10 @@ public class CursorMovement : MonoBehaviour {
 
     public float speed;
 
+    /// <summary>
+    /// Esta función se encarga de mover el cursor en todo el espacio donde se encuentra la camará, ademas de que
+    /// la velocidad del cursor es asignada desde el inspector 
+    /// </summary>
 	void Update () {
 
         float x = Input.GetAxis("Horizontal");
