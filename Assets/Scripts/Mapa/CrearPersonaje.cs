@@ -32,6 +32,7 @@ public class CrearPersonaje : MonoBehaviour
     /// </summary>
     void Start()
     {
+        RestablecerValores.idPersonaje = idPersonaje;
         crearPer();
         crearIconos();
     }
@@ -262,7 +263,6 @@ public class CrearPersonaje : MonoBehaviour
             RestablecerValores.ponerPosy(posy); //posy 
             RestablecerValores.ponerPH(per.GetComponent<Personaje>().ph); //ph 
             RestablecerValores.ponerCasilla(per.GetComponent<Personaje>().casillaActual); //casillaActual
-
         }
         else
         {

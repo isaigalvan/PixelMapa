@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Photon.Pun;
 
 public class CrearCarta : MonoBehaviour
 {
@@ -62,6 +63,7 @@ public class CrearCarta : MonoBehaviour
     {
         if (tiempo <= 0.0f) 
         {
+            PhotonNetwork.LoadLevel(1);
         }
         else
         {
@@ -144,7 +146,7 @@ public class CrearCarta : MonoBehaviour
 
 
         }
-
+               
     }
 
     /// <summary>
