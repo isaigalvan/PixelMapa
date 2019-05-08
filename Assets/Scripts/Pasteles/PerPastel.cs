@@ -8,17 +8,21 @@ public class PerPastel : MonoBehaviour
     public float tiempo;
     public bool actTiempo, solto;
     public bool[] estaTocando = new bool[4];
-    public GameObject scripts;
+    public GameObject scripts, c1,c2,c3,c4;
     // Start is called before the first frame update
     void Start()
     {
-        idPastel = Random.Range(1, 4);
+       idPastel = Random.Range(1, 5);
     }
 
     // Update is called once per frame
     void Update()
     {
         scripts = GameObject.Find("scripts");
+        c1 = GameObject.Find("caja1");
+        c2 = GameObject.Find("caja2");
+        c3 = GameObject.Find("caja3");
+        c4 = GameObject.Find("caja4");
         mover();
         soltar();
         soltarEnCaja();
@@ -69,7 +73,7 @@ public class PerPastel : MonoBehaviour
         {
             if (estaTocando[0])
             {
-                if (idPastelTomado == idPastel)
+                if (idPastelTomado == idPastel && idPastelTomado == c1.GetComponent<Caja>().idCaja)
                 {
                     scripts.GetComponent<Puntaje>().puntos++;
                 }
@@ -78,9 +82,9 @@ public class PerPastel : MonoBehaviour
                     scripts.GetComponent<Puntaje>().puntos--;
                 }
             }
-            if (estaTocando[1])
+            else if (estaTocando[1] )
             {
-                if (idPastelTomado == idPastel)
+                if (idPastelTomado == idPastel && idPastelTomado == c2.GetComponent<Caja>().idCaja)
                 {
                     scripts.GetComponent<Puntaje>().puntos++;
                 }
@@ -89,9 +93,9 @@ public class PerPastel : MonoBehaviour
                     scripts.GetComponent<Puntaje>().puntos--;
                 }
             }
-            if (estaTocando[2])
+            else if (estaTocando[2])
             {
-                if (idPastelTomado == idPastel)
+                if (idPastelTomado == idPastel && idPastelTomado == c3.GetComponent<Caja>().idCaja)
                 {
                     scripts.GetComponent<Puntaje>().puntos++;
                 }
@@ -100,9 +104,9 @@ public class PerPastel : MonoBehaviour
                     scripts.GetComponent<Puntaje>().puntos--;
                 }
             }
-            if (estaTocando[3])
+            else if (estaTocando[3])
             {
-                if (idPastelTomado == idPastel)
+                if (idPastelTomado == idPastel && idPastelTomado == c4.GetComponent<Caja>().idCaja)
                 {
                     scripts.GetComponent<Puntaje>().puntos++;
                 }
@@ -110,7 +114,11 @@ public class PerPastel : MonoBehaviour
                 {
                     scripts.GetComponent<Puntaje>().puntos--;
                 }
-                    
+
+            }
+            else
+            {
+                scripts.GetComponent<Puntaje>().puntos--;
             }
             solto = false;
             idPastelTomado = 0;

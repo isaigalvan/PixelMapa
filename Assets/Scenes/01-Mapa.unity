@@ -11579,7 +11579,7 @@ MonoBehaviour:
   posy: 0
   posx2: 0
   posy2: 0
-  idPersonaje: 2
+  idPersonaje: 1
   total: 0
   personajePrefab: {fileID: 8374747939170389795, guid: 6449d7a80efbb034f95c24b6c1f60bb9,
     type: 3}

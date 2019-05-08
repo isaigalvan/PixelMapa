@@ -1580,8 +1580,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   perPrefab: {fileID: 5748113588270858688, guid: 666c3960ca4287b41a2c6486288e0108,
     type: 3}
+  per: {fileID: 0}
   perParent: {fileID: 185768767}
-  idPersonaje: 0
+  idPersonaje: 1
   posx: 0
   posy: 0
 --- !u!114 &1109354026

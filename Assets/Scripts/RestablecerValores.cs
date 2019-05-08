@@ -8,6 +8,7 @@ public static class RestablecerValores
 
     //CrearPersonaje
     public static float posx=5, posy;
+    public static int idPersonaje;
    
     //Personaje
     public static bool[] estados = new bool[3];  // 0-Pintado    1-Bloqueado     2-Inmune
