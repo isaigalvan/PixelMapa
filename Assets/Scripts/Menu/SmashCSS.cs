@@ -8,6 +8,10 @@ using DG.Tweening;
 
 public class SmashCSS : MonoBehaviour {
 
+    //[HideInInspector] Hace que una variable no aparezca en el inspector, sino que se serialice.
+    //[Header("")]Se utiliza para agregar un encabezado sobre algunos campos en el Inspector.
+    //[Space] Se utiliza para agregar algo de espacio en el inspector.
+
     private GridLayoutGroup gridLayout;
     [HideInInspector]
     public Vector2 slotArtworkSize;
@@ -38,8 +42,10 @@ public class SmashCSS : MonoBehaviour {
         gridBG.transform.SetSiblingIndex(transform.GetSiblingIndex());
         gridBG.sizeDelta = GetComponent<RectTransform>().sizeDelta;
         */
+
         slotArtworkSize = playerSlotsContainer.GetChild(0).Find("artwork").GetComponent<RectTransform>().sizeDelta;
 
+        //Se encarga de crear el numero de cada uno de los slots de los personajes
         foreach(Character character in characters)
         {
             SpawnCharacterCell(character);
@@ -47,6 +53,11 @@ public class SmashCSS : MonoBehaviour {
 
 	}
 
+    /// <summary>
+    /// Esta función se encarga de que los valores que tiene el archivo ".assent" sean acomodados en los campos del
+    /// prefab charCell, ademas de que modifica el pivote de la imagen que esta contenida en el campo artwork del prefab.
+    /// </summary>
+    /// <param name="character"> es un archivo .assent creado por el script Character</param>
     private void SpawnCharacterCell(Character character)
     {
         GameObject charCell = Instantiate(charCellPrefab, transform);
@@ -63,6 +74,12 @@ public class SmashCSS : MonoBehaviour {
         artwork.GetComponent<RectTransform>().sizeDelta *= character.zoom;
     }
 
+    /// <summary>
+    /// Esta función se encargará de mostrar la imagen del personaje que el cursor tenga en ese momento modificando el contenido que 
+    /// tiene el prefab de playerSlotsContainer
+    /// </summary>
+    /// <param name="player"> variable que almacena el numero de jugador</param>
+    /// <param name="character"> variable que almacena el nombre del personaje</param>
     public void ShowCharacterInSlot(int player, Character character)
     {
         bool nullChar = (character == null);
@@ -106,6 +123,11 @@ public class SmashCSS : MonoBehaviour {
         slot.Find("iconAndPx").GetComponentInChildren<TextMeshProUGUI>().text = playernumber;
     }
 
+    /// <summary>
+    /// Esta función se encarfa de verificar si el jugador ha escogido un personaje para luego almacenarlo
+    /// </summary>
+    /// <param name="player"> variable que almacena el numero de jugador</param>
+    /// <param name="character"> variable que almacena el nombre del personaje</param>
     public void ConfirmCharacter(int player, Character character)
     {
         if (confirmedCharacter == null)
@@ -115,6 +137,12 @@ public class SmashCSS : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Esta función se encarga de acomodar correctamente el pivote del sprite del personaje y posteriormente
+    /// encuadra el sprite en el su sección correspondiente del prefap
+    /// </summary>
+    /// <param name="sprite"></param>
+    /// <returns></returns>
     public Vector2 uiPivot (Sprite sprite)
     {
         Vector2 pixelSize = new Vector2(sprite.texture.width, sprite.texture.height);
