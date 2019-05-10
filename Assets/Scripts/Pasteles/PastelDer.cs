@@ -6,7 +6,7 @@ public class PastelDer : MonoBehaviour
 {
     public float posx = 10, posy = 2.85f, tiempo;
     public int pasoPastel = 0, idPastel;
-    public GameObject per;
+    public GameObject per, scripts;
     public SpriteRenderer sr;
     public bool estaTocando, actTiempo;
     // Start is called before the first frame update
@@ -19,6 +19,7 @@ public class PastelDer : MonoBehaviour
     void Update()
     {
         per = GameObject.FindGameObjectWithTag("Personaje");
+        scripts = GameObject.Find("scripts");
         mover();
         estado();
         if (actTiempo == true) { tiempo = Time.deltaTime + tiempo; }
@@ -54,7 +55,23 @@ public class PastelDer : MonoBehaviour
         {
             posx = per.transform.position.x;
             posy = per.transform.position.y;
-            gameObject.transform.localPosition = new Vector3(posx + 0.1f, posy - 0.3f);
+            switch (scripts.GetComponent<CrearPerPastel>().idPersonaje)
+            {
+                case 0:
+                case 1:
+                case 2:
+                case 5:
+                    gameObject.transform.localPosition = new Vector3(posx + 0.1f, posy - 0.3f);
+                    break;
+                case 4:
+                    gameObject.transform.localPosition = new Vector3(posx + 0.1f, posy + 0.4f);
+                    break;
+                case 3:
+                    gameObject.transform.localPosition = new Vector3(posx + 0.1f, posy + 0.4f);
+                    break;
+                default:
+                    break;
+            }
         }
     }
 

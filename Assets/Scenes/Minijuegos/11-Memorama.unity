@@ -1013,7 +1013,7 @@ MonoBehaviour:
   cartaMostrada: {fileID: 0}
   sePuedeMostrar: 1
   Tiempo: {fileID: 317966803}
-  tiempo: 60
+  tiempo: 30
   clip: {fileID: 0}
 --- !u!4 &2020084620
 Transform:

@@ -1582,9 +1582,10 @@ MonoBehaviour:
     type: 3}
   per: {fileID: 0}
   perParent: {fileID: 185768767}
-  idPersonaje: 1
+  idPersonaje: 5
   posx: 0
   posy: 0
+  box: {fileID: 0}
 --- !u!114 &1109354026
 MonoBehaviour:
   m_ObjectHideFlags: 0

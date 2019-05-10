@@ -36,8 +36,8 @@ public class CrearGranizo : MonoBehaviour
             GloboTemp.name = "Granizo" + cont + "";
             GloboTemp.transform.parent = ListaGranizo;
             cont ++;
-            segMax = segMax + 0.3f;
-            segMin = segMin + 0.3f;
+            segMax = segMax + 0.7f;
+            segMin = segMin + 0.7f;
             creo = true;    
         }
         if (tiempo <= segMax)

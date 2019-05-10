@@ -8,6 +8,7 @@ public class CrearPerPastel : MonoBehaviour
     public Transform perParent;
     public int idPersonaje;
     public int posx, posy;
+    public BoxCollider2D box;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class CrearPerPastel : MonoBehaviour
         GameObject personajeTemp = Instantiate(perPrefab, new Vector3(posx, posy, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
         personajeTemp.transform.parent = perParent;
         per = GameObject.FindGameObjectWithTag("Personaje");
+        box = per.GetComponent<BoxCollider2D>();
         // AsignarNombres();
         //AsignarTamanos();
         asignarTexturas();
@@ -41,6 +43,9 @@ public class CrearPerPastel : MonoBehaviour
                 break;
             case 3:
                 per.GetComponent<Animator>().SetFloat("personaje", 3f);
+                per.transform.localScale = new Vector3(0.3f,0.3f);
+                box.size = new Vector3(5.6f, 8);
+                box.offset = new Vector3(0.1f, -3.519004f);
                 break;
             case 4:
                 per.GetComponent<Animator>().SetFloat("personaje", 4f);
