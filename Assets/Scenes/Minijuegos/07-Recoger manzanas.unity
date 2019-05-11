@@ -825,6 +825,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10, y: 5}
   m_EdgeRadius: 0
+--- !u!1 &1087069008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1087069009}
+  m_Layer: 0
+  m_Name: Personajes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1087069009
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087069008}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.7148358, y: 1.6885037, z: -9.919721}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1093093559
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,6 +1509,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1973874013}
+  - component: {fileID: 1973874016}
   - component: {fileID: 1973874014}
   - component: {fileID: 1973874015}
   m_Layer: 0
@@ -1543,6 +1574,26 @@ MonoBehaviour:
   Tiempo: {fileID: 1746913342}
   puntos: 0
   tiempo: 60
+--- !u!114 &1973874016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973874012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c89e9f39c7afe848a2f431e40b49478, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perPrefab: {fileID: 4280291290164033206, guid: ea3b8ff6599811448a2ca9a321d6f335,
+    type: 3}
+  per: {fileID: 0}
+  perParent: {fileID: 1087069009}
+  idPersonaje: 0
+  posx: 0
+  posy: 0
+  box: {fileID: 0}
 --- !u!1 &1984851517
 GameObject:
   m_ObjectHideFlags: 0
