@@ -161,7 +161,7 @@ public class Personaje : MonoBehaviour
             else if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esMinijuego== true)
             {
                 int random = Random.Range(2, 11);
-                PhotonNetwork.LoadLevel(8);
+                PhotonNetwork.LoadLevel(7);
                
             }
             if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esPintada == true)
