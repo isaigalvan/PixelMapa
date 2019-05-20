@@ -1582,7 +1582,7 @@ MonoBehaviour:
     type: 3}
   per: {fileID: 0}
   perParent: {fileID: 185768767}
-  idPersonaje: 1
+  idPersonaje: 0
   posx: 0
   posy: 0
 --- !u!114 &1109354026
@@ -1737,7 +1737,7 @@ MonoBehaviour:
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
