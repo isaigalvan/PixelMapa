@@ -8,6 +8,7 @@ public class MoverRobot : MonoBehaviour
     public int direccion, direcAnt=1;
     public bool moviendo, tocando;
     public SpriteRenderer sr;
+    public GameObject scripts;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class MoverRobot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        scripts = GameObject.Find("Scripts");
         sr = gameObject.GetComponent<SpriteRenderer>();
         tiempo = Time.deltaTime + tiempo;
         mover();
@@ -27,7 +29,7 @@ public class MoverRobot : MonoBehaviour
     {
         if (moviendo == false)
         {
-            direccion = Random.Range(1, 9);
+                
             do
             {
               direccion = Random.Range(1,9);
@@ -95,6 +97,13 @@ public class MoverRobot : MonoBehaviour
             moviendo = false;
             tiempo = 0;
             tocando = true;
+        }
+        if(collision.gameObject.tag == "Personaje")
+        {
+            scripts.GetComponent<Puntaje>().puntos++;
+            scripts.GetComponent<CrearRobot>().estaEnJuego = false;
+            Destroy(gameObject);
+           
         }
     }
 

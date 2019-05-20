@@ -168,6 +168,7 @@ public class Habilidades : MonoBehaviour
         GetComponent<Dado>().esTurno = false;
         per.GetComponent<Animator>().SetBool("hab3", true);
         per.GetComponent<Personaje>().esBuff = true;
+        GetComponent<Dado>().buff = true;
     }
     public void terhab3zor()
     {
@@ -386,9 +387,11 @@ public class Habilidades : MonoBehaviour
         per.GetComponent<Animator>().SetBool("hab3", true);
         per.GetComponent<Personaje>().esBuff = true;
         repite = true;
+        GetComponent<Dado>().buff = true;
     }
     public void terhab3leonn()
     {
+        
         if (tiempo >= 3.5f)
         {
             per.GetComponent<Animator>().SetBool("hab3", false);
