@@ -23,6 +23,7 @@ TagManager:
   - pas3
   - pas4
   - puerta
+  - piso
   layers:
   - Default
   - TransparentFX

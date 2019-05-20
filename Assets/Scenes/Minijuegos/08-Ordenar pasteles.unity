@@ -1585,6 +1585,7 @@ MonoBehaviour:
   idPersonaje: 0
   posx: 0
   posy: 0
+  box: {fileID: 0}
 --- !u!114 &1109354026
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PerPastel : MonoBehaviour
 {
-    public int paso=0, idPersonaje, idPastelTomado, puntos, idPastel;
+    public int paso=0, idPastelTomado, puntos, idPastel;
     public float tiempo;
     public bool actTiempo, solto;
     public bool[] estaTocando = new bool[4];

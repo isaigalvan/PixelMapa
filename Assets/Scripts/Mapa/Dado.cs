@@ -8,9 +8,9 @@ public class Dado : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Marco;
-    public GameObject Habilidades,btnHab1,btnHab2,btnHab3,mapa,personaje,objPH;
-    public TextMeshProUGUI contDado;
-    public bool esTurno=false, seDetuvo=false, caminando=false;
+    public GameObject Habilidades,btnHab1,btnHab2,btnHab3,mapa,personaje,objPH, marcoLeonn;
+    public TextMeshProUGUI contDado, textd1, textd2;
+    public bool esTurno=false, seDetuvo=false, caminando=false, buff, hab3Leonn;
     public float  caminarCasilla, destino,posReal;
     public int valorDado = 1, valorMax = 6 , valHab3Len;
     public bool yaTiro = false, verificado;
@@ -78,7 +78,15 @@ public class Dado : MonoBehaviour
         if (seDetuvo == false)
         {
             yaTiro = false;
-            contDado.color = Color.black;
+            if (buff)
+            {
+                contDado.color = Color.blue;
+            }
+            else
+            {
+                contDado.color = Color.black;
+            }
+          
             if (tiempo >= 0.08f)
             {
                 tiempo = 0.0f;
@@ -95,15 +103,22 @@ public class Dado : MonoBehaviour
         {
             mapa.SetActive(false);
             contDado.color = Color.red;
-           
+            if (GetComponent<Habilidades>().repite == false)
+            {
+                textd2.text = "" + valorDado;
+            }
+            else
+            {
+                marcoLeonn.SetActive(true);
+                textd1.text = "" + valHab3Len;
+            }
             if (tiempo >= 1.5f)
             {
                 if (GetComponent<Habilidades>().repite == true)
                 {
-                    
                     esTurno = true;
                     seDetuvo = false;
-                    GetComponent<Habilidades>().repite = false;
+                    GetComponent<Habilidades>().repite = false;   
                 }
                 else
                 {
@@ -224,8 +239,10 @@ public void estadoDado()
     public void caminar()
     {
         if (caminando==true) {
-           
-            if(caminarCasilla <= destino*2) { 
+            buff = false;
+            marcoLeonn.SetActive(false);
+            textd2.text = "" +0;
+            if (caminarCasilla <= destino*2) { 
                 GetComponent<CrearPersonaje>().posx = GetComponent<CrearPersonaje>().posx + 0.05f;
                 caminarCasilla = caminarCasilla + 0.05f;
                 personaje.transform.localPosition = new Vector3(GetComponent<CrearPersonaje>().posx, GetComponent<CrearPersonaje>().posy);
