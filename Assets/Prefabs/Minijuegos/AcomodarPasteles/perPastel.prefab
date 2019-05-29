@@ -94,6 +94,8 @@ GameObject:
   - component: {fileID: 168510750757956441}
   - component: {fileID: 8096617684939423354}
   - component: {fileID: 3864908211706642899}
+  - component: {fileID: 512300579255508056}
+  - component: {fileID: 1056110533232709218}
   m_Layer: 0
   m_Name: perPastel
   m_TagString: Personaje
@@ -135,6 +137,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e7c201b9d770e9345b2d3df381b5dced, type: 3}
   - {fileID: 21300000, guid: 129171bdd2d32dc4c9bc52afae7c2d05, type: 3}
   spriteR: {fileID: 0}
+  tiempo: 0
+  actTiempo: 0
+  termino: 0
 --- !u!114 &4579158890640848166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paso: 0
-  idPersonaje: 0
   idPastelTomado: 0
   puntos: 0
   idPastel: 0
@@ -157,6 +161,10 @@ MonoBehaviour:
   solto: 0
   estaTocando: 00000000
   scripts: {fileID: 0}
+  c1: {fileID: 0}
+  c2: {fileID: 0}
+  c3: {fileID: 0}
+  c4: {fileID: 0}
 --- !u!212 &5748113588270858694
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -271,3 +279,58 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &512300579255508056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748113588270858688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 1056110533232709218}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &1056110533232709218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5748113588270858688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PositionModel:
+    SynchronizeEnabled: 1
+    TeleportEnabled: 1
+    TeleportIfDistanceGreaterThan: 3
+    InterpolateOption: 4
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 10
+    ExtrapolateOption: 0
+    ExtrapolateSpeed: 1
+    ExtrapolateIncludingRoundTripTime: 1
+    ExtrapolateNumberOfStoredPositions: 1
+  m_RotationModel:
+    SynchronizeEnabled: 1
+    InterpolateOption: 1
+    InterpolateRotateTowardsSpeed: 180
+    InterpolateLerpSpeed: 5
+  m_ScaleModel:
+    SynchronizeEnabled: 0
+    InterpolateOption: 0
+    InterpolateMoveTowardsSpeed: 1
+    InterpolateLerpSpeed: 0
