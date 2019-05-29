@@ -19,13 +19,11 @@ public class Puzzle : MonoBehaviour {
     private List<Vector3> posicionesIniciales = new List<Vector3>();
     private GameObject[] _fichas;
     private bool mostrar = false;
-    tiempoImg tiempoImg; 
 
 	void Awake()
     {
 		padreFichas=GameObject.Find("Fichas");
 		padreBordes = GameObject.Find ("Bordes");
-        tiempoImg = GameObject.Find("Scripts").GetComponent(typeof(tiempoImg)) as tiempoImg;
     }
 
     void Start ()
@@ -35,14 +33,6 @@ public class Puzzle : MonoBehaviour {
             CrearFichas();
         }
 
-    }
-
-    private void Update()
-    {
-        if (tiempoImg.tiempoObjeto == -1)
-        {
-            mostrar = true;
-        }
     }
 
     void CrearFichas(){
@@ -81,10 +71,7 @@ public class Puzzle : MonoBehaviour {
 			posicionesIniciales.Add(_fichas [i].transform.position);
 		}
 
-        for (int i = 1; 1 < 5; i++)
-        {
-            Barajar();
-        }
+        Barajar();
 	}
 
 	void Barajar()
