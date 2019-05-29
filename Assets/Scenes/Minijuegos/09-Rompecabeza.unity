@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiempoUI: {fileID: 1247016808}
-  tiempoJuego: 120
+  tiempoJuego: 125
 --- !u!114 &1032763284
 MonoBehaviour:
   m_ObjectHideFlags: 0
