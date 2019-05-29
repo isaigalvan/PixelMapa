@@ -24,6 +24,9 @@ TagManager:
   - pas4
   - puerta
   - piso
+  - obs
+  - pared
+  - Ficha
   layers:
   - Default
   - TransparentFX
