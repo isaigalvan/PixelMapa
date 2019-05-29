@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Puzzle : MonoBehaviour {
 
-	public List<Sprite> fichaImg=new List<Sprite>();
-	public GameObject fichaPrfb;
-	public GameObject bordePrfb;
+    [Tooltip("Se debe tomar una imagen cuadrada, " +
+        "dependiendo del numero de fichas se hace la operacion (pixelesImg/numFichas)," +
+        "ese es el numero que se debe escribir en Pixel Per Unit en el sprite de la imagen," +
+        "cuando recortemos la imagen le indicamos que el pivote sea button left")]
+    public List<Sprite> fichaImg=new List<Sprite>();
+	public GameObject fichaPrfb, bordePrfb;
 	public Sprite fichaEscondidaImg;
 	public GameObject textoGanador;
 
@@ -15,22 +18,34 @@ public class Puzzle : MonoBehaviour {
     private GameObject padreBordes;
     private List<Vector3> posicionesIniciales = new List<Vector3>();
     private GameObject[] _fichas;
+    private bool mostrar = false;
+    tiempoImg tiempoImg; 
 
 	void Awake()
     {
 		padreFichas=GameObject.Find("Fichas");
 		padreBordes = GameObject.Find ("Bordes");
-	}
+        tiempoImg = GameObject.Find("Scripts").GetComponent(typeof(tiempoImg)) as tiempoImg;
+    }
 
-	void Start ()
+    void Start ()
     {
-		if (Mathf.Sqrt (fichaImg.Count)  == Mathf.Round (Mathf.Sqrt (fichaImg.Count)))
+        if (Mathf.Sqrt(fichaImg.Count) == Mathf.Round(Mathf.Sqrt(fichaImg.Count)))
         {
-			CrearFichas ();
-		}
-	}
-	
-	void CrearFichas(){
+            CrearFichas();
+        }
+
+    }
+
+    private void Update()
+    {
+        if (tiempoImg.tiempoObjeto == -1)
+        {
+            mostrar = true;
+        }
+    }
+
+    void CrearFichas(){
 		int contador=0;
 		numCostado = (int) Mathf.Sqrt (fichaImg.Count);
 
@@ -65,7 +80,11 @@ public class Puzzle : MonoBehaviour {
 		for (int i = 0; i < _fichas.Length; i++) {
 			posicionesIniciales.Add(_fichas [i].transform.position);
 		}
-		Barajar ();
+
+        for (int i = 1; 1 < 5; i++)
+        {
+            Barajar();
+        }
 	}
 
 	void Barajar()

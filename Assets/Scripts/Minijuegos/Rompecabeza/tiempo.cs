@@ -4,28 +4,26 @@ using UnityEngine;
 using TMPro;
 using Photon.Pun;
 
-public class Puntaje : MonoBehaviour
+public class tiempo : MonoBehaviour
 {
-    public TextMeshProUGUI textCont, Tiempo;
-    public int puntos;
-    public float tiempo;
+    public TextMeshProUGUI tiempoUI;
+    public float tiempoJuego;
 
     private void Update()
     {
         actualizarUI();
-        if (tiempo <= 0.0f)
+        if (tiempoJuego <= 0.0f)
         {
             PhotonNetwork.LoadLevel(1);
         }
         else
         {
-            tiempo -= Time.deltaTime;
+            tiempoJuego -= UnityEngine.Time.deltaTime;
         }
     }
 
     public void actualizarUI()
     {
-        textCont.text = "PUNTOS:" + puntos;
-        Tiempo.text = "Tiempo:" + "" + tiempo.ToString("f0");
+        tiempoUI.text = "Tiempo:" + "" + tiempoJuego.ToString("f0");
     }
 }
