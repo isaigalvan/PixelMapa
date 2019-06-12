@@ -99,5 +99,7 @@ public class Puzzle : MonoBehaviour {
 
         fichaEscondida.gameObject.SetActive(true); 
         textoGanador.gameObject.SetActive(true);
+
+
     }
 }

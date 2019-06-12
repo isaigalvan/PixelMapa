@@ -19,16 +19,12 @@ public class clicker : MonoBehaviour
         if (clicks == maxClicks)
         {
             ganador = true;
-            gameObject.GetComponent<Animator>().SetBool("perdedor", perdedor);
-            gameObject.GetComponent<Animator>().SetBool("ganador", ganador);
             Debug.Log("__________Ganador__________");
         }
         else if(clicks > maxClicks)
         {
             boton.interactable = false;
             perdedor = true;
-            gameObject.GetComponent<Animator>().SetBool("perdedor", perdedor);
-            gameObject.GetComponent<Animator>().SetBool("ganador", ganador);
             Debug.Log("__________Perdedor__________");
 
         }

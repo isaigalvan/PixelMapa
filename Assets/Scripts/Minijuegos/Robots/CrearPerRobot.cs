@@ -9,17 +9,12 @@ public class CrearPerRobot : MonoBehaviour
     public int idPersonaje;
     public int posx, posy;
     public BoxCollider2D box;
-    // Start is called before the first frame update
+    
+
     void Start()
     {
         // idPersonaje = RestablecerValores.idPersonaje;
         Crear();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void Crear()
