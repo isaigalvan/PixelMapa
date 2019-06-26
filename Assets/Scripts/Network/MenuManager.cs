@@ -5,6 +5,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviourPunCallbacks
 {
@@ -23,6 +24,9 @@ public class MenuManager : MonoBehaviourPunCallbacks
     [SerializeField]
     private TMP_InputField userNameInput, createRoomInput, joinRommInput;
 
+    int playerCount = 0;
+
+
     /// <summary>
     /// La funcion awake es una funcion especial de Unity que se usa para inicializar 
     /// cualquier variable o estado del juego antes de que comience el juego.
@@ -30,7 +34,21 @@ public class MenuManager : MonoBehaviourPunCallbacks
     private void Awake()
     {
         //Usa los valores del Script de las configuraciones del servidor
-        PhotonNetwork.ConnectUsingSettings();
+        if (!PhotonNetwork.IsConnected)
+        {
+            if (PhotonNetwork.ConnectUsingSettings())
+            {
+                Debug.Log("__________Conectado al server__________");
+            }
+            else
+            {
+                Debug.LogErrorFormat("__________Error al conectar con el server__________");
+            }
+        }
+        else
+        {
+            Debug.LogWarningFormat("__________Nunca existio una conexion__________");
+        }
     }
 
     /// <summary>
@@ -39,7 +57,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
     /// </summary>
     public override void OnConnectedToMaster()
     {
-        Debug.Log("__________Conectando al servidor__________");
+        Debug.Log("__________Conectando a un Lobby__________");
         PhotonNetwork.JoinLobby(TypedLobby.Default);
     }
 
@@ -49,7 +67,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
     /// </summary>
     public override void OnJoinedLobby()
     {
-        Debug.Log("__________Conectando al Lobby_____________");
+        Debug.Log("__________Unido a un Lobby_____________");
         userNameScreen.SetActive(true); 
     }
 
@@ -60,7 +78,8 @@ public class MenuManager : MonoBehaviourPunCallbacks
     /// </summary>
     public override void OnJoinedRoom()
     {
-        PhotonNetwork.LoadLevel(4);
+        Debug.Log("__________Cargando el mapa_____________");
+        PhotonNetwork.LoadLevel(13);
     }
 
     /// <summary>
@@ -71,7 +90,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
     /// <param name="cause"></param>
     public override void OnDisconnected(DisconnectCause cause)
     {
-        Debug.LogWarningFormat("__________Se ha desconectado el servidor a causa de {0}__________", cause);
+        Debug.LogErrorFormat("__________Se ha desconectado el servidor a causa de {0}__________", cause);
     }
 
     #region UIMethots
@@ -83,6 +102,7 @@ public class MenuManager : MonoBehaviourPunCallbacks
     public void OnClick_CreateNameButton()
     {
         PhotonNetwork.NickName = userNameInput.text;
+        Debug.Log("Nickname: " + PhotonNetwork.NickName);
         userNameScreen.SetActive(false);
         connectScreen.SetActive(true);
     }
@@ -110,11 +130,20 @@ public class MenuManager : MonoBehaviourPunCallbacks
     /// </summary>
     public void OnClick_JoinRoom()
     {
-        RoomOptions room = new RoomOptions();
-        room.MaxPlayers = 4;
+        //RoomOptions room = new RoomOptions();
+        //room.MaxPlayers = 4;
 
         //PhotonNetwork.JoinOrCreateRoom(joinRommInput.text, room, TypedLobby.Default);
-        PhotonNetwork.JoinRoom(joinRommInput.text);
+        //PhotonNetwork.JoinRoom(joinRommInput.text);
+        if (PhotonNetwork.JoinRoom(joinRommInput.text))
+        {
+            Debug.Log("__________Se unio a la sala_____________");
+        }
+        else
+        {
+            Debug.LogErrorFormat("__________No se pudo unir la sala__________");
+        }
+        
     }
 
     /// <summary>
@@ -123,10 +152,19 @@ public class MenuManager : MonoBehaviourPunCallbacks
     /// </summary>
     public void OnClick_CreateRoom()
     {
+        Debug.Log("__________Creando room...__________");
         RoomOptions room = new RoomOptions();
         room.MaxPlayers = 4;
 
-        PhotonNetwork.CreateRoom(createRoomInput.text, room, null);
+        if(PhotonNetwork.CreateRoom(createRoomInput.text, room, null))
+        {
+            Debug.Log("__________Sala creada_____________");
+        }
+        else
+        {
+            Debug.LogErrorFormat("__________No se pudo crear la sala__________");
+        }
+        
     }
 
     public void OnClick_CloseGame()

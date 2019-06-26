@@ -169,7 +169,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Bienbenido
+  m_text: Bienvenido
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -3480,6 +3480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2094001380}
   - component: {fileID: 2094001381}
+  - component: {fileID: 2094001382}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -3520,6 +3521,26 @@ MonoBehaviour:
   userNameInput: {fileID: 1930014272}
   createRoomInput: {fileID: 2139115457}
   joinRommInput: {fileID: 1541793531}
+--- !u!114 &2094001382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094001379}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29938d5a2dfff0c4c8a3ce4f54f180ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  connectScreen: {fileID: 322102688}
+  selectScreen: {fileID: 1263489785}
+  conectButton: {fileID: 1927119379}
+  joinButton: {fileID: 1168584999}
+  createRoomInput: {fileID: 2139115457}
+  joinRommInput: {fileID: 1541793531}
+  IsLoading: 0
+  playerCount: 0
 --- !u!1 &2139115453
 GameObject:
   m_ObjectHideFlags: 0

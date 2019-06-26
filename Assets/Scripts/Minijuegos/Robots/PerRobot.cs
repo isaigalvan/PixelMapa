@@ -1,32 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
-public class PerRobot : MonoBehaviourPun
+public class PerRobot : MonoBehaviour
 {
     public SpriteRenderer sr;
     public GameObject pruebaFondo;
-    public float velocidadMovimiento = 5;
-    public GameObject playerCam;
-
-    void Awake()
-    {
-        if (photonView.IsMine)
-        {
-            ///La camara unicamente estara habilitada si es de "nuestra"
-            playerCam.SetActive(true);
-        }
-    }
-    
+        
     void Update()
     {
-        if (photonView.IsMine)
-        {
-            sr = gameObject.GetComponent<SpriteRenderer>();
-            mover();
-        }
-            
+        sr = gameObject.GetComponent<SpriteRenderer>();
+        mover();
+
     }
 
     public void mover()
