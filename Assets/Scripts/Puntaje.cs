@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class Puntaje : MonoBehaviour
 {
-    public TextMeshProUGUI textCont, Tiempo;
-    public int puntos;
+    public TextMeshProUGUI textCont,textContP2, Tiempo;
+    public int puntosP1, puntosP2;
     public float tiempo;
     private void Start()
     {
@@ -17,7 +17,9 @@ public class Puntaje : MonoBehaviour
         actualizarUI();
         if (tiempo <= 0.0f)
         {
-            PhotonNetwork.LoadLevel(1);
+            SceneManager.LoadScene("Ganador");
+            ResultadosEstaticos.PuntosP1 = puntosP1;
+            ResultadosEstaticos.PuntosP2 = puntosP2;
         }
         else
         {
@@ -27,7 +29,8 @@ public class Puntaje : MonoBehaviour
 
     public void actualizarUI()
     {
-        textCont.text = "PUNTOS:" + puntos;
+        textCont.text = "P1:" + puntosP1;
+        textContP2.text = "P2:" + puntosP2;
         Tiempo.text = "Tiempo:" + "" + tiempo.ToString("f0");
     }
 }

@@ -98,12 +98,17 @@ public class MoverRobot : MonoBehaviour
             tiempo = 0;
             tocando = true;
         }
-        if(collision.gameObject.tag == "Personaje")
+        if(collision.gameObject.name== "jugador1")
         {
-            scripts.GetComponent<Puntaje>().puntos++;
+            scripts.GetComponent<Puntaje>().puntosP1++;
+            scripts.GetComponent<CrearRobot>().estaEnJuego = false;
+            Destroy(gameObject);         
+        }
+        if (collision.gameObject.name == "jugador2")
+        {
+            scripts.GetComponent<Puntaje>().puntosP2++;
             scripts.GetComponent<CrearRobot>().estaEnJuego = false;
             Destroy(gameObject);
-           
         }
     }
 

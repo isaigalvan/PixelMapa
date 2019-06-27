@@ -4,58 +4,52 @@ using UnityEngine;
 
 public class CrearPerManz : MonoBehaviour
 {
-    public GameObject perPrefab, per;
+    public GameObject perPrefab, per, per2;
     public Transform perParent;
-    public int idPersonaje;
+    public int idPersonaje, idPersonaje2;
     public int posx, posy;
-    public BoxCollider2D box;
+    public BoxCollider2D box, box2;
     void Start()
     {
-        idPersonaje = RestablecerValores.idPersonaje;
+      //  idPersonaje = RestablecerValores.idPersonaje;
+      //  idPersonaje2 = RestablecerValores.idPersonaje;
         Crear();
     }
 
     public void Crear()
     {
-        GameObject personajeTemp = Instantiate(perPrefab, new Vector3(posx, -3.7f, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
+        GameObject personajeTemp = Instantiate(perPrefab, new Vector3(posx + 3, -3f, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
         personajeTemp.transform.parent = perParent;
-        per = GameObject.FindGameObjectWithTag("Personaje");
+        personajeTemp.name = "jugador1";
+
+        GameObject personajeTemp1 = Instantiate(perPrefab, new Vector3(posx - 3, -3f, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
+        personajeTemp1.transform.parent = perParent;
+        personajeTemp1.name = "jugador2";
+
+        per = GameObject.Find("jugador1");
+        per.GetComponent<PerManz>().numJugador = 1;
         box = per.GetComponent<BoxCollider2D>();
-        // AsignarNombres();
-        //AsignarTamanos();
-        asignarTexturas();
+
+        per2 = GameObject.Find("jugador2");
+        per2.GetComponent<PerManz>().numJugador = 2;
+        box2 = per2.GetComponent<BoxCollider2D>();
+
+        asignarTexturas(per,idPersonaje,box);
+        asignarTexturas(per2,idPersonaje2,box2);
     }
 
-    public void asignarTexturas()
+    public void asignarTexturas(GameObject per, int idPer, BoxCollider2D box)
     {
-        switch (idPersonaje)
+        switch (idPer)
         {
             case 0:
                 per.GetComponent<Animator>().SetFloat("personaje", 0f);
-                break;
-            case 1:
-                per.GetComponent<Animator>().SetFloat("personaje", 1f);
-                per.transform.localScale = new Vector3(0.25f, 0.25f);
-                box.size = new Vector3(4.487646f, 10.94228f);
-                box.offset = new Vector3(-0.6909554f, -0.6937857f);
                 break;
             case 2:
                 per.GetComponent<Animator>().SetFloat("personaje", 2f);
                 per.transform.localScale = new Vector3(0.25f, 0.25f);
                 box.size = new Vector3(4.487646f, 9.222645f);
                 box.offset = new Vector3(-0.6909554f, -0.3500805f);
-                break;
-            case 3:
-                per.GetComponent<Animator>().SetFloat("personaje", 3f);
-                per.transform.localScale = new Vector3(0.25f, 0.25f);
-                box.size = new Vector3(4.487646f, 10.77853f);
-                box.offset = new Vector3(-0.6909554f, -1.93709f);
-                break;
-            case 4:
-                per.GetComponent<Animator>().SetFloat("personaje", 4f);
-                per.transform.localScale = new Vector3(0.23f, 0.23f);
-                box.size = new Vector3(4.487646f, 10.77853f);
-                box.offset = new Vector3(-0.6909554f, -1.93709f);
                 break;
             case 5:
                 per.GetComponent<Animator>().SetFloat("personaje", 5f);

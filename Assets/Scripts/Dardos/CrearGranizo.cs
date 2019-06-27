@@ -31,10 +31,10 @@ public class CrearGranizo : MonoBehaviour
         {
             posy = 8;
             posx = Random.Range(-3.1f, 4.8f);
-            GameObject GloboTemp = Instantiate(granizoPrefab, new Vector3(posx, posy, 0), Quaternion.Euler(new Vector3(0, 180, 0)));
-            granizos.Add(GloboTemp);
-            GloboTemp.name = "Granizo" + cont + "";
-            GloboTemp.transform.parent = ListaGranizo;
+            GameObject GranizoTemp = Instantiate(granizoPrefab, new Vector3(posx, posy, 0), Quaternion.Euler(new Vector3(0, 180, 0)));
+            granizos.Add(GranizoTemp);
+            GranizoTemp.name = "Granizo" + cont + "";
+            GranizoTemp.transform.parent = ListaGranizo;
             cont ++;
             segMax = segMax + 0.7f;
             segMin = segMin + 0.7f;

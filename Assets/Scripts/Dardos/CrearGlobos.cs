@@ -9,7 +9,7 @@ public class CrearGlobos : MonoBehaviour
     public GameObject GloboPrefab;
     public Transform ListaGlobos;
     public List<GameObject> globos = new List<GameObject>();
-    public bool[] Exploatdos = new bool[7];
+    public bool[] Explotados = new bool[7];
     public float[] tiempo = new float[7];
     // Start is called before the first frame update
     void Start()
@@ -47,7 +47,7 @@ public class CrearGlobos : MonoBehaviour
             if (tiempo[x] >= 5f)
             {
                 globos[x].SetActive(true);
-                Exploatdos[x] = false;
+                Explotados[x] = false;
                 tiempo[x] = 0;
             }
         }
@@ -57,7 +57,7 @@ public class CrearGlobos : MonoBehaviour
     {
         for (int x = 0; x < 7; x++)
         {
-            if (Exploatdos[x] == true)
+            if (Explotados[x] == true)
             {
                 tiempo[x] = Time.deltaTime + tiempo[x];
             }

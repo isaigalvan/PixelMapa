@@ -8,7 +8,7 @@ public class PerManz : MonoBehaviour
     public Rigidbody2D rb;
     public bool pisando, actTiempo;
     public float jumpv, tiempo;
-    public int saltos;
+    public int saltos, numJugador;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,14 +19,16 @@ public class PerManz : MonoBehaviour
     void Update()
     {
         if (actTiempo == true) { tiempo = Time.deltaTime + tiempo; }
-        mover();
+        moverP1();
+        moverP2();
         spriteSaltar();
-        sr= gameObject.GetComponent<SpriteRenderer>();
+        sr = gameObject.GetComponent<SpriteRenderer>();
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    public void mover()
+    public void moverP1()
     {
+        if (numJugador == 1) { 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             gameObject.GetComponent<Animator>().SetBool("caminando", true);
@@ -40,13 +42,13 @@ public class PerManz : MonoBehaviour
             this.transform.position += new Vector3(0.07f, 0, 0);
         }
 
-        if (Input.GetKey(KeyCode.UpArrow)&&pisando==true&&saltos==0)
+        if (Input.GetKey(KeyCode.UpArrow) && pisando == true && saltos == 0)
         {
             gameObject.GetComponent<Animator>().SetBool("caminando", false);
             pisando = false;
             rb.AddForce(Vector2.up * jumpv, ForceMode2D.Impulse);
             saltos = 1;
-            actTiempo = true; 
+            actTiempo = true;
         }
 
         if (Input.GetKey(KeyCode.UpArrow) && saltos == 1 && tiempo >= .4f)
@@ -63,8 +65,50 @@ public class PerManz : MonoBehaviour
             gameObject.GetComponent<Animator>().SetBool("caminando", false);
             gameObject.GetComponent<Animator>().SetBool("saltando", false);
         }
+        }
     }
 
+    public void moverP2()
+    {
+        if (numJugador == 2){
+        if (Input.GetKey(KeyCode.A))
+        {
+            gameObject.GetComponent<Animator>().SetBool("caminando", true);
+            sr.flipX = true;
+            this.transform.position += new Vector3(-0.07f, 0, 0);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            gameObject.GetComponent<Animator>().SetBool("caminando", true);
+            sr.flipX = false;
+            this.transform.position += new Vector3(0.07f, 0, 0);
+        }
+
+        if (Input.GetKey(KeyCode.W) && pisando == true && saltos == 0)
+        {
+            gameObject.GetComponent<Animator>().SetBool("caminando", false);
+            pisando = false;
+            rb.AddForce(Vector2.up * jumpv, ForceMode2D.Impulse);
+            saltos = 1;
+            actTiempo = true;
+        }
+
+        if (Input.GetKey(KeyCode.W) && saltos == 1 && tiempo >= .4f)
+        {
+            pisando = false;
+            rb.AddForce(Vector2.up * (jumpv), ForceMode2D.Impulse);
+            saltos = 2;
+            actTiempo = false;
+            tiempo = 0;
+        }
+
+        if (Input.GetKey(KeyCode.A) == false && Input.GetKey(KeyCode.D) == false && Input.GetKey(KeyCode.W) == false && Input.GetKey(KeyCode.S) == false)
+        {
+            gameObject.GetComponent<Animator>().SetBool("caminando", false);
+            gameObject.GetComponent<Animator>().SetBool("saltando", false);
+        }
+        }
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "piso")

@@ -75,50 +75,50 @@ public class PerPastel : MonoBehaviour
             {
                 if (idPastelTomado == idPastel && idPastelTomado == c1.GetComponent<Caja>().idCaja)
                 {
-                    scripts.GetComponent<Puntaje>().puntos++;
+                    scripts.GetComponent<Puntaje>().puntosP1++;
                 }
                 else
                 {
-                    scripts.GetComponent<Puntaje>().puntos--;
+                    scripts.GetComponent<Puntaje>().puntosP1--;
                 }
             }
             else if (estaTocando[1] )
             {
                 if (idPastelTomado == idPastel && idPastelTomado == c2.GetComponent<Caja>().idCaja)
                 {
-                    scripts.GetComponent<Puntaje>().puntos++;
+                    scripts.GetComponent<Puntaje>().puntosP1++;
                 }
                 else
                 {
-                    scripts.GetComponent<Puntaje>().puntos--;
+                    scripts.GetComponent<Puntaje>().puntosP1--;
                 }
             }
             else if (estaTocando[2])
             {
                 if (idPastelTomado == idPastel && idPastelTomado == c3.GetComponent<Caja>().idCaja)
                 {
-                    scripts.GetComponent<Puntaje>().puntos++;
+                    scripts.GetComponent<Puntaje>().puntosP1++;
                 }
                 else
                 {
-                    scripts.GetComponent<Puntaje>().puntos--;
+                    scripts.GetComponent<Puntaje>().puntosP1--;
                 }
             }
             else if (estaTocando[3])
             {
                 if (idPastelTomado == idPastel && idPastelTomado == c4.GetComponent<Caja>().idCaja)
                 {
-                    scripts.GetComponent<Puntaje>().puntos++;
+                    scripts.GetComponent<Puntaje>().puntosP1++;
                 }
                 else
                 {
-                    scripts.GetComponent<Puntaje>().puntos--;
+                    scripts.GetComponent<Puntaje>().puntosP1--;
                 }
 
             }
             else
             {
-                scripts.GetComponent<Puntaje>().puntos--;
+                scripts.GetComponent<Puntaje>().puntosP1--;
             }
             solto = false;
             idPastelTomado = 0;

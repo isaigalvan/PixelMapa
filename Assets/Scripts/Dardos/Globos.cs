@@ -20,7 +20,7 @@ public class Globos : MonoBehaviour
     {
         gameObject.SetActive(false);
         nombres();
-        scripts.GetComponent<Puntaje>().puntos = scripts.GetComponent<Puntaje>().puntos + 1;
+        scripts.GetComponent<Puntaje>().puntosP1 = scripts.GetComponent<Puntaje>().puntosP1 + 1;
     }
 
     private void Start()
@@ -34,7 +34,7 @@ public class Globos : MonoBehaviour
         {
             if (gameObject.name == "Globo" + (z))
             {
-                scripts.GetComponent<CrearGlobos>().Exploatdos[z] = true;
+                scripts.GetComponent<CrearGlobos>().Explotados[z] = true;
             }
         }
        

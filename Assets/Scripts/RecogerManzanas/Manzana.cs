@@ -49,7 +49,14 @@ public class Manzana : MonoBehaviour
             Destroy(bc);
             if (inservible == false)
             {
-                scripts.GetComponent<Puntaje>().puntos++;
+                if (collision.gameObject.name == "jugador1")
+                {
+                    scripts.GetComponent<Puntaje>().puntosP1++;
+                }
+                if (collision.gameObject.name == "jugador2")
+                {
+                    scripts.GetComponent<Puntaje>().puntosP2++;
+                }
 
             }
             Destroy(gameObject);
