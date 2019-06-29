@@ -24,7 +24,7 @@ public class CrearPersonaje : MonoBehaviour
     /// </summary>
     private void Update()
     {
-       
+        actualizarBarra();
         if (GetComponent<Dado>().jugador == 1)
         {
             actualizar(per);
@@ -126,7 +126,7 @@ public class CrearPersonaje : MonoBehaviour
             iconoTemp.transform.parent = IconoParent;
             posx2 = posx2 + 1.92f;
         }
-        iconosPersonajes();
+        iconosPersonajes(idPersonaje);
     }
 
     /// <summary>
@@ -140,35 +140,22 @@ public class CrearPersonaje : MonoBehaviour
     /// el sprite numero 12, el "icono 1" se le asigna el sprite numero 13, el "icono 2" se le asigna el sprite 14, caso 5 el "icono 0" 
     /// se le asigna el sprite numero 15, el "icono 1" se le asigna sprite numero 16, el "icono 2" se le asigna el sprite 17
     /// </summary>
-    public void iconosPersonajes()
+    public void iconosPersonajes(int idPersonajeIcono)
     {
-        switch (idPersonaje)
+        switch (idPersonajeIcono)
         {
             case 0:
                 iconos[0].GetComponent<Icono>().AsignarTextura(sprites[0]);
                 iconos[1].GetComponent<Icono>().AsignarTextura(sprites[1]);
                 iconos[2].GetComponent<Icono>().AsignarTextura(sprites[2]);
                 break;
-            case 1:
-                iconos[0].GetComponent<Icono>().AsignarTextura(sprites[3]);
-                iconos[1].GetComponent<Icono>().AsignarTextura(sprites[4]);
-                iconos[2].GetComponent<Icono>().AsignarTextura(sprites[5]);
-                break;
+           
             case 2:
                 iconos[0].GetComponent<Icono>().AsignarTextura(sprites[6]);
                 iconos[1].GetComponent<Icono>().AsignarTextura(sprites[7]);
                 iconos[2].GetComponent<Icono>().AsignarTextura(sprites[8]);
                 break;
-            case 3:
-                iconos[0].GetComponent<Icono>().AsignarTextura(sprites[9]);
-                iconos[1].GetComponent<Icono>().AsignarTextura(sprites[10]);
-                iconos[2].GetComponent<Icono>().AsignarTextura(sprites[11]);
-                break;
-            case 4:
-                iconos[0].GetComponent<Icono>().AsignarTextura(sprites[12]);
-                iconos[1].GetComponent<Icono>().AsignarTextura(sprites[13]);
-                iconos[2].GetComponent<Icono>().AsignarTextura(sprites[14]);
-                break;
+            
             case 5:
                 iconos[0].GetComponent<Icono>().AsignarTextura(sprites[15]);
                 iconos[1].GetComponent<Icono>().AsignarTextura(sprites[16]);
@@ -322,6 +309,18 @@ public class CrearPersonaje : MonoBehaviour
         if (RestablecerValores.estados[2] == true)
         {
             per.GetComponent<Personaje>().esInmune = true;
+        }
+    }
+
+    public void actualizarBarra()
+    {
+        if(GetComponent<Dado>().jugador == 1)
+        {
+            iconosPersonajes(idPersonaje);
+        }
+        else
+        {
+            iconosPersonajes(idPersonaje2);
         }
     }
 }

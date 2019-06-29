@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class Personaje : MonoBehaviour
 {
@@ -152,8 +152,7 @@ public class Personaje : MonoBehaviour
             }
             else if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esMinijuego== true)
             {
-                int random = Random.Range(2, 11);
-                PhotonNetwork.LoadLevel(7);
+                SceneManager.LoadScene("PreJuego");
                
             }
             if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esPintada == true)

@@ -11,8 +11,8 @@ public class CrearPerRobot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // idPersonaje = RestablecerValores.idPersonaje;
-        //  idPersonaje2 = RestablecerValores.idPersonaje;
+        idPersonaje = RestablecerValores.idPersonaje;
+        idPersonaje2 = RestablecerValores.idPersonaje2;
         Crear();
     }
 

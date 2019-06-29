@@ -11,8 +11,8 @@ public class CrearPerManz : MonoBehaviour
     public BoxCollider2D box, box2;
     void Start()
     {
-      //  idPersonaje = RestablecerValores.idPersonaje;
-      //  idPersonaje2 = RestablecerValores.idPersonaje;
+      idPersonaje = RestablecerValores.idPersonaje;
+      idPersonaje2 = RestablecerValores.idPersonaje2;
         Crear();
     }
 
