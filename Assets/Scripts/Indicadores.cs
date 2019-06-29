@@ -14,12 +14,12 @@ public class Indicadores : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inmu = GameObject.FindGameObjectWithTag("ObjInmune");
-        pintu = GameObject.FindGameObjectWithTag("ObjPintura");
-        bloq = GameObject.FindGameObjectWithTag("ObjBloqueado");
-        atrac = GameObject.FindGameObjectWithTag("ObjAtraccion");
-        buff = GameObject.FindGameObjectWithTag("ObjBuff");
-        nerf = GameObject.FindGameObjectWithTag("ObjNerf");
+        inmu = gameObject.transform.Find("Inmune").gameObject;
+        pintu = gameObject.transform.Find("Pintura").gameObject;
+        bloq = gameObject.transform.Find("Bloqueado").gameObject;
+        atrac = gameObject.transform.Find("Atraido").gameObject;
+        buff = gameObject.transform.Find("Dado+").gameObject;
+        nerf = gameObject.transform.Find("Dado-").gameObject;
         scripts = GameObject.Find("Scripts");
         alturas();
     }
@@ -31,7 +31,10 @@ public class Indicadores : MonoBehaviour
         if (actFrame == true) { tiempoFrame = Time.deltaTime + tiempoFrame; }
         estadoIndicadores();
     }
-
+    public void indicadoresP2()
+    {
+        
+    }
 
     public void estadoIndicadores()
     {
@@ -45,7 +48,7 @@ public class Indicadores : MonoBehaviour
 
     public void alturas()
     {
-        switch (scripts.GetComponent<CrearPersonaje>().idPersonaje)
+        switch (GetComponent<Personaje>().idPer)
         {
             case 0:
             case 4: 

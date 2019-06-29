@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Seleccion : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class Seleccion : MonoBehaviour
         else
         {
             RestablecerValores.idPersonaje2 = 5;
+            SceneManager.LoadScene("01-Mapa");
         }
     }
     public void selZorem ()
@@ -48,6 +50,7 @@ public class Seleccion : MonoBehaviour
         else
         {
             RestablecerValores.idPersonaje2 = 0;
+            SceneManager.LoadScene("01-Mapa");
         }
     }
     public void selAustin()
@@ -63,6 +66,8 @@ public class Seleccion : MonoBehaviour
         else
         {
             RestablecerValores.idPersonaje2 = 2;
+            SceneManager.LoadScene("01-Mapa");
+
         }
     }
 }

@@ -529,6 +529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   casillaActual: 0
   ph: 0
+  idPer: 0
   spriteR: {fileID: 0}
   textCasilla: {fileID: 0}
   textPh: {fileID: 0}

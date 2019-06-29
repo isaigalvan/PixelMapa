@@ -7,18 +7,24 @@ using TMPro;
 public class Dado : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject Marco;
-    public GameObject Habilidades,btnHab1,btnHab2,btnHab3,mapa,personaje,objPH, marcoLeonn;
+    public GameObject Marco, Letrero;
+    public GameObject Habilidades,btnHab1,btnHab2,btnHab3,mapa,personaje,objPH, marcoLeonn,jugador1,jugador2;
     public TextMeshProUGUI contDado, textd1, textd2;
-    public bool esTurno=false, seDetuvo=false, caminando=false, buff, hab3Leonn;
+    public bool esTurno=false, seDetuvo=false, caminando=false, buff, hab3Leonn, movCamara, condiTurno;
     public float  caminarCasilla, destino,posReal;
-    public int valorDado = 1, valorMax = 6 , valHab3Len;
+    public int valorDado = 1, valorMax = 6 , valHab3Len,jugador=1;
     public bool yaTiro = false, verificado;
     public Sprite[] PH;
-    public SpriteRenderer spriteR;
+    public Sprite[] spriteJugador;
+    public SpriteRenderer spriteR, spriteRLetrero;
 
     private float tiempo, tiempoPH;
     private int  valorAnimPH = 0, valAnterior = 1;
+
+    private void Start()
+    {
+        esTurno = true;
+    }
 
     // Update is called once per frame
     /// <summary>
@@ -30,16 +36,31 @@ public class Dado : MonoBehaviour
     /// </summary>
     void Update()
     {
-        personaje = GameObject.FindGameObjectWithTag("PerPref");
+        jugador1 = GameObject.Find("jugador1");
+        jugador2 = GameObject.Find("jugador2");
+        spriteRLetrero = Letrero.GetComponent<SpriteRenderer>();
         objPH = GameObject.FindGameObjectWithTag("AnimaPH");
         tiempo = Time.deltaTime + tiempo;
         tiempoPH = Time.deltaTime + tiempoPH;
         estadoDado();
-        estadoHabilidades();
-        contador();
         animaPH();
-        caminar();
-        casillaOcupada();
+
+        if (jugador == 1)
+        {
+            caminarP1();
+            estadoHabilidades(jugador1);
+            contador(jugador1);
+            casillaOcupada(jugador1);
+        }
+        else
+        {
+            caminarP2();
+            estadoHabilidades(jugador2);
+            contador(jugador2);
+            casillaOcupada(jugador2);
+        }
+
+        
     }
 
     /// <summary>
@@ -73,7 +94,7 @@ public class Dado : MonoBehaviour
     /// color.red y si el valor de "tiempo" es mayor o igual a 1.5, la variable "casillaActual" se le sumara lo que se obtuvo en "valorDado", ademas las variables
     /// "esTurno" y "seDetuvo" adquiriran el valor de false
     /// </summary>
-    public void contador()
+    public void contador(GameObject personaje)
     {
         if (seDetuvo == false)
         {
@@ -145,7 +166,7 @@ public class Dado : MonoBehaviour
     /// si la variable "yaTiro" es verdadera la casilla numero "casillaActual" en su campo "esOcupada" se le asignara false de lo contrario 
     /// se le asignara true 
     /// </summary>
-    public void casillaOcupada(){
+    public void casillaOcupada(GameObject personaje){
         if (yaTiro)
         {
             GetComponent<CrearCasilla>().casillas[personaje.GetComponent<Personaje>().casillaActual].GetComponent<Casilla>().esOcupada = false;
@@ -177,6 +198,7 @@ public void estadoDado()
         {
            
             Marco.SetActive(false);
+            
             valorDado = 1;
         }
     }
@@ -190,6 +212,7 @@ public void estadoDado()
     {
         yaTiro = true;
         seDetuvo = true;
+        
     }
 
     /// <summary>
@@ -202,7 +225,7 @@ public void estadoDado()
     /// y desactiva "btnhab3" y en caso de que "ph" sea mayor o igual a 3, activara "btnhab1", "btnhab2" y "btnhab3"
     /// 
     /// </summary>
-    public void estadoHabilidades()
+    public void estadoHabilidades(GameObject personaje)
     {
         if (yaTiro == true || esTurno == false || GetComponent<Habilidades>().usoHab == true|| personaje.GetComponent<Personaje>().esPintado==true)
         {
@@ -236,31 +259,88 @@ public void estadoDado()
         }
     }
 
-    public void caminar()
+    public void caminarP1()
     {
-        if (caminando==true) {
+        if (caminando == true)
+        {
             buff = false;
             marcoLeonn.SetActive(false);
-            textd2.text = "" +0;
-            if (caminarCasilla <= destino*2) { 
+            textd2.text = "" + 0;
+            if (caminarCasilla <= destino * 2)
+            {
                 GetComponent<CrearPersonaje>().posx = GetComponent<CrearPersonaje>().posx + 0.05f;
                 caminarCasilla = caminarCasilla + 0.05f;
-                personaje.transform.localPosition = new Vector3(GetComponent<CrearPersonaje>().posx, GetComponent<CrearPersonaje>().posy);
-            } 
+                jugador1.transform.localPosition = new Vector3(GetComponent<CrearPersonaje>().posx, GetComponent<CrearPersonaje>().posy);
+                condiTurno = false;
+            }
             else
             {
-                if (caminarCasilla > destino * 2) {
+                if (caminarCasilla > destino * 2)
+                {
                     posReal = caminarCasilla - destino * 2;
                     GetComponent<CrearPersonaje>().posx = GetComponent<CrearPersonaje>().posx - posReal;
-                    personaje.transform.localPosition = new Vector3(GetComponent<CrearPersonaje>().posx, GetComponent<CrearPersonaje>().posy);
+                    jugador1.transform.localPosition = new Vector3(GetComponent<CrearPersonaje>().posx, GetComponent<CrearPersonaje>().posy);
                 }
-                personaje.GetComponent<Animator>().SetBool("isWalking", false);
+                jugador1.GetComponent<Animator>().SetBool("isWalking", false);
                 caminando = false;
                 caminarCasilla = 0;
                 GetComponent<Dado>().valHab3Len = 0;
+                cambiarTurno();
             }
 
         }
-        
+
     }
+
+    public void caminarP2()
+    {
+        if (caminando == true)
+        {
+            buff = false;
+            marcoLeonn.SetActive(false);
+            textd2.text = "" + 0;
+            if (caminarCasilla <= destino * 2)
+            {
+                condiTurno = false;
+                GetComponent<CrearPersonaje>().posxP2 = GetComponent<CrearPersonaje>().posxP2 + 0.05f;
+                caminarCasilla = caminarCasilla + 0.05f;
+                jugador2.transform.localPosition = new Vector3(GetComponent<CrearPersonaje>().posxP2, GetComponent<CrearPersonaje>().posyP2);
+            }
+            else
+            {
+                if (caminarCasilla > destino * 2)
+                {
+                    posReal = caminarCasilla - destino * 2;
+                    GetComponent<CrearPersonaje>().posxP2 = GetComponent<CrearPersonaje>().posxP2 - posReal;
+                    jugador2.transform.localPosition = new Vector3(GetComponent<CrearPersonaje>().posxP2, GetComponent<CrearPersonaje>().posyP2);
+                }
+                jugador2.GetComponent<Animator>().SetBool("isWalking", false);
+                caminando = false;
+                caminarCasilla = 0;
+                GetComponent<Dado>().valHab3Len = 0;
+                cambiarTurno();
+            }
+
+        }
+
+    }
+
+    public void cambiarTurno()
+    {
+        if (condiTurno == false)
+        {
+            movCamara = true;
+            /* if (jugador == 1)
+             {
+                 jugador = 2;
+             }
+             else
+             {
+                 jugador = 1;
+             }
+             esTurno = true;
+             condiTurno = true;*/
+        }
+    }
+
 }

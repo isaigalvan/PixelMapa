@@ -6,9 +6,11 @@ using UnityEngine;
 
 public class CrearPersonaje : MonoBehaviour
 {
-    public float posx, posy, posx2, posy2;
-    public int idPersonaje,total;
-    public GameObject personajePrefab, per,personajeTemp;
+    public float posx, posy;
+    public float posxP2, posyP2;
+    public float posx2, posy2;
+    public int idPersonaje, idPersonaje2, total;
+    public GameObject personajePrefab, per, per2, personajeTemp, personajeTemp2;
     public Transform personajeParent;
     //iconos
     public Sprite[] sprites;
@@ -22,7 +24,15 @@ public class CrearPersonaje : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        actualizar();
+       
+        if (GetComponent<Dado>().jugador == 1)
+        {
+            actualizar(per);
+        }
+        else
+        {
+            actualizar(per2);
+        }
     }
 
 
@@ -32,7 +42,10 @@ public class CrearPersonaje : MonoBehaviour
     /// </summary>
     void Start()
     {
-        RestablecerValores.idPersonaje = idPersonaje;
+        idPersonaje = RestablecerValores.idPersonaje;
+        idPersonaje2 = RestablecerValores.idPersonaje2;
+        Debug.Log(RestablecerValores.idPersonaje);
+        Debug.Log(RestablecerValores.idPersonaje2);
         crearPer();
         crearIconos();
     }
@@ -48,15 +61,26 @@ public class CrearPersonaje : MonoBehaviour
     /// </summary>
     public void Crear()
     {
-            posx = RestablecerValores.obtenerPosx();
-            AsignarCoord();
-            personajeTemp = Instantiate(personajePrefab, new Vector3(posx, posy, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
-            personajeTemp.transform.parent = personajeParent;
-            AsignarNombres();
-            per = GameObject.FindGameObjectWithTag("PerPref");
-            per.GetComponent<Personaje>().AsignarTamanos();
-            AsignarTexturas();         
-        
+        posx = RestablecerValores.posx;
+        posy = AsignarCoord(idPersonaje,posy);
+        personajeTemp = Instantiate(personajePrefab, new Vector3(posx, posy, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
+        personajeTemp.transform.parent = personajeParent;
+        personajeTemp.name = "jugador1";
+        per = GameObject.Find("jugador1");
+        per.GetComponent<Personaje>().AsignarTamanos(idPersonaje);
+        per.GetComponent<Personaje>().idPer = idPersonaje;
+        AsignarTexturas(per,idPersonaje);
+
+        posxP2 = RestablecerValores.posxP2;
+        posyP2 = AsignarCoord(idPersonaje2,posyP2);
+        personajeTemp2 = Instantiate(personajePrefab, new Vector3(posxP2, posyP2, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
+        personajeTemp2.transform.parent = personajeParent;
+        personajeTemp2.name = "jugador2";
+        per2 = GameObject.Find("jugador2");
+        per2.GetComponent<Personaje>().AsignarTamanos(idPersonaje2);
+        per2.GetComponent<Personaje>().idPer = idPersonaje2;
+        AsignarTexturas(per2, idPersonaje2);
+
     }
 
     /// <summary>
@@ -76,7 +100,8 @@ public class CrearPersonaje : MonoBehaviour
         else
         {
             Crear();
-            asignarDatos();
+            asignarDatosP1();
+            asignarDatosP2();
         }
     }
 
@@ -161,63 +186,26 @@ public class CrearPersonaje : MonoBehaviour
     /// de 2.7, en el caso 1 "posy" adquiere el valor de 2.5, en el caso 2 "posy" adquiere el valor de de 2.4, en el caso 3 "posy" adquiere 
     /// el valor de 2.1
     /// </summary>
-    public void AsignarCoord()
+    public float AsignarCoord(int idPersonaje, float posy)
     {
         switch (idPersonaje)
         {
             case 0:
-            case 4:
             case 5:
                 posy = 2.7f;
                 break;
-            case 1:
-                posy = 2.5f;
-                break;
+
             case 2:
                 posy = 2.4f;
                 break;
-            case 3:
-                posy = 2.1f;
-                break;
+
             default:
                 break;
         }
-
+        return posy;
     }
 
-    /// <summary>
-    /// AsignaNombres
-    /// Este metodo es invocado por "Crear", llama al objeto del personaje dependiendo del personaje que se eligio
-    /// A partir del valor de la variable "idPersonaje" se entra a un switch donde en el caso 0 el objeto "personajeTemp" se nombra "Zorem"
-    /// caso 1 el objeto "personajeTemp" se nombra "Ian", caso 2 el objeto "personajeTemp" se nombra "Austin", caso 3 el objeto "personajeTemp"
-    /// se nombra "Rubi", caso 4 el objeto "personajeTemp" se nombra "Stella", caso 5 el objeto "personajeTemp" se nombra "Leonn"
-    /// </summary>
-    public void AsignarNombres()
-    {
-        switch (idPersonaje)
-        {
-            case 0:
-                personajeTemp.name = "Zorem";
-                break;
-            case 1:
-                personajeTemp.name = "Ian";
-                break;
-            case 2:
-                personajeTemp.name = "Austin";
-                break;
-            case 3:
-                personajeTemp.name = "Rubi";
-                break;
-            case 4:
-                personajeTemp.name = "Stella";
-                break;
-            case 5:
-                personajeTemp.name = "Leonn";
-                break;
-            default:
-                break;
-        }
-    }
+
 
     /// <summary>
     /// AsignarTexturas
@@ -227,7 +215,7 @@ public class CrearPersonaje : MonoBehaviour
     /// ,caso 3 se le asigna el valor 4 a la variable "personaje" del animator, caso 4 se le asigna el valor 5 a la variable "personaje" del animator
     /// ,caso 5 se le asigna el valor 6 a la variable "personaje" del animator
     /// </summary>
-    public void AsignarTexturas()
+    public void AsignarTexturas(GameObject per, int idPersonaje)
     {
         switch (idPersonaje)
         {
@@ -255,14 +243,25 @@ public class CrearPersonaje : MonoBehaviour
 
     }
 
-    public void actualizar()
+    public void actualizar(GameObject per)
     {
         if (GetComponent<Dado>().caminando == true)
         {
-            RestablecerValores.ponerPosx(posx);  //posx
-            RestablecerValores.ponerPosy(posy); //posy 
-            RestablecerValores.ponerPH(per.GetComponent<Personaje>().ph); //ph 
-            RestablecerValores.ponerCasilla(per.GetComponent<Personaje>().casillaActual); //casillaActual
+            if (GetComponent<Dado>().jugador == 1)
+            {
+                RestablecerValores.posx = posx; //posx
+                RestablecerValores.posy= posy; //posy 
+                RestablecerValores.ph= per.GetComponent<Personaje>().ph; //ph 
+                RestablecerValores.casillaActual = per.GetComponent<Personaje>().casillaActual; //casillaActual
+            }
+            else
+            {
+                RestablecerValores.posxP2 = posxP2; //posx
+                RestablecerValores.posyP2 = posyP2; //posy 
+                RestablecerValores.phP2 = per.GetComponent<Personaje>().ph; //ph 
+                RestablecerValores.casillaActualP2=per.GetComponent<Personaje>().casillaActual; //casillaActual
+            }
+           
         }
         else
         {
@@ -290,10 +289,28 @@ public class CrearPersonaje : MonoBehaviour
     /// en caso de que la variable "estado" numero 1 sea igual a true, el objeto "per" en su campo "esBloqueado" se le asigna el valor de true
     /// en caso de que la variable "estado" numero 0 sea igual a true, el objeto "per" en su campo "esInmune" se le asigna el valor de true
     /// </summary>
-    public void asignarDatos()
+    public void asignarDatosP1()
     {
         per.GetComponent<Personaje>().ph = RestablecerValores.obtenerPH();
         per.GetComponent<Personaje>().casillaActual = RestablecerValores.obtenerCasilla();
+        if (RestablecerValores.estados[0] == true)
+        {
+            per.GetComponent<Personaje>().esPintado = true;
+        }
+        if (RestablecerValores.estados[1] == true)
+        {
+            per.GetComponent<Personaje>().esBloqueado = true;
+        }
+        if (RestablecerValores.estados[2] == true)
+        {
+            per.GetComponent<Personaje>().esInmune = true;
+        }
+    }
+
+    public void asignarDatosP2()
+    {
+        per2.GetComponent<Personaje>().ph = RestablecerValores.phP2;
+        per2.GetComponent<Personaje>().casillaActual = RestablecerValores.casillaActualP2;
         if (RestablecerValores.estados[0] == true)
         {
             per.GetComponent<Personaje>().esPintado = true;

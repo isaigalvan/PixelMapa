@@ -7,12 +7,14 @@ public static class RestablecerValores
     public static bool respawn=false;
 
     //CrearPersonaje
-    public static float posx=5, posy;
+    public static float posx=5, posy, posyP2, posxP2=5;
     public static int idPersonaje, idPersonaje2;
    
     //Personaje
     public static bool[] estados = new bool[3];  // 0-Pintado    1-Bloqueado     2-Inmune
+    public static bool[] estadosP2 = new bool[3];  // 0-Pintado    1-Bloqueado     2-Inmune
     public static int casillaActual = 0, ph = 0;
+    public static int casillaActualP2 = 0, phP2 = 0;
 
 
 

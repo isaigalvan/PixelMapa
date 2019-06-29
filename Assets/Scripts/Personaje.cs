@@ -6,7 +6,7 @@ using Photon.Pun;
 
 public class Personaje : MonoBehaviour
 {
-    public int casillaActual=0, ph=0;
+    public int casillaActual=0, ph=0, idPer;
     public SpriteRenderer spriteR;
     public GameObject textCasilla, textPh,scripts;
     public bool esPintado, esBloqueado, esBuff, esNerf, esInmune, esAtraido, verificado, condi;
@@ -45,26 +45,18 @@ public class Personaje : MonoBehaviour
     /// Se toma el valor "idPersonaje" para entrar dentro de un switch, en el caso 0 y caso 5 se transforma la escala en .23, en el caso 1
     /// en .25, en el caso 2 en .26, en el caso 3 en .29 y en el caso 4 en .24
     /// </summary>
-    public void AsignarTamanos()
+    public void AsignarTamanos(int idPersonaje)
     {
-        switch (scripts.GetComponent<CrearPersonaje>().idPersonaje)
+        switch (idPersonaje)
         {
             case 0:
             case 5:
                 transform.localScale = new Vector3(0.23f, 0.23f, 1);
                 break;
-            case 1:
-                transform.localScale = new Vector3(0.25f, 0.25f, 1);
-                break;
             case 2:
                 transform.localScale = new Vector3(0.26f, 0.26f, 1);
                 break;
-            case 3:
-                transform.localScale = new Vector3(0.29f, 0.29f, 1);
-                break;
-            case 4:
-                transform.localScale = new Vector3(0.24f, 0.24f, 1);
-                break;
+ 
             default:
                 break;
         }

@@ -14,4 +14,9 @@ public class BotonesMenus : MonoBehaviour
     {
         SceneManager.LoadScene("Creditos");
     }
+
+    public void entrarJugar()
+    {
+        SceneManager.LoadScene("Seleccion");
+    }
 }

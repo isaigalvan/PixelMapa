@@ -1952,7 +1952,7 @@ RectTransform:
   m_Children:
   - {fileID: 1879703740}
   m_Father: {fileID: 382496655}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4324,6 +4324,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 1465723612}
   - {fileID: 1225740977}
   - {fileID: 151609055}
   m_Father: {fileID: 261604919}
@@ -6728,9 +6729,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c055da7c0acf8d458e22e0ec9a30ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scripts: {fileID: 0}
+  scripts: {fileID: 940622038}
   posx: 0
   posy: 0
+  posxP2: 5
+  posyP2: 0
+  temposx: 5
+  dif: 0
+  condi: 0
+  actTiempo: 0
+  tiempo: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -11799,6 +11807,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Marco: {fileID: 261604918}
+  Letrero: {fileID: 1465723611}
   Habilidades: {fileID: 1009076518}
   btnHab1: {fileID: 1730807632}
   btnHab2: {fileID: 1468937670}
@@ -11807,6 +11816,8 @@ MonoBehaviour:
   personaje: {fileID: 0}
   objPH: {fileID: 0}
   marcoLeonn: {fileID: 1016859237}
+  jugador1: {fileID: 0}
+  jugador2: {fileID: 0}
   contDado: {fileID: 2001671346}
   textd1: {fileID: 956146957}
   textd2: {fileID: 415298309}
@@ -11815,19 +11826,26 @@ MonoBehaviour:
   caminando: 0
   buff: 0
   hab3Leonn: 0
+  movCamara: 0
+  condiTurno: 0
   caminarCasilla: 0
   destino: 0
   posReal: 0
   valorDado: 1
   valorMax: 6
   valHab3Len: 0
+  jugador: 1
   yaTiro: 0
   verificado: 0
   PH:
   - {fileID: 21300000, guid: f733e180febe23b499fb90b6694a46fb, type: 3}
   - {fileID: 21300000, guid: 15d0f88a3a3b0cb48a464e251a9ca7eb, type: 3}
   - {fileID: 21300000, guid: e0b9d5b92eba6ff4dab85454d11aef6f, type: 3}
+  spriteJugador:
+  - {fileID: 21300000, guid: 0438c0a742099b54f98bb393f6fc8b9d, type: 3}
+  - {fileID: 21300000, guid: 2019660834d0c9f4f88e891c89b4a26c, type: 3}
   spriteR: {fileID: 0}
+  spriteRLetrero: {fileID: 0}
 --- !u!114 &940622042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11842,14 +11860,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   posx: 0
   posy: 0
+  posxP2: 0
+  posyP2: 0
   posx2: 0
   posy2: 0
   idPersonaje: 0
+  idPersonaje2: 0
   total: 0
   personajePrefab: {fileID: 8374747939170389795, guid: 6449d7a80efbb034f95c24b6c1f60bb9,
     type: 3}
   per: {fileID: 0}
+  per2: {fileID: 0}
   personajeTemp: {fileID: 0}
+  personajeTemp2: {fileID: 0}
   personajeParent: {fileID: 206984274}
   sprites:
   - {fileID: 21300000, guid: 384105ae4489e7444b047c91cba23358, type: 3}
@@ -15628,7 +15651,7 @@ Transform:
   m_LocalScale: {x: 30, y: 30, z: 44.199997}
   m_Children: []
   m_Father: {fileID: 382496655}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1225740978
 SpriteRenderer:
@@ -18815,6 +18838,85 @@ SpriteRenderer:
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 4.4, y: 4.1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!1 &1465723611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1465723612}
+  - component: {fileID: 1465723613}
+  m_Layer: 0
+  m_Name: Letrero
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1465723612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465723611}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.6619463, y: 169, z: -4457.964}
+  m_LocalScale: {x: 45.029938, y: 45.029938, z: 45.029938}
+  m_Children: []
+  m_Father: {fileID: 382496655}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1465723613
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465723611}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 0438c0a742099b54f98bb393f6fc8b9d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 10, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
