@@ -11742,6 +11742,7 @@ GameObject:
   - component: {fileID: 940622041}
   - component: {fileID: 940622042}
   - component: {fileID: 940622043}
+  - component: {fileID: 940622045}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -11966,6 +11967,22 @@ MonoBehaviour:
     type: 3}
   Pintados: {fileID: 1603508696}
   pintadasList: []
+--- !u!114 &940622045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940622038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acd0592bc3aa4a744a837920e28f1381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jugador1: {fileID: 0}
+  jugador2: {fileID: 0}
+  textCasilla: {fileID: 2061762944}
+  textPh: {fileID: 474575282}
 --- !u!1 &948847115
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Habilidades : MonoBehaviour
 {
-    public GameObject scripts, per;
-    public float tiempo;
+    public GameObject scripts, jugador1, jugador2, per;
+    public float tiempo, px,py;
     public bool actTiempo = false;
     public bool esHab1 = false, esHab2 = false, esHab3 = false, usoHab = false;
     //zorem
@@ -31,26 +31,40 @@ public class Habilidades : MonoBehaviour
     void Update()
     {
         if (actTiempo == true) { tiempo = Time.deltaTime + tiempo; }
-        per = GameObject.FindGameObjectWithTag("PerPref");
+        jugador1 = GameObject.Find("jugador1");
+        jugador2 = GameObject.Find("jugador2");
         scripts = GameObject.Find("Scripts");
         tronco = GameObject.FindGameObjectWithTag("tronco");
-        terminarHabilidades();
+        terminarHabilidades(per);
+
+        if (GetComponent<Dado>().jugador == 1)
+        {
+            per = jugador1;
+            px = GetComponent<CrearPersonaje>().posx;
+            py = GetComponent<CrearPersonaje>().posy;
+        }
+        else
+        {
+            per = jugador2;
+            px = GetComponent<CrearPersonaje>().posxP2;
+            py = GetComponent<CrearPersonaje>().posyP2;
+        }
     }
 
     public void habilidad1()
     {
 
         esHab1 = true;
-        switch (GetComponent<CrearPersonaje>().idPersonaje)
+        switch (per.GetComponent<Personaje>().idPer)
         {
             case 0:
-                hab1zorem();
+                hab1zorem(per);
                 break;
             case 1:
 
                 break;
             case 2:
-                hab1austin();
+                hab1austin(per);
                 break;
             case 3:
 
@@ -65,80 +79,67 @@ public class Habilidades : MonoBehaviour
                 break;
         }
         per.GetComponent<Personaje>().ph = per.GetComponent<Personaje>().ph - 1;
-        per.GetComponent<Personaje>().imprimePh();
+       // per.GetComponent<Personaje>().imprimePh();
         usoHab = true;
     }
     public void habilidad2()
     {
         esHab2 = true;
-        switch (GetComponent<CrearPersonaje>().idPersonaje)
+        switch (per.GetComponent<Personaje>().idPer)
         {
             case 0:
                 //hab2zorem();
                 break;
-            case 1:
-
-                break;
             case 2:
 
                 break;
-            case 3:
-
-                break;
-            case 4:
-
-                break;
             case 5:
-                hab2leonn();
+                hab2leonn(per);
                 break;
             default:
                 break;
         }
         per.GetComponent<Personaje>().ph = per.GetComponent<Personaje>().ph - 2;
-        per.GetComponent<Personaje>().imprimePh();
+        //per.GetComponent<Personaje>().imprimePh();
         usoHab = true;
     }
     public void habilidad3()
     {
         esHab3 = true;
-        switch (GetComponent<CrearPersonaje>().idPersonaje)
+        switch (per.GetComponent<Personaje>().idPer)
         {
             case 0:
-                hab3zorem();
+                hab3zorem(per);
                 break;
-            case 1:
-
-                break;
-            case 3:
-
-                break;
-            case 4:
+            case 2:
 
                 break;
             case 5:
-                hab3leonn();
+                hab3leonn(per);
                 break;
             default:
                 break;
         }
         per.GetComponent<Personaje>().ph = per.GetComponent<Personaje>().ph - 3;
-        per.GetComponent<Personaje>().imprimePh();
+        //per.GetComponent<Personaje>().imprimePh(per);
         usoHab = true;
     }
 
     //---------------------------------------------ZOREM---------------------------------------------
-    public void hab1zorem()
+    public void hab1zorem(GameObject perZ1)
     {
         actTiempo = true;
         GetComponent<Dado>().esTurno = false;
-        per.GetComponent<Animator>().SetBool("hab1", true);
+        perZ1.GetComponent<Animator>().SetBool("hab1", true);
     }
-    public void terhab1zor()
+    public void terhab1zor(GameObject perZ1f)
     {
         if (tiempo >= 1.8f && condiZor1 == false)
         {
-            GetComponent<CrearPersonaje>().posx = GetComponent<CrearPersonaje>().posx + 6;
-            per.transform.localPosition = new Vector3(scripts.GetComponent<CrearPersonaje>().posx, scripts.GetComponent<CrearPersonaje>().posy);
+            float newposx;
+            newposx = perZ1f.GetComponent<Personaje>().transform.position.x + 6;
+            if (GetComponent<Dado>().jugador == 1) { GetComponent<CrearPersonaje>().posx = newposx; } else { GetComponent<CrearPersonaje>().posxP2 = newposx; }
+            perZ1f.transform.localPosition = new Vector3(newposx, perZ1f.GetComponent<Personaje>().transform.position.y);
             condiZor1 = true;
         }
         if (tiempo >= 2.5f)
@@ -150,9 +151,9 @@ public class Habilidades : MonoBehaviour
         if (tiempo >= 3.5f)
         {
           
-            per.GetComponent<Personaje>().casillaActual = per.GetComponent<Personaje>().casillaActual + 3;
-            per.GetComponent<Animator>().SetBool("hab1", false);
-            per.GetComponent<Personaje>().imprimeCasilla();
+            perZ1f.GetComponent<Personaje>().casillaActual = perZ1f.GetComponent<Personaje>().casillaActual + 3;
+            perZ1f.GetComponent<Animator>().SetBool("hab1", false);
+            //per.GetComponent<Personaje>().imprimeCasilla();
             verCasiHab1Zor = true;
             GetComponent<Dado>().esTurno = true;
             actTiempo = false;
@@ -162,20 +163,20 @@ public class Habilidades : MonoBehaviour
         }
     }
     //---------------------hab3 Zorem---------------------
-    public void hab3zorem()
+    public void hab3zorem(GameObject perZ3)
     {
         actTiempo = true;
         GetComponent<Dado>().esTurno = false;
-        per.GetComponent<Animator>().SetBool("hab3", true);
-        per.GetComponent<Personaje>().esBuff = true;
+        perZ3.GetComponent<Animator>().SetBool("hab3", true);
+        perZ3.GetComponent<Personaje>().esBuff = true;
         GetComponent<Dado>().buff = true;
     }
-    public void terhab3zor()
+    public void terhab3zor(GameObject perZ3f)
     {
         if (tiempo >= 3.5f)
         {
             scripts.GetComponent<Dado>().valorMax = 12;
-            per.GetComponent<Animator>().SetBool("hab3", false);
+            perZ3f.GetComponent<Animator>().SetBool("hab3", false);
             GetComponent<Dado>().esTurno = true;
             actTiempo = false;
             tiempo = 0;
@@ -184,66 +185,66 @@ public class Habilidades : MonoBehaviour
     }
     //----------------------------------------AUSTIN-----------------------------------------------------------------
     //---------------------hab1 Austin---------------------
-    public void hab1austin()
+    public void hab1austin(GameObject perA1)
     {
         btnCasillas.SetActive(true);
         GetComponent<Dado>().esTurno = false;
-        per.GetComponent<Animator>().SetBool("hab1", true);
-        per.GetComponent<Animator>().SetFloat("lanzoPintura", 0);
-        verifBotones();
+        perA1.GetComponent<Animator>().SetBool("hab1", true);
+        perA1.GetComponent<Animator>().SetFloat("lanzoPintura", 0);
+        verifBotones(perA1);
     }
 
-    public void verifBotones()
+    public void verifBotones(GameObject perA1)
     {
-        if (per.GetComponent<Personaje>().casillaActual <= 4)
+        if (perA1.GetComponent<Personaje>().casillaActual <= 4)
         {
-            dif = 6 - per.GetComponent<Personaje>().casillaActual;
+            dif = 6 - perA1.GetComponent<Personaje>().casillaActual;
             for (int i = 0; i <= dif - 1; i++)
             {
                 botones[i].SetActive(false);
             }
         }
-        if (per.GetComponent<Personaje>().casillaActual >= 194)
+        if (perA1.GetComponent<Personaje>().casillaActual >= 194)
         {
-            dif = per.GetComponent<Personaje>().casillaActual - 194;
+            dif = perA1.GetComponent<Personaje>().casillaActual - 194;
             dif = 9 - dif;
             for (int i = 9; i >= dif; i--)
             {
                 botones[i].SetActive(false);
             }
         }
-        if (per.GetComponent<Personaje>().casillaActual <= 5) { dif1 = 5 - per.GetComponent<Personaje>().casillaActual; } else { dif1 = 0; }
+        if (perA1.GetComponent<Personaje>().casillaActual <= 5) { dif1 = 5 - perA1.GetComponent<Personaje>().casillaActual; } else { dif1 = 0; }
 
         for (int x = dif1; x <= 4; x++)
         {
-            verifCasilla = per.GetComponent<Personaje>().casillaActual - (5 - x);
+            verifCasilla = perA1.GetComponent<Personaje>().casillaActual - (5 - x);
             if (GetComponent<CrearCasilla>().casillas[verifCasilla].GetComponent<Casilla>().esOcupada == true)
             {
                 botones[x].SetActive(false);
             }
         }
-        if (per.GetComponent<Personaje>().casillaActual >= 195) { dif2 = per.GetComponent<Personaje>().casillaActual - 190; } else { dif2 = 9; }
+        if (perA1.GetComponent<Personaje>().casillaActual >= 195) { dif2 = perA1.GetComponent<Personaje>().casillaActual - 190; } else { dif2 = 9; }
 
         for (int x = dif2; x >= 5; x--)
         {
-            verifCasilla = per.GetComponent<Personaje>().casillaActual + (x - 4);
+            verifCasilla = perA1.GetComponent<Personaje>().casillaActual + (x - 4);
             if (GetComponent<CrearCasilla>().casillas[verifCasilla].GetComponent<Casilla>().esOcupada == true)
             {
                 botones[x].SetActive(false);
             }
         }
     }
-    public void terhab1austin()
+    public void terhab1austin(GameObject perA1f)
     {
         if (presionado1 == true && condiHab1Aus == false)
         {
             btnCasillas.SetActive(false);
-            per.GetComponent<Animator>().SetFloat("lanzoPintura", 1);
+            perA1f.GetComponent<Animator>().SetFloat("lanzoPintura", 1);
             actTiempo = true;
             if (tiempo >= 2)
             {
                 GetComponent<CrearCasilla>().casillas[casillaAPintar].GetComponent<Casilla>().esPintada = true;
-                per.GetComponent<Animator>().SetFloat("lanzoPintura", 0);
+                perA1f.GetComponent<Animator>().SetFloat("lanzoPintura", 0);
                 condiHab1Aus = true;
                 btnCasillas.SetActive(true);
                 actTiempo = false;
@@ -254,15 +255,15 @@ public class Habilidades : MonoBehaviour
         if (presionado1 == true && presionado2 == true)
         {
             btnCasillas.SetActive(false);
-            per.GetComponent<Animator>().SetFloat("lanzoPintura", 1);
+            perA1f.GetComponent<Animator>().SetFloat("lanzoPintura", 1);
             actTiempo = true;
             if (tiempo >= 2)
             {
                 GetComponent<CrearCasilla>().casillas[casillaAPintar].GetComponent<Casilla>().esPintada = true;
-                per.GetComponent<Animator>().SetFloat("lanzoPintura", 0);
+                perA1f.GetComponent<Animator>().SetFloat("lanzoPintura", 0);
             }
             if (tiempo >= 3) { actTiempo = false; tiempo = 0; presionado1 = false; presionado2 = false; condiHab1Aus = false;
-                GetComponent<Dado>().esTurno = true; per.GetComponent<Animator>().SetBool("hab1", false);
+                GetComponent<Dado>().esTurno = true; perA1f.GetComponent<Animator>().SetBool("hab1", false);
             }
         }
         if (GetComponent<Dado>().caminando == true)
@@ -328,7 +329,7 @@ public class Habilidades : MonoBehaviour
     }
 
     //---------------------hab3 Austin---------------------
-    public void terhab3austin()
+    public void terhab3austin(GameObject perA3f)
     {
 
         if (GetComponent<Dado>().caminando == false && GetComponent<Dado>().esTurno == false)
@@ -336,7 +337,7 @@ public class Habilidades : MonoBehaviour
             casRecorridas = GetComponent<Dado>().destino;
             for (int i = 0; i <= casRecorridas; i++)
             {
-                GetComponent<CrearCasilla>().casillas[per.GetComponent<Personaje>().casillaActual - i].GetComponent<Casilla>().esPintada = true;
+                GetComponent<CrearCasilla>().casillas[perA3f.GetComponent<Personaje>().casillaActual - i].GetComponent<Casilla>().esPintada = true;
                 hayPint = true;
                 if (GetComponent<Dado>().caminando == false)
                 {
@@ -347,28 +348,28 @@ public class Habilidades : MonoBehaviour
     }
     //  -----------------------------------------LEONN--------------------------------------------------------
     // --------------------------------HAB 2 LEONN --------------------------------
-    public void hab2leonn()
+    public void hab2leonn(GameObject perL1)
     {
         actTiempo = true;
         GetComponent<Dado>().esTurno = false;
-        per.GetComponent<Animator>().SetBool("hab2", true);
+        perL1.GetComponent<Animator>().SetBool("hab2", true);
     }
-    public void terhab2leonn()
+    public void terhab2leonn(GameObject perL1f)
     {
         if (tiempo >= 2f)
         {
-            per.GetComponent<Animator>().SetBool("hab2", false);
+            perL1f.GetComponent<Animator>().SetBool("hab2", false);
             GetComponent<Dado>().esTurno = true;
             actTiempo = false;
             tiempo = 0;
-            if (GetComponent<CrearCasilla>().casillas[per.GetComponent<Personaje>().casillaActual].GetComponent<Casilla>().esDeshabilidad == true)
+            if (GetComponent<CrearCasilla>().casillas[perL1f.GetComponent<Personaje>().casillaActual].GetComponent<Casilla>().esDeshabilidad == true)
             {
-                GetComponent<CrearCasilla>().casillas[per.GetComponent<Personaje>().casillaActual].GetComponent<Casilla>().esDesLeonn2 = true;
-                casiModif = per.GetComponent<Personaje>().casillaActual;
+                GetComponent<CrearCasilla>().casillas[perL1f.GetComponent<Personaje>().casillaActual].GetComponent<Casilla>().esDesLeonn2 = true;
+                casiModif = perL1f.GetComponent<Personaje>().casillaActual;
             }
             else
             {
-                casiModif = per.GetComponent<Personaje>().casillaActual;
+                casiModif = perL1f.GetComponent<Personaje>().casillaActual;
                 GetComponent<CrearCasilla>().casillas[casiModif].GetComponent<Casilla>().esDesLeonn = true;
             }
             GetComponent<IndicadoresCasilla>().desLeonn(casiModif);
@@ -380,21 +381,21 @@ public class Habilidades : MonoBehaviour
         }
     }
     // --------------------------------HAB 3 LEONN --------------------------------
-    public void hab3leonn()
+    public void hab3leonn(GameObject perL3)
     {
         actTiempo = true;
         GetComponent<Dado>().esTurno = false;
-        per.GetComponent<Animator>().SetBool("hab3", true);
-        per.GetComponent<Personaje>().esBuff = true;
+        perL3.GetComponent<Animator>().SetBool("hab3", true);
+        perL3.GetComponent<Personaje>().esBuff = true;
         repite = true;
         GetComponent<Dado>().buff = true;
     }
-    public void terhab3leonn()
+    public void terhab3leonn(GameObject perL3f)
     {
         
         if (tiempo >= 3.5f)
         {
-            per.GetComponent<Animator>().SetBool("hab3", false);
+            perL3f.GetComponent<Animator>().SetBool("hab3", false);
             GetComponent<Dado>().esTurno = true;
             actTiempo = false;
             tiempo = 0;
@@ -402,27 +403,18 @@ public class Habilidades : MonoBehaviour
         }
     }
     //------------------------------------------------------------------------------------------------------------
-    public void terminarHabilidades()
+    public void terminarHabilidades(GameObject jugador)
     {
         if (esHab1 == true)
         {
            
-            switch (GetComponent<CrearPersonaje>().idPersonaje)
+            switch (jugador.GetComponent<Personaje>().idPer)
             {
                 case 0:
-                    terhab1zor();
-                    break;
-                case 1:
-
+                    terhab1zor(jugador);
                     break;
                 case 2:
-                    terhab1austin();
-                    break;
-                case 3:
-
-                    break;
-                case 4:
-
+                    terhab1austin(jugador);
                     break;
                 case 5:
 
@@ -434,25 +426,16 @@ public class Habilidades : MonoBehaviour
         if (esHab2 == true)
         {
             
-            switch (GetComponent<CrearPersonaje>().idPersonaje)
+            switch (jugador.GetComponent<Personaje>().idPer)
             {
                 case 0:
                     //terhab2zor();
                     break;
-                case 1:
-
-                    break;
                 case 2:
                    
                     break;
-                case 3:
-
-                    break;
-                case 4:
-                    
-                    break;
                 case 5:
-                    terhab2leonn();
+                    terhab2leonn(jugador);
                     break;
                 default:
                     break;
@@ -462,31 +445,22 @@ public class Habilidades : MonoBehaviour
         if (esHab3 == true)
         {
            
-            switch (GetComponent<CrearPersonaje>().idPersonaje)
+            switch (jugador.GetComponent<Personaje>().idPer)
             {
                 case 0:
-                    terhab3zor();
-                    break;
-                case 1:
-
+                    terhab3zor(jugador);
                     break;
                 case 2:
-                    terhab3austin();
-                    break;
-                case 3:
-
-                    break;
-                case 4:
-
+                    terhab3austin(jugador);
                     break;
                 case 5:
-                    terhab3leonn();
+                    terhab3leonn(jugador);
                     break;
                 default:
                     break;
             }
         }
-        if(hayPint==true&& GetComponent<Dado>().esTurno == true)
+      /*  if(hayPint==true&& GetComponent<Dado>().esTurno == true)
         {
             for (int i = 0; i <= casRecorridas; i++)
             {
@@ -508,6 +482,6 @@ public class Habilidades : MonoBehaviour
             GetComponent<CrearCasilla>().casillas[casiModif2].GetComponent<Casilla>().esPintada = false;
             hayPint1 = false;
             
-        }
+        }*/
     }
 }

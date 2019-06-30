@@ -10,7 +10,7 @@ public class Personaje : MonoBehaviour
     public SpriteRenderer spriteR;
     public GameObject textCasilla, textPh,scripts;
     public bool esPintado, esBloqueado, esBuff, esNerf, esInmune, esAtraido, verificado, condi;
-    
+    public bool verfi;
 
     /// <summary>
     /// Update
@@ -19,7 +19,6 @@ public class Personaje : MonoBehaviour
     /// </summary>
     void Update()
     {
-        imprimeCasilla();
         verificaCasilla();
        
     }
@@ -62,43 +61,7 @@ public class Personaje : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// imprimeCasilla
-    /// Este metodo es llamado por update, despues del turno del jugador imprime la casilla actual del jugador de todo el tablero 
-    /// primero se verifica si el turno del jugador ya termino comparando la variable "esTurno" con el valor false, en caso de que se cumpla la condicion 
-    /// verifica si la variable "casillaActual" del jugador es menor a 10, en ese caso se imprime un 0 y despues la variable "casillaActual" en el objeto de texto
-    /// "textoCasillaActual", en caso de que la variable "casillaActual" sea mayor a 10 y menor a 100, solo se imprime la variable "casillaActual" en el objeto de 
-    /// texto "textoCasillaActual", en caso de que la variable "casillaActual" sea mayor a 100, se reucira el tamaño de la fuente a un valor de 30 del objeto de texto 
-    /// "textoCasilaActual"
-    /// </summary>
-    public void imprimeCasilla()
-    {
-        if (scripts.GetComponent<Dado>().esTurno == false)
-        {
-            if (casillaActual < 10)
-            {
-             textCasilla.GetComponent<TextMeshProUGUI>().text = "0" + casillaActual;
-            }
-            else
-            {
-                textCasilla.GetComponent<TextMeshProUGUI>().text = "" + casillaActual;
-            }
-            if (casillaActual >= 100)
-            {
-                textCasilla.GetComponent<TextMeshProUGUI>().fontSize = 30;
-            }
-        }
-    }
-
-    /// <summary>
-    /// imprimePh
-    /// Este metodo es llamado por verificarCasilla, imprime el valor de los puntos de habilidad del jugador
-    /// Este metodo imprime la variable "ph" en el objeto de texto "textoPH"
-    /// </summary>
-    public void imprimePh()
-    {
-        textPh.GetComponent<TextMeshProUGUI>().text = "" + ph;
-    }
+  
 
 
     /// <summary>
@@ -115,6 +78,9 @@ public class Personaje : MonoBehaviour
     /// </summary>
     public void verificaCasilla()
     {
+        if( (gameObject.name=="jugador1"&&scripts.GetComponent<Dado>().jugador==1)|| (gameObject.name == "jugador2" && scripts.GetComponent<Dado>().jugador == 2))
+        {
+            verfi = true;
         if(scripts.GetComponent<Dado>().yaTiro == true)
         {
             condi = true;
@@ -177,9 +143,9 @@ public class Personaje : MonoBehaviour
             }
             verificado = false;
             condi = false; 
-            imprimePh();
+          //  imprimePh();
             scripts.GetComponent<Habilidades>().verCasiHab1Zor = false;
         }        
+        }
     }
-    
 }
