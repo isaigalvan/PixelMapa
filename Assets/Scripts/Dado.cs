@@ -23,6 +23,7 @@ public class Dado : MonoBehaviour
 
     private void Start()
     {
+     
         esTurno = true;
     }
 

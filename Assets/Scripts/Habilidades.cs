@@ -27,7 +27,9 @@ public class Habilidades : MonoBehaviour
     public bool hayHab2Leonn;
     public int casiModif;
     public GameObject tronco;
-    //
+    //Personajes (Austin, Leonn)
+    public bool pusoCasPer1, pusoCasPer2;
+    
     void Update()
     {
         if (actTiempo == true) { tiempo = Time.deltaTime + tiempo; }
@@ -36,7 +38,7 @@ public class Habilidades : MonoBehaviour
         scripts = GameObject.Find("Scripts");
         tronco = GameObject.FindGameObjectWithTag("tronco");
         terminarHabilidades(per);
-
+         
         if (GetComponent<Dado>().jugador == 1)
         {
             per = jugador1;
@@ -264,6 +266,7 @@ public class Habilidades : MonoBehaviour
             }
             if (tiempo >= 3) { actTiempo = false; tiempo = 0; presionado1 = false; presionado2 = false; condiHab1Aus = false;
                 GetComponent<Dado>().esTurno = true; perA1f.GetComponent<Animator>().SetBool("hab1", false);
+               
             }
         }
         if (GetComponent<Dado>().caminando == true)
@@ -343,6 +346,7 @@ public class Habilidades : MonoBehaviour
                 {
                     esHab3 = false;
                 }
+               
             }
         }
     }
@@ -378,6 +382,7 @@ public class Habilidades : MonoBehaviour
         {
             esHab2 = false;
             hayHab2Leonn = true;
+            
         }
     }
     // --------------------------------HAB 3 LEONN --------------------------------
@@ -460,28 +465,69 @@ public class Habilidades : MonoBehaviour
                     break;
             }
         }
-      /*  if(hayPint==true&& GetComponent<Dado>().esTurno == true)
-        {
+      
+    }
+
+
+    //haypint1 (hab1)  haypint(hab3)    hayhab2leonn (hab2)
+    public void quitarAustin3()
+    {
             for (int i = 0; i <= casRecorridas; i++)
             {
                 GetComponent<CrearCasilla>().casillas[per.GetComponent<Personaje>().casillaActual - i].GetComponent<Casilla>().esPintada = false;
             }
             hayPint = false;
             RestablecerCasilla.inicializarPint();
-        }
-        if (hayHab2Leonn == true && GetComponent<Dado>().esTurno == true)
-        {
+    }
+
+    public void quitarAustin1()
+    {
+            GetComponent<CrearCasilla>().casillas[casiModif1].GetComponent<Casilla>().esPintada = false;
+            GetComponent<CrearCasilla>().casillas[casiModif2].GetComponent<Casilla>().esPintada = false;
+            hayPint1 = false;
+    }
+
+    public void quitarLeonn2()
+    {
             GetComponent<CrearCasilla>().casillas[casiModif].GetComponent<Casilla>().esDesLeonn = false;
             GetComponent<CrearCasilla>().casillas[casiModif].GetComponent<Casilla>().esDesLeonn2 = false;
             hayHab2Leonn = false;
             Destroy(tronco);
-        }
-        if(hayPint1 == true && GetComponent<Dado>().esTurno == true)
+    }
+
+    public void quitar()
+    {
+        if(pusoCasPer1 == true && GetComponent<Dado>().jugador == 1)
         {
-            GetComponent<CrearCasilla>().casillas[casiModif1].GetComponent<Casilla>().esPintada = false;
-            GetComponent<CrearCasilla>().casillas[casiModif2].GetComponent<Casilla>().esPintada = false;
-            hayPint1 = false;
-            
-        }*/
+            if (hayPint1 && per.GetComponent<Personaje>().idPer == 2)
+            {
+                quitarAustin1();
+            }
+            if (hayPint && per.GetComponent<Personaje>().idPer == 2)
+            {
+                quitarAustin3();
+            }
+            if(hayHab2Leonn && per.GetComponent<Personaje>().idPer == 5)
+            {
+                quitarLeonn2();
+            }
+            pusoCasPer1 = false;
+        }
+        if (pusoCasPer2 == true && GetComponent<Dado>().jugador == 2)
+        {
+            if (hayPint1 && per.GetComponent<Personaje>().idPer == 2)
+            {
+                quitarAustin1();
+            }
+            if (hayPint && per.GetComponent<Personaje>().idPer == 2)
+            {
+                quitarAustin3();
+            }
+            if (hayHab2Leonn && per.GetComponent<Personaje>().idPer == 5)
+            {
+                quitarLeonn2();
+            }
+            pusoCasPer2  = false;
+        }
     }
 }

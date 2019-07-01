@@ -2,23 +2,64 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ControlMinijuego : MonoBehaviour
 {
     public int sel;
     public TextMeshProUGUI titu, desc;
+    public GameObject icono;
+    public SpriteRenderer iconoR;
+    public Sprite[] spriteIcono;
+    public float tiempo;
+
     // Start is called before the first frame update
     void Start()
     {
-        sel = Random.Range(1, 8);
+        // sel = Random.Range(1, 8);
+        sel = 6;
     }
 
     // Update is called once per frame
     void Update()
     {
+        iconoR = icono.GetComponent<SpriteRenderer>();
         titulo();
         descripcion();
+        icon();
+        tiempo = Time.deltaTime + tiempo;
+        if (tiempo >= 4)
+        {
+            escena();
+        }
+    }
 
+    public void escena()
+    {
+        switch (sel)
+        {
+            case 1:
+                SceneManager.LoadScene("02-Infla el globo");
+                break;
+            case 2:
+                SceneManager.LoadScene("03-Adivina el cofre");
+                break;
+            case 3:
+                SceneManager.LoadScene("04-Atrapa el robot");
+                break;
+            case 4:
+                SceneManager.LoadScene("05-Memorama");
+                break;
+            case 5:
+                SceneManager.LoadScene("06-Dardos");
+                break;
+            case 6:
+                SceneManager.LoadScene("07-Recoger Manzanas");
+                break;
+            case 7:
+                SceneManager.LoadScene("08-Ordenar pasteles");
+                break;
+        }
     }
 
     public void titulo()
@@ -49,6 +90,33 @@ public class ControlMinijuego : MonoBehaviour
         }
     }
 
+    public void icon()
+    {
+        switch (sel)
+        {
+            case 1:
+                iconoR.sprite = spriteIcono[0];
+                break;
+            case 2:
+                iconoR.sprite = spriteIcono[1];
+                break;
+            case 3:
+                iconoR.sprite = spriteIcono[2];
+                break;
+            case 4:
+                iconoR.sprite = spriteIcono[3];
+                break;
+            case 5:
+                iconoR.sprite = spriteIcono[4];
+                break;
+            case 6:
+                iconoR.sprite = spriteIcono[5];
+                break;
+            case 7:
+                iconoR.sprite = spriteIcono[6];
+                break;
+        }
+    }
     public void descripcion()
     {
         switch (sel)

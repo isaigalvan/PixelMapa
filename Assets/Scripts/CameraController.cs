@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
     public float posx=5, posy;
     public float posxP2=5, posyP2;
     public float temposx = 5, dif;
-    public bool condi, actTiempo;
+    public bool condi, actTiempo, temp;
     public float tiempo;
     /// <summary>
     /// Update
@@ -36,6 +36,7 @@ public class CameraController : MonoBehaviour
         if (scripts.GetComponent<Dado>().movCamara ==true)
         {
             cambio();
+            scripts.GetComponent<Habilidades>().quitar();
         }
     }
 
@@ -43,19 +44,23 @@ public class CameraController : MonoBehaviour
     {
         if (scripts.GetComponent<Dado>().jugador == 1&&condi==false)
         {
+           
             scripts.GetComponent<Dado>().jugador = 2;
             scripts.GetComponent<Dado>().Letrero.SetActive(true);
             scripts.GetComponent<Dado>().spriteRLetrero.sprite = scripts.GetComponent<Dado>().spriteJugador[1];
             condi = true;
             actTiempo = true;
+            temp = true;
         }
         if (scripts.GetComponent<Dado>().jugador == 2 && condi == false)
         {
+            
             scripts.GetComponent<Dado>().jugador = 1;
             scripts.GetComponent<Dado>().Letrero.SetActive(true);
             scripts.GetComponent<Dado>().spriteRLetrero.sprite = scripts.GetComponent<Dado>().spriteJugador[0];
             condi = true;
             actTiempo = true;
+            temp = false;
         }
         if (tiempo >= 2)
         {    
@@ -65,8 +70,21 @@ public class CameraController : MonoBehaviour
             condi = false;
             actTiempo = false;
             tiempo = 0;
+            condiCasiEsp(temp);
         }
         
+    }
+
+    public void condiCasiEsp(bool cambio)
+    {
+        if((scripts.GetComponent<Habilidades>().hayPint1|| scripts.GetComponent<Habilidades>().hayPint  || scripts.GetComponent<Habilidades>().hayHab2Leonn) && cambio == false && scripts.GetComponent<Dado>().jugador==1)
+        {
+            scripts.GetComponent<Habilidades>().pusoCasPer1 = true;
+        }
+        if((scripts.GetComponent<Habilidades>().hayPint1 || scripts.GetComponent<Habilidades>().hayPint || scripts.GetComponent<Habilidades>().hayHab2Leonn) && cambio == true && scripts.GetComponent<Dado>().jugador == 2)
+        {
+            scripts.GetComponent<Habilidades>().pusoCasPer2 = true;
+        }
     }
 
     /*public void movP1aP2()
