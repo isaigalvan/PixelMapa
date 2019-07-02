@@ -7,6 +7,7 @@ public class PerRobot : MonoBehaviour
     public SpriteRenderer sr;
     public GameObject pruebaFondo;
     public int numJugador;
+    public bool tomoCaja;
     // Start is called before the first frame update
     void Start()
     {

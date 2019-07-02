@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Resultados : MonoBehaviour
 {
     public float tiempo;
+    public bool condi;
     public int PP1, PP2;
 
     public Sprite[] GanoEmpate;
@@ -46,10 +47,21 @@ public class Resultados : MonoBehaviour
         if (PP1 > PP2)
         {
             ganador(0);
+            if (condi == false)
+            {
+                RestablecerValores.ph++;
+                condi = true;
+            }
+            
         }
         if (PP2 > PP1)
         {
             ganador(1);
+            if (condi == false)
+            {
+                RestablecerValores.phP2++;
+                condi = true;
+            }
         }
     }
 

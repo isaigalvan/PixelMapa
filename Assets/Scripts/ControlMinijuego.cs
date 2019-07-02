@@ -16,7 +16,7 @@ public class ControlMinijuego : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // sel = Random.Range(1, 8);
+        //sel = Random.Range(1, 8);
         sel = 6;
     }
 

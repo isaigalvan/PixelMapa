@@ -4,22 +4,42 @@ using UnityEngine;
 
 public class CrearMapaAC : MonoBehaviour
 {
-    private int total;
+    public int total, cofre;
     private float posx, posy;
-    public GameObject pisoPrefab, piedraPrefab;
+    public GameObject pisoPrefab, piedraPrefab, cofre1, cofre2, cofre3;
     public Transform pisoParent, piedraParent;
     // Start is called before the first frame update
     void Start()
     {
         Crear();
+        cofre = Random.Range(1, 4);
+        cofre1 = GameObject.Find("cofre1");
+        cofre2 = GameObject.Find("cofre3");
+        cofre3 = GameObject.Find("cofre2");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        asigTesoro();
     }
 
+    public void asigTesoro()
+    {
+        if( cofre == cofre1.GetComponent<Caja>().idCaja)
+        {
+            cofre1.GetComponent<Caja>().tesoro = true;
+        }
+        if (cofre == cofre2.GetComponent<Caja>().idCaja)
+        {
+            cofre2.GetComponent<Caja>().tesoro = true;
+        }
+        if (cofre == cofre3.GetComponent<Caja>().idCaja)
+        {
+            cofre3.GetComponent<Caja>().tesoro = true;
+        }
+    }
     public void Crear()
     {
         crearMadera();
