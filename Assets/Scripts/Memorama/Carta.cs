@@ -78,10 +78,17 @@ public class Carta : MonoBehaviour
     /// </summary>
     public void EsconderCarta()
     {
-        Invoke("Esconder", tiempo);
-        crearCartas.GetComponent<CrearCarta>().sePuedeMostrar = false;
-
-
+        if (crearCartas.GetComponent<CrearCarta>().condi == true)
+        {
+            Invoke("Esconder", 0.1f);
+            crearCartas.GetComponent<CrearCarta>().sePuedeMostrar = false;
+        }
+        else
+        {
+            Invoke("Esconder", tiempo);
+            crearCartas.GetComponent<CrearCarta>().sePuedeMostrar = false;
+        }
+            
     }
 
     /// <summary>

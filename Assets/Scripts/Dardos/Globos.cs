@@ -20,7 +20,15 @@ public class Globos : MonoBehaviour
     {
         gameObject.SetActive(false);
         nombres();
-        scripts.GetComponent<Puntaje>().puntosP1 = scripts.GetComponent<Puntaje>().puntosP1 + 1;
+        if (scripts.GetComponent<ControlJugador>().jugador == 1)
+        {
+            scripts.GetComponent<Puntaje>().puntosP1++;
+        }
+        else
+        {
+            scripts.GetComponent<Puntaje>().puntosP2++;
+        }
+        
     }
 
     private void Start()

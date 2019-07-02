@@ -15,15 +15,23 @@ public class CrearCarta : MonoBehaviour
     public Material[] materiales;
     public Texture2D[] texturas;
     public Transform CartasParent;
-    private List<GameObject> cartas = new List<GameObject>() ;
+    private List<GameObject> cartas = new List<GameObject>();
     public int contador;
-    public TextMeshProUGUI textCont;
-    public Carta cartaMostrada;
-    public bool sePuedeMostrar = true;
+    public TextMeshProUGUI textCont,textT;
+    public Carta cartaMostrada, cartaTemp;
+    public bool sePuedeMostrar = true, condi;
     public TextMeshProUGUI Tiempo;
     public float tiempo = 60.0f;
     public AudioSource source { get { return GetComponent<AudioSource>(); } }
     public AudioClip clip;
+    public int jugador = 1;
+
+    public Sprite[] imagen;
+    public GameObject objImagen;
+    public SpriteRenderer objR;
+
+
+    public float tiempoTurno;
 
     /// <summary>
     /// Start
@@ -34,43 +42,20 @@ public class CrearCarta : MonoBehaviour
     {
         Crear();
         gameObject.AddComponent<AudioSource>();
-
+        objR = objImagen.GetComponent<SpriteRenderer>();
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    void PlaySound()
-    {
-        source.PlayOneShot(clip);
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    private void OnMouseDown()
-    {
-        PlaySound();
-    }
-
-    /// <summary>
-    /// Update
-    /// Este metodo se invoca una vez por cada frame, imprimiendo un contador de tiempo en el juego 
-    /// Se usa la variable "tiempo" con una valor incial de 60, si "tiempo" es igual o menor a 0 se acaba el juego, de lo contrario se resta 1 cada segundo a
-    /// la varible "tiempo"     
-    /// </summary>
     private void Update()
     {
-        if (tiempo <= 0.0f) 
-        {
-            PhotonNetwork.LoadLevel(1);
-        }
-        else
-        {
-            tiempo -= Time.deltaTime;
-        }
-        Tiempo.text = "Tiempo:" + "" + tiempo.ToString("f0");
+        actualizarImagen();
+        cambiarTurno();
+        termino();
+        actualizarTiempoJugador();
+        tiempoTurno += Time.deltaTime;
     }
+
+
+
 
     /// <summary>
     /// Crear
@@ -164,21 +149,38 @@ public class CrearCarta : MonoBehaviour
         if (cartaMostrada == null)
         {
             cartaMostrada = _carta;
+            condi = true;
+            cartaTemp = cartaMostrada;
         }
         else
         {
+            condi = false;
             if (CompararCartas(_carta.gameObject, cartaMostrada.gameObject))
             {
-                contador++;
-                actualizarUI();
+                if (jugador == 1)
+                {
+                    GetComponent<Puntaje>().puntosP1++;
+                }
+                else
+                {
+                    GetComponent<Puntaje>().puntosP2++;
+                }
             }
             else
             {
                 _carta.EsconderCarta();
                 cartaMostrada.EsconderCarta();
             }
-            cartaMostrada = null; 
-             
+            cartaMostrada = null;
+            tiempoTurno = 0;
+            if (jugador == 1)
+            {
+                jugador = 2;
+            }
+            else
+            {
+                jugador = 1;
+            }
         }
         
     }
@@ -208,13 +210,52 @@ public class CrearCarta : MonoBehaviour
         return resul;
     }
 
-    /// <summary>
-    /// actualizarUI
-    /// Este metodo es llamado por "hacerClick", imprime los puntos del jugador en el minijuego
-    /// imprime mediante .text en el cuadro de texto llamado textCont, "PUNTOS: " y el valor de la variable contador
-    /// </summary>
-    public void actualizarUI()
+  
+
+    public void actualizarTiempoJugador()
     {
-        textCont.text = "PUNTOS:" + contador;
+        int intTiempo = Mathf.RoundToInt(tiempoTurno);
+        textT.text = ""+(4-intTiempo);
+    }
+
+    public void actualizarImagen()
+    {
+        if (jugador == 1)
+        {
+            objR.sprite = imagen[0];
+        }
+        else
+        {
+            objR.sprite = imagen[1];
+        }
+    }
+
+    public void cambiarTurno()
+    {
+        if (tiempoTurno >= 4)
+        {
+            if (jugador == 1)
+            {
+                jugador = 2;
+            }
+            else
+            {
+                jugador = 1;
+            }
+            if (condi == true)
+            {
+                cartaMostrada.EsconderCarta();
+                cartaMostrada = null;
+            }
+            tiempoTurno = 0;
+        }
+    }
+
+    public void termino()
+    {
+        if((GetComponent<Puntaje>().puntosP1+ GetComponent<Puntaje>().puntosP2) == 8)
+        {
+            GetComponent<Puntaje>().tiempo = 0;
+        }
     }
 }

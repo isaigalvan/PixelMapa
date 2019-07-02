@@ -24,7 +24,7 @@ public class Dardo : MonoBehaviour
     void Update()
     {
        // transform.Rotate(0, 0, 0);
-        if (presionado)
+        if (presionado && scripts.GetComponent<ControlJugador>().movible==true)
         {
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if(Vector3.Distance(pos , hookrb.position) > maxEstirado)
@@ -41,15 +41,22 @@ public class Dardo : MonoBehaviour
 
     private void OnMouseDown()
     {
-        presionado = true;
-        rb.isKinematic = true;
+        if(scripts.GetComponent<ControlJugador>().movible == true)
+        {
+            presionado = true;
+            rb.isKinematic = true;
+        }
+        
     }
 
     private void OnMouseUp()
     {
-        presionado = false;
+        if (scripts.GetComponent<ControlJugador>().movible == true)
+        {
+            presionado = false;
         rb.isKinematic = false;
         StartCoroutine( Liberar());
+         }
     }
 
     IEnumerator Liberar()
