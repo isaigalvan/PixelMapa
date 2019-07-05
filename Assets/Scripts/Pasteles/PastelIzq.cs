@@ -6,9 +6,9 @@ public class PastelIzq : MonoBehaviour
 {
     public float posx=-10, posy=2.85f, tiempo;
     public int pasoPastel = 0, idPastel;
-    public GameObject per, scripts;
+    public GameObject per1, per2, scripts;
     public SpriteRenderer sr;
-    public bool estaTocando, actTiempo;
+    public bool estaTocandoP1, estaTocandoP2, actTiempo, tomoJ1, tomoJ2;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +18,12 @@ public class PastelIzq : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        per = GameObject.FindGameObjectWithTag("Personaje");
+        per1 = GameObject.Find("jugador1");
+        per2 = GameObject.Find("jugador2");
         scripts = GameObject.Find("scripts");
         mover();
-        estado();
-        if(actTiempo == true) { tiempo = Time.deltaTime + tiempo; }
+        estadoP1(per1); estadoP2(per2);
+        if (actTiempo == true) { tiempo = Time.deltaTime + tiempo; }
     }
    
   
@@ -55,67 +56,111 @@ public class PastelIzq : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        if (per.GetComponent<PerPastel>().paso == 1&&pasoPastel==1)
+        pastelVerif(per1);
+        pastelVerif(per2);
+    }
+
+    public void pastelVerif(GameObject per)
+    {
+        if (per.GetComponent<PerPastel>().paso == 1 && pasoPastel == 1)
         {
-            posx = per.transform.position.x;
-            posy = per.transform.position.y;
-            switch (scripts.GetComponent<CrearPerPastel>().idPersonaje)
-            {
-                case 0:
-                case 1:
-                case 2:
-                case 5:
-                    gameObject.transform.localPosition = new Vector3(posx + 0.1f, posy - 0.3f);
-                    break;
-                case 4:
-                    gameObject.transform.localPosition = new Vector3(posx + 0.1f, posy + 0.4f);
-                    break;
-                case 3:
-                    gameObject.transform.localPosition = new Vector3(posx + 0.1f, posy + 0.4f);
-                    break;
-                default:
-                    break;
-            }
-           
+            pastelSiguePer();
+            gameObject.transform.localPosition = new Vector3(posx + 0.1f, posy - 0.3f);
+
+        }
+    }
+    public void pastelSiguePer()
+    {
+        if (tomoJ1)
+        {
+            posx = per1.transform.position.x;
+            posy = per1.transform.position.y;
+        }
+        else
+        {
+            posx = per2.transform.position.x;
+            posy = per2.transform.position.y;
         }
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Personaje")
+        if (collision.gameObject.name== "jugador1")
         {
-            estaTocando = true;
+            estaTocandoP1 = true;
+        }
+        if (collision.gameObject.name== "jugador2")
+        {
+            estaTocandoP2 = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Personaje")
+        if (collision.gameObject.name == "jugador1")
         {
-            estaTocando = false;
+            estaTocandoP1 = false;
+        }
+        if (collision.gameObject.name == "jugador2")
+        {
+            estaTocandoP2 = false;
         }
     }
-    public void estado()
+    public void estadoP1(GameObject perP1)
     {
 
-        if (Input.GetKey(KeyCode.Space) && estaTocando == true && per.GetComponent<PerPastel>().paso == 0)
+        if (Input.GetKey(KeyCode.Space) && estaTocandoP1 == true && perP1.GetComponent<PerPastel>().paso == 0 && perP1.GetComponent<PerPastel>().numJugador==1)
         {
-            Debug.Log("ME AGARROOO ACOSO!!");
             gameObject.transform.localScale = new Vector3(0.4f, 0.4f);
             sr = gameObject.GetComponent<SpriteRenderer>();
             sr.sortingOrder = 5;
-            per.GetComponent<PerPastel>().paso = 1;
-            per.GetComponent<PerPastel>().idPastelTomado = gameObject.GetComponent<PastelIzq>().idPastel;
+            perP1.GetComponent<PerPastel>().paso = 1;
+            perP1.GetComponent<PerPastel>().idPastelTomado = gameObject.GetComponent<PastelIzq>().idPastel;
             pasoPastel = 1;
             actTiempo = true;
-            }else if (Input.GetKey(KeyCode.Space)&&per.GetComponent<PerPastel>().paso == 1&&tiempo>=.5f&&pasoPastel==1)
+            tomoJ1 = true;
+            perP1.GetComponent<PerPastel>().tomo = true;
+        }
+
+        else if (Input.GetKey(KeyCode.Space) == true)
+        {
+            if (perP1.GetComponent<PerPastel>().paso == 1 && tiempo >= .5f && pasoPastel == 1 && perP1.GetComponent<PerPastel>().numJugador == 1 && tomoJ1 == true)
             {
-            per.GetComponent<PerPastel>().actTiempo =true;
-            per.GetComponent<PerPastel>().solto = true;
-            actTiempo = false;
-            tiempo = 0;
-            Destroy(gameObject);       
+                perP1.GetComponent<PerPastel>().actTiempo = true;
+                perP1.GetComponent<PerPastel>().solto = true;
+                actTiempo = false;
+                tiempo = 0;
+                Destroy(this.gameObject);
+                tomoJ1 = false;
             }
-        
+        }
+            
+    }
+
+    public void estadoP2(GameObject perP2)
+    {
+        if (Input.GetKey(KeyCode.E) && estaTocandoP2 == true && perP2.GetComponent<PerPastel>().paso == 0 && perP2.GetComponent<PerPastel>().numJugador == 2)
+        {
+            gameObject.transform.localScale = new Vector3(0.4f, 0.4f);
+            sr = gameObject.GetComponent<SpriteRenderer>();
+            sr.sortingOrder = 5;
+            perP2.GetComponent<PerPastel>().paso = 1;
+            perP2.GetComponent<PerPastel>().idPastelTomado = gameObject.GetComponent<PastelIzq>().idPastel;
+            pasoPastel = 1;
+            actTiempo = true;
+            tomoJ2 = true;
+            perP2.GetComponent<PerPastel>().tomo = true;
+        }
+        else if (Input.GetKey(KeyCode.E) == true)
+        {
+            if (perP2.GetComponent<PerPastel>().paso == 1 && tiempo >= .5f && pasoPastel == 1 && perP2.GetComponent<PerPastel>().numJugador == 2 && tomoJ2==true)
+            {
+                perP2.GetComponent<PerPastel>().actTiempo = true;
+                perP2.GetComponent<PerPastel>().solto = true;
+                actTiempo = false;
+                tiempo = 0;
+                Destroy(this.gameObject);
+                tomoJ2 = false;
+            }
+        }
     }
 }

@@ -5,19 +5,29 @@ using UnityEngine;
 public class CrearFondo : MonoBehaviour
 {
     // Start is called before the first frame update
-    private int total;
+    private int total, idP1, idP2;
     private float posx, posy;
-    public GameObject maderaPrefab, ladrilloPrefab;
+    public GameObject maderaPrefab, ladrilloPrefab,per1, per2;
     public Transform maderaParent, ladrilloParent;
     void Start()
     {
         Crear();
+        
+        idP1 = Random.Range(1, 5);
+        do
+        {
+            idP2 = Random.Range(1, 5);
+        } while (idP1 == idP2);
+      
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        per1 = GameObject.Find("jugador1");
+        per2 = GameObject.Find("jugador2");
+        per1.GetComponent<PerPastel>().idPastel = idP1;
+        per2.GetComponent<PerPastel>().idPastel = idP2;
     }
 
     public void Crear()

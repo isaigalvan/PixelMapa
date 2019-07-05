@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PerPastel : MonoBehaviour
 {
-    public int paso=0, idPastelTomado, puntos, idPastel;
+    public int paso=0, idPastelTomado, puntos, idPastel, numJugador;
     public float tiempo;
-    public bool actTiempo, solto;
+    public bool actTiempo, solto, tomo;
     public bool[] estaTocando = new bool[4];
     public GameObject scripts, c1,c2,c3,c4;
     // Start is called before the first frame update
     void Start()
     {
-       idPastel = Random.Range(1, 5);
+
     }
 
     // Update is called once per frame
@@ -24,6 +24,7 @@ public class PerPastel : MonoBehaviour
         c3 = GameObject.Find("caja3");
         c4 = GameObject.Find("caja4");
         mover();
+        moverP2();
         soltar();
         soltarEnCaja();
        if (actTiempo == true) { tiempo = Time.deltaTime + tiempo; }
@@ -31,7 +32,9 @@ public class PerPastel : MonoBehaviour
 
     public void mover()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (numJugador == 1)
+        {
+            if (Input.GetKey(KeyCode.LeftArrow))
         {
             gameObject.GetComponent<Animator>().SetBool("caminando",true);
             this.transform.position += new Vector3(-0.07f, 0, 0);
@@ -55,6 +58,38 @@ public class PerPastel : MonoBehaviour
         {
             gameObject.GetComponent<Animator>().SetBool("caminando", false);
         }
+        }
+    }
+
+    public void moverP2()
+    {
+        if (numJugador == 2)
+        {
+            if (Input.GetKey(KeyCode.A))
+            {
+                gameObject.GetComponent<Animator>().SetBool("caminando", true);
+                this.transform.position += new Vector3(-0.07f, 0, 0);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                gameObject.GetComponent<Animator>().SetBool("caminando", true);
+                this.transform.position += new Vector3(0.07f, 0, 0);
+            }
+            if (Input.GetKey(KeyCode.W))
+            {
+                gameObject.GetComponent<Animator>().SetBool("caminando", true);
+                this.transform.position += new Vector3(0, +0.07f, 0);
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                gameObject.GetComponent<Animator>().SetBool("caminando", true);
+                this.transform.position += new Vector3(0, -0.07f, 0);
+            }
+            if (Input.GetKey(KeyCode.A) == false && Input.GetKey(KeyCode.D) == false && Input.GetKey(KeyCode.W) == false && Input.GetKey(KeyCode.S) == false)
+            {
+                gameObject.GetComponent<Animator>().SetBool("caminando", false);
+            }
+        }
     }
 
     public void soltar()
@@ -75,50 +110,50 @@ public class PerPastel : MonoBehaviour
             {
                 if (idPastelTomado == idPastel && idPastelTomado == c1.GetComponent<Caja>().idCaja)
                 {
-                    scripts.GetComponent<Puntaje>().puntosP1++;
+                    puntosMas();
                 }
                 else
                 {
-                    scripts.GetComponent<Puntaje>().puntosP1--;
+                    puntosMenos();
                 }
             }
             else if (estaTocando[1] )
             {
                 if (idPastelTomado == idPastel && idPastelTomado == c2.GetComponent<Caja>().idCaja)
                 {
-                    scripts.GetComponent<Puntaje>().puntosP1++;
+                    puntosMas();
                 }
                 else
                 {
-                    scripts.GetComponent<Puntaje>().puntosP1--;
+                    puntosMenos();
                 }
             }
             else if (estaTocando[2])
             {
                 if (idPastelTomado == idPastel && idPastelTomado == c3.GetComponent<Caja>().idCaja)
                 {
-                    scripts.GetComponent<Puntaje>().puntosP1++;
+                    puntosMas();
                 }
                 else
                 {
-                    scripts.GetComponent<Puntaje>().puntosP1--;
+                    puntosMenos();
                 }
             }
             else if (estaTocando[3])
             {
                 if (idPastelTomado == idPastel && idPastelTomado == c4.GetComponent<Caja>().idCaja)
                 {
-                    scripts.GetComponent<Puntaje>().puntosP1++;
+                    puntosMas();
                 }
                 else
                 {
-                    scripts.GetComponent<Puntaje>().puntosP1--;
+                    puntosMenos();
                 }
 
             }
             else
             {
-                scripts.GetComponent<Puntaje>().puntosP1--;
+                puntosMenos();
             }
             solto = false;
             idPastelTomado = 0;
@@ -160,6 +195,30 @@ public class PerPastel : MonoBehaviour
         if (collision.gameObject.name == "caja4")
         {
             estaTocando[3] = false;
+        }
+    }
+
+    public void puntosMas()
+    {
+        if(numJugador == 1)
+        {
+            scripts.GetComponent<Puntaje>().puntosP1++;
+        }
+        else
+        {
+            scripts.GetComponent<Puntaje>().puntosP2++;
+        }
+    }
+
+    public void puntosMenos()
+    {
+        if (numJugador== 1)
+        {
+            scripts.GetComponent<Puntaje>().puntosP1--;
+        }
+        else
+        {
+            scripts.GetComponent<Puntaje>().puntosP2--;
         }
     }
 }

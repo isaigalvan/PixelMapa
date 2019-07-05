@@ -5,18 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class BotonesMenus : MonoBehaviour
 {
-    public void salirCreditos()
+    public void CargarMain()
     {
         SceneManager.LoadScene("Main");
     }
 
-    public void entrarCreditos()
+    public void CargarCreditos()
     {
         SceneManager.LoadScene("Creditos");
     }
 
-    public void entrarJugar()
+    public void CargarSeleccion()
     {
         SceneManager.LoadScene("Seleccion");
+    }
+
+    public void CargarAyuda()
+    {
+        SceneManager.LoadScene("Ayuda");
     }
 }
