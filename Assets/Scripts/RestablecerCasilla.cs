@@ -16,6 +16,9 @@ public static class RestablecerCasilla
     public static bool hayPint, hayPint1;
     public static float casRec;
 
+    //
+    public static bool pusoCasPer1, pusoCasPer2;
+
     //------------------------------RESPAWN-----------------------------------------
     public static void ponerRespawn(bool resp)
     {

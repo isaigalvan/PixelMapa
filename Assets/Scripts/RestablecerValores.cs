@@ -20,6 +20,9 @@ public static class RestablecerValores
     public static int valMaximo;
     public static bool hayHab2Zor;
 
+    //
+    public static bool hayArbusto, Bloqueo;
+    public static float Arposx, Arposy;
 
     // Update is called once per frame
 

@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class CrearPersonaje : MonoBehaviour
 {
+    public float tiempo;
+    public bool actTiempo;
     public float posx, posy;
     public float posxP2, posyP2;
     public float posx2, posy2;
@@ -24,7 +26,8 @@ public class CrearPersonaje : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        
+        if (actTiempo) { tiempo = Time.deltaTime + tiempo; }
+        quitarEspecial();
         actualizarBarra();
         if (GetComponent<Dado>().jugador == 1)
         {
@@ -35,6 +38,7 @@ public class CrearPersonaje : MonoBehaviour
             actualizar(per2, per);
         }
         actualizaPintados(per, per2);
+        actualizaBloqueados(per, per2);
     }
 
 
@@ -101,11 +105,12 @@ public class CrearPersonaje : MonoBehaviour
         }
         else
         {
-            Crear();
+            Crear();          
             GetComponent<Dado>().jugador = RestablecerValores.jugador;
             GetComponent<Dado>().spriteRLetrero.sprite = GetComponent<Dado>().spriteJugador[RestablecerValores.valorSpriteLetrero];       
             asignarDatosP1();
             asignarDatosP2();
+            actTiempo = true;
         }
     }
 
@@ -274,6 +279,26 @@ public class CrearPersonaje : MonoBehaviour
             RestablecerValores.estadosP2[0] = false;
         }
     }
+
+    public void actualizaBloqueados(GameObject per, GameObject per2)
+    {
+        if (per.GetComponent<Personaje>().esBloqueado == true)
+        {
+            RestablecerValores.estados[1] = true;
+        }
+        else
+        {
+            RestablecerValores.estados[1] = false;
+        }
+        if (per2.GetComponent<Personaje>().esBloqueado == true)
+        {
+            RestablecerValores.estadosP2[1] = true;
+        }
+        else
+        {
+            RestablecerValores.estadosP2[1] = false;
+        }
+    }
     /// <summary>
     /// asignarDatos
     /// este metodo es invocado por "crearPer", se asignan los datos gurdados del personaje de una clase estatica en caso de que vuelva
@@ -291,6 +316,16 @@ public class CrearPersonaje : MonoBehaviour
         {
             per.GetComponent<Personaje>().esPintado = true;
         }
+        if (RestablecerValores.estados[1] == true)
+        {
+            per.GetComponent<Personaje>().esBloqueado = true;
+        }
+        if (RestablecerValores.hayArbusto)
+        {
+            GetComponent<Habilidades>().crearArbusto();
+            GetComponent<Habilidades>().Bloqueo = RestablecerValores.Bloqueo;
+            GetComponent<Habilidades>().hayArbusto = true;
+        }
     }
 
     public void asignarDatosP2()
@@ -301,7 +336,10 @@ public class CrearPersonaje : MonoBehaviour
         {
             per2.GetComponent<Personaje>().esPintado = true;
         }
-
+        if (RestablecerValores.estadosP2[1] == true)
+        {
+            per2.GetComponent<Personaje>().esBloqueado = true;
+        }
     }
 
     public void actualizarBarra()
@@ -314,5 +352,27 @@ public class CrearPersonaje : MonoBehaviour
         {
             iconosPersonajes(idPersonaje2);
         }
+    }
+
+    public void quitarEspecial()
+    {
+        if (tiempo >= .15f)
+        {
+            if (GetComponent<Dado>().per.GetComponent<Personaje>().idPer == 5 && GetComponent<Habilidades>().hayHab2Leonn)
+            {
+                GetComponent<Habilidades>().quitarLeonn2();
+            }
+            if (GetComponent<Dado>().per.GetComponent<Personaje>().idPer == 2 && GetComponent<Habilidades>().hayPint)
+            {
+                GetComponent<Habilidades>().quitarAustin3();
+            }
+            if (GetComponent<Dado>().per.GetComponent<Personaje>().idPer == 2 && GetComponent<Habilidades>().hayPint1)
+            {
+                GetComponent<Habilidades>().quitarAustin1();
+            }
+            actTiempo = false;
+            tiempo = 0;
+        }
+
     }
 }

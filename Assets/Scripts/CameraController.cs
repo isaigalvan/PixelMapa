@@ -55,7 +55,7 @@ public class CameraController : MonoBehaviour
         if (scripts.GetComponent<Dado>().movCamara ==true)
         {
             cambio();
-            scripts.GetComponent<Habilidades>().quitar();
+           
         }
     }
 
@@ -90,6 +90,7 @@ public class CameraController : MonoBehaviour
             actTiempo = false;
             tiempo = 0;
             condiCasiEsp(temp);
+            scripts.GetComponent<Habilidades>().quitar();
         }
         
     }
@@ -99,10 +100,12 @@ public class CameraController : MonoBehaviour
         if((scripts.GetComponent<Habilidades>().hayPint1|| scripts.GetComponent<Habilidades>().hayPint  || scripts.GetComponent<Habilidades>().hayHab2Leonn||scripts.GetComponent<Habilidades>().hayArbusto) && cambio == false && scripts.GetComponent<Dado>().jugador==1)
         {
             scripts.GetComponent<Habilidades>().pusoCasPer1 = true;
+            RestablecerCasilla.pusoCasPer1 = true;
         }
         if((scripts.GetComponent<Habilidades>().hayPint1 || scripts.GetComponent<Habilidades>().hayPint || scripts.GetComponent<Habilidades>().hayHab2Leonn || scripts.GetComponent<Habilidades>().hayArbusto) && cambio == true && scripts.GetComponent<Dado>().jugador == 2)
         {
             scripts.GetComponent<Habilidades>().pusoCasPer2 = true;
+            RestablecerCasilla.pusoCasPer2 = true;
         }
     }
 

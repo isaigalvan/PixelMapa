@@ -175,6 +175,7 @@ public class CrearCasilla : MonoBehaviour
                 RestablecerCasilla.esDes2 = true;
             }
 
+
         }
         else
         {

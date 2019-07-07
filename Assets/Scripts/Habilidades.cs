@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Habilidades : MonoBehaviour
 {
     public GameObject scripts, jugador1, jugador2, per, perNT;
-    public float tiempo, px,py;
+    public float tiempo, px, py;
     public bool actTiempo = false;
     public bool esHab1 = false, esHab2 = false, esHab3 = false, usoHab = false;
     //zorem
@@ -26,7 +26,7 @@ public class Habilidades : MonoBehaviour
     public GameObject tronco, arbustoPrefab, arbusto;
     //Personajes (Austin, Leonn)
     public bool pusoCasPer1, pusoCasPer2;
-    
+
     void Update()
     {
         if (actTiempo == true) { tiempo = Time.deltaTime + tiempo; }
@@ -35,7 +35,7 @@ public class Habilidades : MonoBehaviour
         scripts = GameObject.Find("Scripts");
         tronco = GameObject.FindGameObjectWithTag("tronco");
         terminarHabilidades(per);
-         
+
         if (GetComponent<Dado>().jugador == 1)
         {
             per = jugador1;
@@ -71,7 +71,7 @@ public class Habilidades : MonoBehaviour
                 break;
         }
         per.GetComponent<Personaje>().ph = per.GetComponent<Personaje>().ph - 1;
-       // per.GetComponent<Personaje>().imprimePh();
+        // per.GetComponent<Personaje>().imprimePh();
         usoHab = true;
     }
     public void habilidad2()
@@ -137,12 +137,12 @@ public class Habilidades : MonoBehaviour
         if (tiempo >= 2.5f)
         {
 
-                GetComponent<Dado>().btnHab1.SetActive(false);
-                
+            GetComponent<Dado>().btnHab1.SetActive(false);
+
         }
         if (tiempo >= 3.5f)
         {
-          
+
             perZ1f.GetComponent<Personaje>().casillaActual = perZ1f.GetComponent<Personaje>().casillaActual + 3;
             perZ1f.GetComponent<Animator>().SetBool("hab1", false);
             //per.GetComponent<Personaje>().imprimeCasilla();
@@ -171,7 +171,7 @@ public class Habilidades : MonoBehaviour
             actTiempo = false;
             tiempo = 0;
         }
-        if (GetComponent<Dado>().caminando == false && GetComponent<Dado>().esTurno == false&&actTiempo==false)
+        if (GetComponent<Dado>().caminando == false && GetComponent<Dado>().esTurno == false && actTiempo == false)
         {
             GetComponent<Dado>().valorMax = 3;
             RestablecerValores.hayHab2Zor = true;
@@ -280,7 +280,7 @@ public class Habilidades : MonoBehaviour
             }
             if (tiempo >= 3) { actTiempo = false; tiempo = 0; presionado1 = false; presionado2 = false; condiHab1Aus = false;
                 GetComponent<Dado>().esTurno = true; perA1f.GetComponent<Animator>().SetBool("hab1", false);
-               
+
             }
         }
         if (GetComponent<Dado>().caminando == true)
@@ -374,7 +374,7 @@ public class Habilidades : MonoBehaviour
             tiempo = 0;
             GetComponent<Dado>().esTurno = true;
         }
-        
+
     }
     //---------------------hab3 Austin---------------------
 
@@ -393,7 +393,7 @@ public class Habilidades : MonoBehaviour
                 {
                     esHab3 = false;
                 }
-               
+
             }
         }
     }
@@ -401,19 +401,23 @@ public class Habilidades : MonoBehaviour
     // --------------------------------HAB 1 LEONN --------------------------------
     public void terhab1leonn(GameObject perL1)
     {
-        if (GetComponent<Dado>().caminando == false && GetComponent<Dado>().esTurno == false && esHab1==true)
+        if (GetComponent<Dado>().caminando == false && GetComponent<Dado>().esTurno == false && esHab1 == true)
         {
             float posx = perL1.transform.position.x;
             float posy = perL1.transform.position.y;
-            arbusto = Instantiate(arbustoPrefab, new Vector3(posx, posy-0.2f, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
+            arbusto = Instantiate(arbustoPrefab, new Vector3(posx, posy - 0.2f, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
+            RestablecerValores.Arposx = posx;
+            RestablecerValores.Arposy = posy - 0.2f;
             esHab1 = false;
             hayArbusto = true;
-            if(perNT.GetComponent<Personaje>().casillaActual <= perL1.GetComponent<Personaje>().casillaActual)
+            RestablecerValores.hayArbusto = true;
+            if (perNT.GetComponent<Personaje>().casillaActual <= perL1.GetComponent<Personaje>().casillaActual)
             {
                 Bloqueo = true;
+                RestablecerValores.Bloqueo = true;
             }
             casillaBloquear = perL1.GetComponent<Personaje>().casillaActual;
-         }
+        }
     }
     // --------------------------------HAB 2 LEONN --------------------------------
     public void hab2leonn(GameObject perL1)
@@ -446,7 +450,7 @@ public class Habilidades : MonoBehaviour
         {
             esHab2 = false;
             hayHab2Leonn = true;
-            
+
         }
     }
     // --------------------------------HAB 3 LEONN --------------------------------
@@ -461,14 +465,14 @@ public class Habilidades : MonoBehaviour
     }
     public void terhab3leonn(GameObject perL3f)
     {
-        
+
         if (tiempo >= 3.5f)
         {
             perL3f.GetComponent<Animator>().SetBool("hab3", false);
             GetComponent<Dado>().esTurno = true;
             actTiempo = false;
             tiempo = 0;
-            
+
         }
     }
     //------------------------------------------------------------------------------------------------------------
@@ -476,7 +480,7 @@ public class Habilidades : MonoBehaviour
     {
         if (esHab1 == true)
         {
-           
+
             switch (jugador.GetComponent<Personaje>().idPer)
             {
                 case 0:
@@ -494,7 +498,7 @@ public class Habilidades : MonoBehaviour
         }
         if (esHab2 == true)
         {
-            
+
             switch (jugador.GetComponent<Personaje>().idPer)
             {
                 case 0:
@@ -513,7 +517,7 @@ public class Habilidades : MonoBehaviour
         }
         if (esHab3 == true)
         {
-           
+
             switch (jugador.GetComponent<Personaje>().idPer)
             {
                 case 0:
@@ -529,39 +533,39 @@ public class Habilidades : MonoBehaviour
                     break;
             }
         }
-      
+
     }
 
 
     //haypint1 (hab1)  haypint(hab3)    hayhab2leonn (hab2)
     public void quitarAustin3()
     {
-            for (int i = 0; i <= casRecorridas; i++)
-            {
-                GetComponent<CrearCasilla>().casillas[per.GetComponent<Personaje>().casillaActual - i].GetComponent<Casilla>().esPintada = false;
-            }
-            hayPint = false;
-            RestablecerCasilla.inicializarPint();
+        for (int i = 0; i <= casRecorridas; i++)
+        {
+            GetComponent<CrearCasilla>().casillas[per.GetComponent<Personaje>().casillaActual - i].GetComponent<Casilla>().esPintada = false;
+        }
+        hayPint = false;
+        RestablecerCasilla.inicializarPint();
     }
 
     public void quitarAustin1()
     {
-            GetComponent<CrearCasilla>().casillas[casiModif1].GetComponent<Casilla>().esPintada = false;
-            GetComponent<CrearCasilla>().casillas[casiModif2].GetComponent<Casilla>().esPintada = false;
-            hayPint1 = false;
+        GetComponent<CrearCasilla>().casillas[casiModif1].GetComponent<Casilla>().esPintada = false;
+        GetComponent<CrearCasilla>().casillas[casiModif2].GetComponent<Casilla>().esPintada = false;
+        hayPint1 = false;
     }
 
     public void quitarLeonn2()
     {
-            GetComponent<CrearCasilla>().casillas[casiModif].GetComponent<Casilla>().esDesLeonn = false;
-            GetComponent<CrearCasilla>().casillas[casiModif].GetComponent<Casilla>().esDesLeonn2 = false;
-            hayHab2Leonn = false;
-            Destroy(tronco);
+        GetComponent<CrearCasilla>().casillas[casiModif].GetComponent<Casilla>().esDesLeonn = false;
+        GetComponent<CrearCasilla>().casillas[casiModif].GetComponent<Casilla>().esDesLeonn2 = false;
+        hayHab2Leonn = false;
+        Destroy(tronco);
     }
 
     public void quitar()
     {
-        if(pusoCasPer1 == true && GetComponent<Dado>().jugador == 1)
+        if (pusoCasPer1 == true && GetComponent<Dado>().jugador == 1)
         {
             if (hayPint1 && per.GetComponent<Personaje>().idPer == 2)
             {
@@ -571,16 +575,20 @@ public class Habilidades : MonoBehaviour
             {
                 quitarAustin3();
             }
-            if(hayHab2Leonn && per.GetComponent<Personaje>().idPer == 5)
+            if (hayHab2Leonn && per.GetComponent<Personaje>().idPer == 5)
             {
                 quitarLeonn2();
             }
-            if(hayArbusto && per.GetComponent<Personaje>().idPer == 5)
+            if (hayArbusto && per.GetComponent<Personaje>().idPer == 5)
             {
                 Destroy(arbusto);
                 Bloqueo = false;
+                hayArbusto = false;
+                RestablecerValores.hayArbusto = false;
+                RestablecerValores.Bloqueo = false;
             }
             pusoCasPer1 = false;
+            RestablecerCasilla.pusoCasPer1 = false;
         }
         if (pusoCasPer2 == true && GetComponent<Dado>().jugador == 2)
         {
@@ -599,9 +607,55 @@ public class Habilidades : MonoBehaviour
             if (hayArbusto && per.GetComponent<Personaje>().idPer == 5)
             {
                 Bloqueo = false;
+                RestablecerValores.Bloqueo = false;
+                hayArbusto = false;
+                RestablecerValores.hayArbusto = false;
                 Destroy(arbusto);
             }
-            pusoCasPer2  = false;
+            pusoCasPer2 = false;
+            RestablecerCasilla.pusoCasPer1 = false;
         }
+    }
+
+
+    public void robar1()
+    {
+        if (per.GetComponent<Personaje>().ph >= 1)
+        {
+            per.GetComponent<Personaje>().ph = per.GetComponent<Personaje>().ph - 1;
+            if (GetComponent<Dado>().jugador == 1)
+            {
+                jugador2.GetComponent<Personaje>().ph = jugador2.GetComponent<Personaje>().ph + 1;
+            }
+            else
+            {
+                jugador1.GetComponent<Personaje>().ph = jugador2.GetComponent<Personaje>().ph + 1;
+            }
+        }
+    }
+
+    public void robar2()
+    {
+        if (per.GetComponent<Personaje>().ph >= 2)
+        {
+            per.GetComponent<Personaje>().ph = per.GetComponent<Personaje>().ph - 2;
+            if (GetComponent<Dado>().jugador == 1)
+            {
+                jugador2.GetComponent<Personaje>().ph = jugador2.GetComponent<Personaje>().ph + 2;
+            }
+            else
+            {
+                jugador1.GetComponent<Personaje>().ph = jugador2.GetComponent<Personaje>().ph + 2;
+            }
+        }
+        else
+        {
+            robar1();
+        }
+    }
+
+    public void crearArbusto()
+    {
+        arbusto = Instantiate(arbustoPrefab, new Vector3(RestablecerValores.Arposx, RestablecerValores.Arposy, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
     }
 }
