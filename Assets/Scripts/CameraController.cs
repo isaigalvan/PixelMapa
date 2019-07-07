@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public GameObject scripts; 
+    public GameObject scripts, p1,p2; 
     public float posx=5, posy;
     public float posxP2=5, posyP2;
     public float temposx = 5, dif;
@@ -21,17 +21,36 @@ public class CameraController : MonoBehaviour
     {
         if (actTiempo == true) { tiempo = Time.deltaTime + tiempo; }
         scripts = GameObject.Find("Scripts");
-        if (scripts.GetComponent<Dado>().jugador == 1)
+        p1 = GameObject.Find("jugador1");
+        p2 = GameObject.Find("jugador2");
+        if (scripts.GetComponent<Dado>().jugador == 1 && scripts.GetComponent<Dado>().movCamara == false)
         {
-            posx = scripts.GetComponent<CrearPersonaje>().posx;
-            posy = scripts.GetComponent<CrearPersonaje>().posy;
-            gameObject.transform.position = new Vector3(posx, posy, -10);
+            if (p1.GetComponent<Personaje>().esBloqueado)
+            {
+                scripts.GetComponent<Dado>().movCamara = true;
+                p1.GetComponent<Personaje>().esBloqueado = false;
+            }
+            else
+            {
+                posx = scripts.GetComponent<CrearPersonaje>().posx;
+                posy = scripts.GetComponent<CrearPersonaje>().posy;
+                gameObject.transform.position = new Vector3(posx, posy, -10);
+            }
+
         }
-        if (scripts.GetComponent<Dado>().jugador == 2)
+        if (scripts.GetComponent<Dado>().jugador == 2 && scripts.GetComponent<Dado>().movCamara==false)
         {
-            posxP2 = scripts.GetComponent<CrearPersonaje>().posxP2;
-            posyP2 = scripts.GetComponent<CrearPersonaje>().posyP2;
-            gameObject.transform.position = new Vector3(posxP2, posyP2, -10);
+            if (p2.GetComponent<Personaje>().esBloqueado)
+            {
+                scripts.GetComponent<Dado>().movCamara = true;
+                p2.GetComponent<Personaje>().esBloqueado = false;
+            }
+            else
+            {
+                posxP2 = scripts.GetComponent<CrearPersonaje>().posxP2;
+                posyP2 = scripts.GetComponent<CrearPersonaje>().posyP2;
+                gameObject.transform.position = new Vector3(posxP2, posyP2, -10);
+            }         
         }
         if (scripts.GetComponent<Dado>().movCamara ==true)
         {
@@ -77,11 +96,11 @@ public class CameraController : MonoBehaviour
 
     public void condiCasiEsp(bool cambio)
     {
-        if((scripts.GetComponent<Habilidades>().hayPint1|| scripts.GetComponent<Habilidades>().hayPint  || scripts.GetComponent<Habilidades>().hayHab2Leonn) && cambio == false && scripts.GetComponent<Dado>().jugador==1)
+        if((scripts.GetComponent<Habilidades>().hayPint1|| scripts.GetComponent<Habilidades>().hayPint  || scripts.GetComponent<Habilidades>().hayHab2Leonn||scripts.GetComponent<Habilidades>().hayArbusto) && cambio == false && scripts.GetComponent<Dado>().jugador==1)
         {
             scripts.GetComponent<Habilidades>().pusoCasPer1 = true;
         }
-        if((scripts.GetComponent<Habilidades>().hayPint1 || scripts.GetComponent<Habilidades>().hayPint || scripts.GetComponent<Habilidades>().hayHab2Leonn) && cambio == true && scripts.GetComponent<Dado>().jugador == 2)
+        if((scripts.GetComponent<Habilidades>().hayPint1 || scripts.GetComponent<Habilidades>().hayPint || scripts.GetComponent<Habilidades>().hayHab2Leonn || scripts.GetComponent<Habilidades>().hayArbusto) && cambio == true && scripts.GetComponent<Dado>().jugador == 2)
         {
             scripts.GetComponent<Habilidades>().pusoCasPer2 = true;
         }

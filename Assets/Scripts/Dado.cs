@@ -8,7 +8,7 @@ public class Dado : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Marco, Letrero;
-    public GameObject Habilidades,btnHab1,btnHab2,btnHab3,mapa,personaje,objPH, marcoLeonn,jugador1,jugador2;
+    public GameObject Habilidades,btnHab1,btnHab2,btnHab3,mapa,personaje,objPH, marcoLeonn,jugador1,jugador2, per;
     public TextMeshProUGUI contDado, textd1, textd2;
     public bool esTurno=false, seDetuvo=false, caminando=false, buff, hab3Leonn, movCamara, condiTurno;
     public float  caminarCasilla, destino,posReal;
@@ -52,6 +52,7 @@ public class Dado : MonoBehaviour
             estadoHabilidades(jugador1);
             contador(jugador1);
             casillaOcupada(jugador1);
+            per = jugador1;
         }
         else
         {
@@ -59,6 +60,7 @@ public class Dado : MonoBehaviour
             estadoHabilidades(jugador2);
             contador(jugador2);
             casillaOcupada(jugador2);
+            per = jugador2;
         }
 
         
@@ -295,9 +297,14 @@ public void estadoDado()
                     jugador1.transform.localPosition = new Vector3(GetComponent<CrearPersonaje>().posx, GetComponent<CrearPersonaje>().posy);
                 }
                 jugador1.GetComponent<Animator>().SetBool("isWalking", false);
+                if (GetComponent<Habilidades>().Bloqueo && jugador1.GetComponent<Personaje>().casillaActual > GetComponent<Habilidades>().casillaBloquear)
+                {
+                    jugador1.GetComponent<Personaje>().esBloqueado = true;
+                }
                 caminando = false;
                 caminarCasilla = 0;
                 GetComponent<Dado>().valHab3Len = 0;
+                jugador1.GetComponent<Personaje>().verifPintura();
                 cambiarTurno();
             }
             RestablecerValores.hayHab2Zor = false;
@@ -329,9 +336,14 @@ public void estadoDado()
                     jugador2.transform.localPosition = new Vector3(GetComponent<CrearPersonaje>().posxP2, GetComponent<CrearPersonaje>().posyP2);
                 }
                 jugador2.GetComponent<Animator>().SetBool("isWalking", false);
+                if (GetComponent<Habilidades>().Bloqueo && jugador2.GetComponent<Personaje>().casillaActual > GetComponent<Habilidades>().casillaBloquear)
+                {
+                    jugador2.GetComponent<Personaje>().esBloqueado = true;
+                }
                 caminando = false;
                 caminarCasilla = 0;
                 GetComponent<Dado>().valHab3Len = 0;
+                jugador2.GetComponent<Personaje>().verifPintura();
                 cambiarTurno();
             }
             RestablecerValores.hayHab2Zor = false;

@@ -9238,7 +9238,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!1 &729799331
 GameObject:
@@ -11820,6 +11820,7 @@ MonoBehaviour:
   marcoLeonn: {fileID: 1016859237}
   jugador1: {fileID: 0}
   jugador2: {fileID: 0}
+  per: {fileID: 0}
   contDado: {fileID: 2001671346}
   textd1: {fileID: 956146957}
   textd2: {fileID: 415298309}
@@ -11892,7 +11893,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dc89d02c0c6ba6b42bf64eaf67c18be6, type: 3}
   - {fileID: 21300000, guid: 3a6a34691c73413458b571833a2d7215, type: 3}
   - {fileID: 21300000, guid: 77092513d4383d54888740474e90402b, type: 3}
-  - {fileID: 21300000, guid: 77092513d4383d54888740474e90402b, type: 3}
+  - {fileID: 21300000, guid: 93f26398d9dfcaf4da4aba46a2c1d428, type: 3}
   - {fileID: 21300000, guid: 5cb31c5bb681e004085bf7c244924e95, type: 3}
   - {fileID: 21300000, guid: 1e368229285a65c488d4e3abf13c1c90, type: 3}
   IconoPrefab: {fileID: 6574562326959331295, guid: 9138ecdd3bb7fe44bb411caabf0cad2c,
@@ -11946,6 +11947,8 @@ MonoBehaviour:
   hayHab2Leonn: 0
   casiModif: 0
   tronco: {fileID: 0}
+  arbustoPrefab: {fileID: 3933797572714996160, guid: 8b8d869545230d74ba49777722d3c9bd,
+    type: 3}
   pusoCasPer1: 0
   pusoCasPer2: 0
 --- !u!114 &940622044
@@ -15713,7 +15716,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 318ee72a6096c2e4e80223251f58812c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -18934,7 +18937,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 0438c0a742099b54f98bb393f6fc8b9d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

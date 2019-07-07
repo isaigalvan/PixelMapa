@@ -24,15 +24,17 @@ public class CrearPersonaje : MonoBehaviour
     /// </summary>
     private void Update()
     {
+        
         actualizarBarra();
         if (GetComponent<Dado>().jugador == 1)
         {
-            actualizar(per);
+            actualizar(per, per2);
         }
         else
         {
-            actualizar(per2);
+            actualizar(per2, per);
         }
+        actualizaPintados(per, per2);
     }
 
 
@@ -232,7 +234,7 @@ public class CrearPersonaje : MonoBehaviour
 
     }
 
-    public void actualizar(GameObject per)
+    public void actualizar(GameObject perA, GameObject perNoTurno)
     {
         if (GetComponent<Dado>().caminando == true)
         {
@@ -240,35 +242,38 @@ public class CrearPersonaje : MonoBehaviour
             {
                 RestablecerValores.posx = posx; //posx
                 RestablecerValores.posy= posy; //posy 
-                RestablecerValores.ph= per.GetComponent<Personaje>().ph; //ph 
-                RestablecerValores.casillaActual = per.GetComponent<Personaje>().casillaActual; //casillaActual
+                RestablecerValores.ph= perA.GetComponent<Personaje>().ph; //ph 
+                RestablecerValores.casillaActual = perA.GetComponent<Personaje>().casillaActual; //casillaActual
             }
             else
             {
                 RestablecerValores.posxP2 = posxP2; //posx
                 RestablecerValores.posyP2 = posyP2; //posy 
-                RestablecerValores.phP2 = per.GetComponent<Personaje>().ph; //ph 
-                RestablecerValores.casillaActualP2=per.GetComponent<Personaje>().casillaActual; //casillaActual
+                RestablecerValores.phP2 = perA.GetComponent<Personaje>().ph; //ph 
+                RestablecerValores.casillaActualP2=perA.GetComponent<Personaje>().casillaActual; //casillaActual
             }
            
+        }       
+    }
+    public void actualizaPintados(GameObject per, GameObject per2)
+    {
+        if (per.GetComponent<Personaje>().esPintado == true)
+        {
+            RestablecerValores.estados[0] = true;
         }
         else
         {
-            if (per.GetComponent<Personaje>().esPintado == true)
-            {
-                RestablecerValores.estados[0] = true;
-            }
-            if (per.GetComponent<Personaje>().esBloqueado == true)
-            {
-                RestablecerValores.estados[1] = true;
-            }
-            if (per.GetComponent<Personaje>().esInmune == true)
-            {
-                RestablecerValores.estados[2] = true;
-            }
+            RestablecerValores.estados[0] = false;
+        }
+        if (per2.GetComponent<Personaje>().esPintado == true)
+        {
+            RestablecerValores.estadosP2[0] = true;
+        }
+        else
+        {
+            RestablecerValores.estadosP2[0] = false;
         }
     }
-
     /// <summary>
     /// asignarDatos
     /// este metodo es invocado por "crearPer", se asignan los datos gurdados del personaje de una clase estatica en caso de que vuelva
@@ -286,32 +291,17 @@ public class CrearPersonaje : MonoBehaviour
         {
             per.GetComponent<Personaje>().esPintado = true;
         }
-        if (RestablecerValores.estados[1] == true)
-        {
-            per.GetComponent<Personaje>().esBloqueado = true;
-        }
-        if (RestablecerValores.estados[2] == true)
-        {
-            per.GetComponent<Personaje>().esInmune = true;
-        }
     }
 
     public void asignarDatosP2()
     {
         per2.GetComponent<Personaje>().ph = RestablecerValores.phP2;
         per2.GetComponent<Personaje>().casillaActual = RestablecerValores.casillaActualP2;
-        if (RestablecerValores.estados[0] == true)
+        if (RestablecerValores.estadosP2[0] == true)
         {
-            per.GetComponent<Personaje>().esPintado = true;
+            per2.GetComponent<Personaje>().esPintado = true;
         }
-        if (RestablecerValores.estados[1] == true)
-        {
-            per.GetComponent<Personaje>().esBloqueado = true;
-        }
-        if (RestablecerValores.estados[2] == true)
-        {
-            per.GetComponent<Personaje>().esInmune = true;
-        }
+
     }
 
     public void actualizarBarra()

@@ -145,7 +145,7 @@ public class BotonesAyuda : MonoBehaviour
                 icono1.sprite = icono[6];
                 icono2.sprite = icono[7];
                 icono3.sprite = icono[8];
-                desc1.text = "";
+                desc1.text = "Se cubre con sus hojas, si alguien pasa sobre el, quedara bloqueado";
                 desc2.text = "Planta una semilla, si caen en esa casilla leonn robara 1PH";
                 desc3.text = "Potencia su dado, tira 2 veces";
                 break;

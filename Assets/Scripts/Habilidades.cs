@@ -5,13 +5,12 @@ using UnityEngine.UI;
 
 public class Habilidades : MonoBehaviour
 {
-    public GameObject scripts, jugador1, jugador2, per;
+    public GameObject scripts, jugador1, jugador2, per, perNT;
     public float tiempo, px,py;
     public bool actTiempo = false;
     public bool esHab1 = false, esHab2 = false, esHab3 = false, usoHab = false;
     //zorem
     public bool verCasiHab1Zor = false, condiZor1 = false;
-    //Ian
     //Austin
     public GameObject btnCasillas;
     public List<GameObject> botones = new List<GameObject>();
@@ -20,13 +19,11 @@ public class Habilidades : MonoBehaviour
     public float casRecorridas;
     private bool condiHab1Au, presionado1, presionado2, condiHab1Aus;
     public bool hayPint, hayPint1;
-    //Rubi
-    //Stella
     //Leonn
     public bool repite = false;
-    public bool hayHab2Leonn;
-    public int casiModif;
-    public GameObject tronco;
+    public bool hayHab2Leonn, Bloqueo, hayArbusto;
+    public int casiModif, casillaBloquear;
+    public GameObject tronco, arbustoPrefab, arbusto;
     //Personajes (Austin, Leonn)
     public bool pusoCasPer1, pusoCasPer2;
     
@@ -42,12 +39,14 @@ public class Habilidades : MonoBehaviour
         if (GetComponent<Dado>().jugador == 1)
         {
             per = jugador1;
+            perNT = jugador2;
             px = GetComponent<CrearPersonaje>().posx;
             py = GetComponent<CrearPersonaje>().posy;
         }
         else
         {
             per = jugador2;
+            perNT = jugador1;
             px = GetComponent<CrearPersonaje>().posxP2;
             py = GetComponent<CrearPersonaje>().posyP2;
         }
@@ -62,17 +61,8 @@ public class Habilidades : MonoBehaviour
             case 0:
                 hab1zorem(per);
                 break;
-            case 1:
-
-                break;
             case 2:
                 hab1austin(per);
-                break;
-            case 3:
-
-                break;
-            case 4:
-
                 break;
             case 5:
 
@@ -93,7 +83,7 @@ public class Habilidades : MonoBehaviour
                 hab2zorem(per);
                 break;
             case 2:
-
+                hab2austin(per);
                 break;
             case 5:
                 hab2leonn(per);
@@ -354,8 +344,41 @@ public class Habilidades : MonoBehaviour
         casillaAPintar = per.GetComponent<Personaje>().casillaActual + 5;
         presiono();
     }
-
+    //---------------------hab2 Austin---------------------
+    public void hab2austin(GameObject perA1)
+    {
+        actTiempo = true;
+        GetComponent<Dado>().esTurno = false;
+        perA1.GetComponent<Animator>().SetBool("hab1", true);
+        perA1.GetComponent<Animator>().SetFloat("lanzoPintura", 0);
+    }
+    public void terhab2Austin(GameObject perA2)
+    {
+        if (tiempo >= 1)
+        {
+            perA2.GetComponent<Animator>().SetFloat("lanzoPintura", 1);
+        }
+        if (tiempo >= 3)
+        {
+            if (GetComponent<Dado>().jugador == 1)
+            {
+                jugador2.GetComponent<Personaje>().esPintado = true;
+            }
+            else
+            {
+                jugador1.GetComponent<Personaje>().esPintado = true;
+            }
+            perA2.GetComponent<Animator>().SetBool("hab1", false);
+            esHab2 = false;
+            actTiempo = false;
+            tiempo = 0;
+            GetComponent<Dado>().esTurno = true;
+        }
+        
+    }
     //---------------------hab3 Austin---------------------
+
+
     public void terhab3austin(GameObject perA3f)
     {
 
@@ -375,6 +398,23 @@ public class Habilidades : MonoBehaviour
         }
     }
     //  -----------------------------------------LEONN--------------------------------------------------------
+    // --------------------------------HAB 1 LEONN --------------------------------
+    public void terhab1leonn(GameObject perL1)
+    {
+        if (GetComponent<Dado>().caminando == false && GetComponent<Dado>().esTurno == false && esHab1==true)
+        {
+            float posx = perL1.transform.position.x;
+            float posy = perL1.transform.position.y;
+            arbusto = Instantiate(arbustoPrefab, new Vector3(posx, posy-0.2f, 0), Quaternion.Euler(new Vector3(0, 0, 0)));
+            esHab1 = false;
+            hayArbusto = true;
+            if(perNT.GetComponent<Personaje>().casillaActual <= perL1.GetComponent<Personaje>().casillaActual)
+            {
+                Bloqueo = true;
+            }
+            casillaBloquear = perL1.GetComponent<Personaje>().casillaActual;
+         }
+    }
     // --------------------------------HAB 2 LEONN --------------------------------
     public void hab2leonn(GameObject perL1)
     {
@@ -446,7 +486,7 @@ public class Habilidades : MonoBehaviour
                     terhab1austin(jugador);
                     break;
                 case 5:
-
+                    terhab1leonn(jugador);
                     break;
                 default:
                     break;
@@ -461,7 +501,7 @@ public class Habilidades : MonoBehaviour
                     terhab2Zorem(per);
                     break;
                 case 2:
-                   
+                    terhab2Austin(per);
                     break;
                 case 5:
                     terhab2leonn(jugador);
@@ -535,6 +575,11 @@ public class Habilidades : MonoBehaviour
             {
                 quitarLeonn2();
             }
+            if(hayArbusto && per.GetComponent<Personaje>().idPer == 5)
+            {
+                Destroy(arbusto);
+                Bloqueo = false;
+            }
             pusoCasPer1 = false;
         }
         if (pusoCasPer2 == true && GetComponent<Dado>().jugador == 2)
@@ -550,6 +595,11 @@ public class Habilidades : MonoBehaviour
             if (hayHab2Leonn && per.GetComponent<Personaje>().idPer == 5)
             {
                 quitarLeonn2();
+            }
+            if (hayArbusto && per.GetComponent<Personaje>().idPer == 5)
+            {
+                Bloqueo = false;
+                Destroy(arbusto);
             }
             pusoCasPer2  = false;
         }

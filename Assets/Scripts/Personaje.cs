@@ -84,9 +84,11 @@ public class Personaje : MonoBehaviour
         if(scripts.GetComponent<Dado>().yaTiro == true)
         {
             condi = true;
-        }
+                
+            }
         if ((casillaActual > 0 && verificado == false && scripts.GetComponent<Dado>().caminando == false && condi == true && scripts.GetComponent<Dado>().yaTiro == false) || (scripts.GetComponent<Habilidades>().verCasiHab1Zor == true))
         {
+                verifPintura();
                 if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esHabilidad == true)
                 {
                     if (ph >= 4)
@@ -116,6 +118,13 @@ public class Personaje : MonoBehaviour
                 {
                     ph = 0;
                 }
+               
+                else if(scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esFinal == true)
+                {
+                    ResultadosEstaticos.jugador = scripts.GetComponent<Dado>().jugador-1;
+                    ResultadosEstaticos.idJugador = this.idPer;
+                    SceneManager.LoadScene("GanadorFinal");
+                }
                 else if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esMinijuego == true)
                 {
                     if (scripts.GetComponent<Dado>().jugador == 1)
@@ -128,27 +137,11 @@ public class Personaje : MonoBehaviour
                         RestablecerValores.jugador = 1;
                         RestablecerValores.valorSpriteLetrero = 0;
                     }
-                    Debug.Log(RestablecerValores.jugador);
-                    Debug.Log(RestablecerValores.valorSpriteLetrero);
-                    SceneManager.LoadScene("PreJuego");   
-                 }
-                else if(scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esFinal == true)
-                {
-                    ResultadosEstaticos.jugador = scripts.GetComponent<Dado>().jugador-1;
-                    ResultadosEstaticos.idJugador = this.idPer;
-                    Debug.Log(ResultadosEstaticos.idJugador);
-                    Debug.Log(ResultadosEstaticos.jugador);
-                    SceneManager.LoadScene("GanadorFinal");
+                    Debug.Log(RestablecerValores.estadosP2[0]);
+                    
+                    SceneManager.LoadScene("PreJuego");
                 }
-            if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esPintada == true)
-            {
-                esPintado = true;
-            }
-            else
-            {
-                esPintado = false;
-            }
-            if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esDesLeonn == true)
+                if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esDesLeonn == true)
             {
                 if (ph >= 1) { ph = ph - 1; } else { ph = 0; }
                 scripts.GetComponent<Habilidades>().verCasiHab1Zor = false;
@@ -167,4 +160,26 @@ public class Personaje : MonoBehaviour
         }        
         }
     }
+
+    public void verifPintura()
+    {
+        if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esPintada == true)
+        {
+            esPintado = true;
+        }
+        else
+        {
+            esPintado = false;
+            if (scripts.GetComponent<Dado>().jugador == 1)
+            {
+                RestablecerValores.estados[0] = false;
+            }
+            else
+            {
+                RestablecerValores.estadosP2[0] = false;
+            }
+        }
+    }
+
+ 
 }
