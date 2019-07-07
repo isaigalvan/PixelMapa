@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Minijuegos/Ganador.unity
     guid: 1212097a13e033f4d96acffd021cb4ef
+  - enabled: 1
+    path: Assets/Scenes/GanadorFinal.unity
+    guid: 44af8faaafe0eb3409bf9e3c0bfca1bf
   m_configObjects: {}

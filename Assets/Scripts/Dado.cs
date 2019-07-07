@@ -23,7 +23,7 @@ public class Dado : MonoBehaviour
 
     private void Start()
     {
-     
+        jugador = RestablecerValores.jugador;
         esTurno = true;
     }
 
@@ -37,9 +37,9 @@ public class Dado : MonoBehaviour
     /// </summary>
     void Update()
     {
+        
         jugador1 = GameObject.Find("jugador1");
         jugador2 = GameObject.Find("jugador2");
-        spriteRLetrero = Letrero.GetComponent<SpriteRenderer>();
         objPH = GameObject.FindGameObjectWithTag("AnimaPH");
         tiempo = Time.deltaTime + tiempo;
         tiempoPH = Time.deltaTime + tiempoPH;
@@ -97,6 +97,12 @@ public class Dado : MonoBehaviour
     /// </summary>
     public void contador(GameObject personaje)
     {
+
+        if (RestablecerValores.hayHab2Zor == true)
+        {
+            GetComponent<Dado>().valorMax = 3;
+           
+        }
         if (seDetuvo == false)
         {
             yaTiro = false;
@@ -145,7 +151,13 @@ public class Dado : MonoBehaviour
                 else
                 {
                     valorDado = valHab3Len + valorDado;
+                    int dif = 199 - personaje.GetComponent<Personaje>().casillaActual;
                     personaje.GetComponent<Personaje>().casillaActual = personaje.GetComponent<Personaje>().casillaActual + valorDado;
+                    if (personaje.GetComponent<Personaje>().casillaActual >= 199)
+                    {
+                        valorDado = dif;
+                        personaje.GetComponent<Personaje>().casillaActual = 199;
+                    }
                     destino = valorDado;
                     esTurno = false;
                     seDetuvo = false;
@@ -288,7 +300,8 @@ public void estadoDado()
                 GetComponent<Dado>().valHab3Len = 0;
                 cambiarTurno();
             }
-
+            RestablecerValores.hayHab2Zor = false;
+            valorMax = 6;
         }
 
     }
@@ -321,9 +334,10 @@ public void estadoDado()
                 GetComponent<Dado>().valHab3Len = 0;
                 cambiarTurno();
             }
-
+            RestablecerValores.hayHab2Zor = false;
+            valorMax = 6;
         }
-
+        
     }
 
     public void cambiarTurno()

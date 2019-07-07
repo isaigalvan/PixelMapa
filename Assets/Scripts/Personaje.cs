@@ -87,40 +87,59 @@ public class Personaje : MonoBehaviour
         }
         if ((casillaActual > 0 && verificado == false && scripts.GetComponent<Dado>().caminando == false && condi == true && scripts.GetComponent<Dado>().yaTiro == false) || (scripts.GetComponent<Habilidades>().verCasiHab1Zor == true))
         {
-            if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esHabilidad == true)
-            {
-                if (ph >= 4)
+                if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esHabilidad == true)
                 {
-                    ph = 4;
-                }
-                else
-                {
-                    ph++;
-                }
-                scripts.GetComponent<Habilidades>().verCasiHab1Zor = false;
+                    if (ph >= 4)
+                    {
+                        ph = 4;
+                    }
+                    else
+                    {
+                        ph++;
+                    }
+                    scripts.GetComponent<Habilidades>().verCasiHab1Zor = false;
 
-            }
-            else if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esDeshabilidad == true)
-            {
-                if (ph <= 0)
+                }
+                else if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esDeshabilidad == true)
+                {
+                    if (ph <= 0)
+                    {
+                        ph = 0;
+                    }
+                    else
+                    {
+                        ph--;
+                    }
+                    scripts.GetComponent<Habilidades>().verCasiHab1Zor = false;
+                }
+                else if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esNegra == true)
                 {
                     ph = 0;
                 }
-                else
+                else if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esMinijuego == true)
                 {
-                    ph--;
+                    if (scripts.GetComponent<Dado>().jugador == 1)
+                    {
+                        RestablecerValores.jugador = 2;
+                        RestablecerValores.valorSpriteLetrero = 1;
+                    }
+                    else
+                    {
+                        RestablecerValores.jugador = 1;
+                        RestablecerValores.valorSpriteLetrero = 0;
+                    }
+                    Debug.Log(RestablecerValores.jugador);
+                    Debug.Log(RestablecerValores.valorSpriteLetrero);
+                    SceneManager.LoadScene("PreJuego");   
+                 }
+                else if(scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esFinal == true)
+                {
+                    ResultadosEstaticos.jugador = scripts.GetComponent<Dado>().jugador-1;
+                    ResultadosEstaticos.idJugador = this.idPer;
+                    Debug.Log(ResultadosEstaticos.idJugador);
+                    Debug.Log(ResultadosEstaticos.jugador);
+                    SceneManager.LoadScene("GanadorFinal");
                 }
-                scripts.GetComponent<Habilidades>().verCasiHab1Zor = false;
-            }
-            else if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esNegra == true)
-            {
-                ph = 0;
-            }
-            else if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esMinijuego== true)
-            {
-                SceneManager.LoadScene("PreJuego");
-               
-            }
             if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esPintada == true)
             {
                 esPintado = true;

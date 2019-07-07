@@ -30,7 +30,7 @@ public class ControlGlobos : MonoBehaviour
             listo1 = false;
             GetComponent<Puntaje>().puntosP2 = punt2;
         }
-        if (Input.GetKey(KeyCode.Space)&&listo2==true && termino == false)
+        if (Input.GetKey(KeyCode.UpArrow)&&listo2==true && termino == false)
         {
             punt1++;
             listo2 = false;
@@ -41,7 +41,7 @@ public class ControlGlobos : MonoBehaviour
         {
             listo1 = true;
         }
-        if (Input.GetKey(KeyCode.Space)==false)
+        if (Input.GetKey(KeyCode.UpArrow)==false)
         {
             listo2 = true;
         }

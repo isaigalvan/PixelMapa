@@ -80,7 +80,7 @@ public class CrearPersonaje : MonoBehaviour
         per2.GetComponent<Personaje>().AsignarTamanos(idPersonaje2);
         per2.GetComponent<Personaje>().idPer = idPersonaje2;
         AsignarTexturas(per2, idPersonaje2);
-
+        GetComponent<Dado>().jugador = 1;
     }
 
     /// <summary>
@@ -100,6 +100,8 @@ public class CrearPersonaje : MonoBehaviour
         else
         {
             Crear();
+            GetComponent<Dado>().jugador = RestablecerValores.jugador;
+            GetComponent<Dado>().spriteRLetrero.sprite = GetComponent<Dado>().spriteJugador[RestablecerValores.valorSpriteLetrero];       
             asignarDatosP1();
             asignarDatosP2();
         }

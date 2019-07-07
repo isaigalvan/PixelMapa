@@ -8,7 +8,7 @@ public static class RestablecerValores
 
     //CrearPersonaje
     public static float posx=5, posy, posyP2, posxP2=5;
-    public static int idPersonaje, idPersonaje2;
+    public static int idPersonaje, idPersonaje2, jugador, valorSpriteLetrero;
    
     //Personaje
     public static bool[] estados = new bool[3];  // 0-Pintado    1-Bloqueado     2-Inmune
@@ -16,6 +16,9 @@ public static class RestablecerValores
     public static int casillaActual = 0, ph = 0;
     public static int casillaActualP2 = 0, phP2 = 0;
 
+    //Dado
+    public static int valMaximo;
+    public static bool hayHab2Zor;
 
 
     // Update is called once per frame

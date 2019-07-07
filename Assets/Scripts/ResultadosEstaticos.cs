@@ -4,5 +4,5 @@ using UnityEngine;
 
 public static class ResultadosEstaticos
 {
-    public static int PuntosP1, PuntosP2;
+    public static int PuntosP1, PuntosP2, jugador, idJugador;
 }

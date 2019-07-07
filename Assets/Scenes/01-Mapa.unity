@@ -6738,6 +6738,7 @@ MonoBehaviour:
   dif: 0
   condi: 0
   actTiempo: 0
+  temp: 0
   tiempo: 0
 --- !u!20 &519420031
 Camera:
@@ -11846,7 +11847,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0438c0a742099b54f98bb393f6fc8b9d, type: 3}
   - {fileID: 21300000, guid: 2019660834d0c9f4f88e891c89b4a26c, type: 3}
   spriteR: {fileID: 0}
-  spriteRLetrero: {fileID: 0}
+  spriteRLetrero: {fileID: 1465723613}
 --- !u!114 &940622042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11911,8 +11912,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scripts: {fileID: 0}
+  jugador1: {fileID: 0}
+  jugador2: {fileID: 0}
   per: {fileID: 0}
   tiempo: 0
+  px: 0
+  py: 0
   actTiempo: 0
   esHab1: 0
   esHab2: 0
@@ -11941,6 +11946,8 @@ MonoBehaviour:
   hayHab2Leonn: 0
   casiModif: 0
   tronco: {fileID: 0}
+  pusoCasPer1: 0
+  pusoCasPer2: 0
 --- !u!114 &940622044
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -90,7 +90,7 @@ public class Habilidades : MonoBehaviour
         switch (per.GetComponent<Personaje>().idPer)
         {
             case 0:
-                //hab2zorem();
+                hab2zorem(per);
                 break;
             case 2:
 
@@ -162,6 +162,30 @@ public class Habilidades : MonoBehaviour
             tiempo = 0;
             esHab1 = false;
             condiZor1 = false;
+        }
+    }
+    //---------------------hab2 Zorem---------------------
+    public void hab2zorem(GameObject perZ3)
+    {
+        actTiempo = true;
+        GetComponent<Dado>().esTurno = false;
+        perZ3.GetComponent<Animator>().SetBool("hab3", true);
+        perZ3.GetComponent<Personaje>().esNerf = true;
+    }
+    public void terhab2Zorem(GameObject perA3f)
+    {
+        if (tiempo >= 3.5f)
+        {
+            perA3f.GetComponent<Animator>().SetBool("hab3", false);
+            GetComponent<Dado>().esTurno = true;
+            actTiempo = false;
+            tiempo = 0;
+        }
+        if (GetComponent<Dado>().caminando == false && GetComponent<Dado>().esTurno == false&&actTiempo==false)
+        {
+            GetComponent<Dado>().valorMax = 3;
+            RestablecerValores.hayHab2Zor = true;
+            esHab2 = false;
         }
     }
     //---------------------hab3 Zorem---------------------
@@ -434,7 +458,7 @@ public class Habilidades : MonoBehaviour
             switch (jugador.GetComponent<Personaje>().idPer)
             {
                 case 0:
-                    //terhab2zor();
+                    terhab2Zorem(per);
                     break;
                 case 2:
                    

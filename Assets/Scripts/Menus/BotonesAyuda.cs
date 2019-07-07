@@ -18,7 +18,7 @@ public class BotonesAyuda : MonoBehaviour
 
     public TextMeshProUGUI nombreM, desc, saltarSeleccion;
     public Sprite[] iconoMini;
-    public GameObject controlSeleccion, nombreSelecion, controlesG, cursor;
+    public GameObject controlSeleccion, nombreSelecion, controlesG, cursor, arriba, space;
     public SpriteRenderer iconoMinijuego;
 
     void Start()
@@ -171,6 +171,9 @@ public class BotonesAyuda : MonoBehaviour
                 controlesG.SetActive(false);
                 cursor.SetActive(true);
                 controlSeleccion.SetActive(false);
+                arriba.SetActive(false);
+                space.SetActive(true);
+                saltarSeleccion.text = "Seleccion";
                 break;
             case 2:
                 nombreM.text = "Infla el globo";
@@ -179,15 +182,19 @@ public class BotonesAyuda : MonoBehaviour
                 cursor.SetActive(false);
                 controlesG.SetActive(false);
                 controlSeleccion.SetActive(true);
-                saltarSeleccion.text = "Seleccion";
+                space.SetActive(false);
+                arriba.SetActive(true);
+                saltarSeleccion.text = "Inflar";
                 break;
             case 3:
                 nombreM.text = "Atrapa Manzanas";
                 desc.text = "Atrapa la mayor cantidad de manzanas antes que caigan al suelo";
                 iconoMinijuego.sprite = iconoMini[3];
                 controlesG.SetActive(true);
-                controlSeleccion.SetActive(false);
+                controlSeleccion.SetActive(true);
                 cursor.SetActive(false);
+                arriba.SetActive(false);
+                space.SetActive(true);
                 saltarSeleccion.text = "Saltar";
                 break;
             case 4:
