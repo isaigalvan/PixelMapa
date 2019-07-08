@@ -100,6 +100,7 @@ public class CrearPersonaje : MonoBehaviour
     {
         if ((RestablecerValores.obtenerRespawn()) == false)
         {
+            Debug.Log(RestablecerValores.respawn);
             Crear();
             RestablecerValores.ponerRespawn(true);
         }

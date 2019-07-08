@@ -72,4 +72,8 @@ public static class RestablecerValores
     {
         return ph;
     }
+    public static void Reiniciar()
+    {
+        posx = 5; posxP2 = 5;
+    }
 }

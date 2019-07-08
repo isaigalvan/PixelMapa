@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Seleccion : MonoBehaviour
 {
     public GameObject btnLeonn, btnAustin, btnZorem, somLeonn, somAustin, somZorem, jug;
-    public int Player=1;
+    public int Player=1, j1, j2;
     public SpriteRenderer SR;
     public Sprite jug2;
     // Start is called before the first frame update
@@ -30,9 +30,11 @@ public class Seleccion : MonoBehaviour
             RestablecerValores.idPersonaje = 5;
             Player++;
             SR.sprite = jug2;
+            j1 = 5;
         }
         else
         {
+           
             RestablecerValores.idPersonaje2 = 5;
             SceneManager.LoadScene("01-Mapa");
         }
@@ -43,6 +45,7 @@ public class Seleccion : MonoBehaviour
         btnZorem.SetActive(false);
         if (Player == 1)
         {
+            j1 = 0;
             RestablecerValores.idPersonaje = 0;
             Player++;
             SR.sprite = jug2;
@@ -59,6 +62,7 @@ public class Seleccion : MonoBehaviour
         btnAustin.SetActive(false);
         if (Player == 1)
         {
+            j1 = 2;
             RestablecerValores.idPersonaje = 2;
             Player++;
             SR.sprite = jug2;

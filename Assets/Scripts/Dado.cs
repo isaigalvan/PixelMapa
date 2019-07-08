@@ -8,7 +8,7 @@ public class Dado : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Marco, Letrero;
-    public GameObject Habilidades,btnHab1,btnHab2,btnHab3,mapa,personaje,objPH, marcoLeonn,jugador1,jugador2, per;
+    public GameObject Habilidades,btnHab1,btnHab2,btnHab3,personaje,objPH, marcoLeonn,jugador1,jugador2, per;
     public TextMeshProUGUI contDado, textd1, textd2;
     public bool esTurno=false, seDetuvo=false, caminando=false, buff, hab3Leonn, movCamara, condiTurno;
     public float  caminarCasilla, destino,posReal;
@@ -131,7 +131,7 @@ public class Dado : MonoBehaviour
         }
         else
         {
-            mapa.SetActive(false);
+         
             contDado.color = Color.red;
             if (GetComponent<Habilidades>().repite == false)
             {
@@ -205,7 +205,7 @@ public void estadoDado()
     {
         if (esTurno == true)
         {
-            mapa.SetActive(true);
+
             Marco.SetActive(true);
             contDado.text = "" + valorDado;
         }

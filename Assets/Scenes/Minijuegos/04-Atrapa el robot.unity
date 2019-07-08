@@ -1228,7 +1228,7 @@ MonoBehaviour:
   Tiempo: {fileID: 993151932}
   puntosP1: 0
   puntosP2: 0
-  tiempo: 10
+  tiempo: 60
 --- !u!1 &869044733
 GameObject:
   m_ObjectHideFlags: 0

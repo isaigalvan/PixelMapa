@@ -5,9 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class BotonesMenus : MonoBehaviour
 {
+    public GameObject  botones, marcoPausa;
     public void CargarMain()
     {
-        SceneManager.LoadScene("Main");
+        RestablecerValores.ponerRespawn(false);
+        RestablecerValores.Reiniciar();
+        RestablecerCasilla.respawn = false;
+        SceneManager.LoadScene("Main"); 
     }
 
     public void CargarCreditos()
@@ -23,5 +27,17 @@ public class BotonesMenus : MonoBehaviour
     public void CargarAyuda()
     {
         SceneManager.LoadScene("Ayuda");
+    }
+
+    public void pausa()
+    {
+        marcoPausa.SetActive(true);
+        botones.SetActive(false);
+    }
+
+    public void regresar()
+    {
+        marcoPausa.SetActive(false);
+        botones.SetActive(true);
     }
 }
