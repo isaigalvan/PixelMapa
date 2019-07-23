@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -501,7 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -755,8 +755,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 246.5, y: 152}
-  m_SizeDelta: {x: 137.1, y: 30}
+  m_AnchoredPosition: {x: 250, y: 150.35}
+  m_SizeDelta: {x: 158.7, y: 41.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &569836054
 MonoBehaviour:
@@ -1359,6 +1359,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   botones: {fileID: 0}
   marcoPausa: {fileID: 0}
+  dado: {fileID: 0}
+  marcoMinimapa: {fileID: 0}
+  per1: {fileID: 0}
+  per2: {fileID: 0}
+  pos1: {fileID: 0}
+  pos2: {fileID: 0}
 --- !u!4 &1210230504
 Transform:
   m_ObjectHideFlags: 0

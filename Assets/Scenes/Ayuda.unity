@@ -2699,6 +2699,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0bf58e410a11fa43a99133a375df733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  botones: {fileID: 0}
+  marcoPausa: {fileID: 0}
+  dado: {fileID: 0}
+  marcoMinimapa: {fileID: 0}
+  per1: {fileID: 0}
+  per2: {fileID: 0}
+  pos1: {fileID: 0}
+  pos2: {fileID: 0}
 --- !u!4 &446144226
 Transform:
   m_ObjectHideFlags: 0
@@ -6622,7 +6630,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}

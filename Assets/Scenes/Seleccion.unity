@@ -260,7 +260,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 225.1, y: 86.1}
+  m_AnchoredPosition: {x: 275, y: 86.1}
   m_SizeDelta: {x: 148.8, y: 203.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &215672221
@@ -933,6 +933,8 @@ MonoBehaviour:
   somZorem: {fileID: 1822688169}
   jug: {fileID: 709685348}
   Player: 1
+  j1: 0
+  j2: 0
   SR: {fileID: 0}
   jug2: {fileID: 21300000, guid: 2019660834d0c9f4f88e891c89b4a26c, type: 3}
 --- !u!4 &1031154225
@@ -1766,7 +1768,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -231, y: 86.1}
+  m_AnchoredPosition: {x: -274, y: 86.1}
   m_SizeDelta: {x: 148.8, y: 203.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1759234205
@@ -1975,7 +1977,7 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
