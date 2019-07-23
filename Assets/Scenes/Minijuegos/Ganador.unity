@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiempo: 0
+  condi: 0
   PP1: 0
   PP2: 0
   GanoEmpate:
@@ -153,12 +154,9 @@ MonoBehaviour:
   GanoJugador:
   - {fileID: 21300000, guid: 0438c0a742099b54f98bb393f6fc8b9d, type: 3}
   - {fileID: 21300000, guid: 2019660834d0c9f4f88e891c89b4a26c, type: 3}
-  spriteGanoEmpate: {fileID: 0}
-  spritePH: {fileID: 0}
-  spriteJugador: {fileID: 0}
-  GE: {fileID: 0}
-  PH: {fileID: 0}
-  J: {fileID: 0}
+  spriteGanoEmpate: {fileID: 271570094}
+  spritePH: {fileID: 779307203}
+  spriteJugador: {fileID: 1887057696}
 --- !u!4 &222931718
 Transform:
   m_ObjectHideFlags: 0

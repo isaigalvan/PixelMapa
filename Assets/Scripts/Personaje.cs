@@ -10,7 +10,7 @@ public class Personaje : MonoBehaviour
     public SpriteRenderer spriteR;
     public GameObject textCasilla, textPh,scripts;
     public bool esPintado, esBloqueado, esBuff, esNerf, esInmune, esAtraido, verificado, condi;
-    public bool verfi, actTiempo, condi2;
+    public bool verfi, actTiempo, condi2, condiRobar;
     public float tiempo;
 
     /// <summary>
@@ -83,16 +83,19 @@ public class Personaje : MonoBehaviour
         if( (gameObject.name=="jugador1"&&scripts.GetComponent<Dado>().jugador==1)|| (gameObject.name == "jugador2" && scripts.GetComponent<Dado>().jugador == 2))
         {
             verfi = true;
-        if(scripts.GetComponent<Dado>().yaTiro == true && condi2==false)
+        if(scripts.GetComponent<Dado>().yaTiro == true)
         {
-            condi = true;
-                verifRobar();
-                condi2 = false;
+                condi = true;
 
-            }
-        if ((casillaActual > 0 && verificado == false && scripts.GetComponent<Dado>().caminando == false && condi == true && scripts.GetComponent<Dado>().yaTiro == false) || (scripts.GetComponent<Habilidades>().verCasiHab1Zor == true))
+        }
+         if (scripts.GetComponent<Dado>().caminando == true)
+        {
+                verifRobar();
+        }
+            if ((casillaActual > 0 && verificado == false && scripts.GetComponent<Dado>().caminando == false && condi == true && scripts.GetComponent<Dado>().yaTiro == false) || (scripts.GetComponent<Habilidades>().verCasiHab1Zor == true))
         {
                 verifPintura();
+                
                 if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esHabilidad == true)
                 {
                     if (ph >= 4)
@@ -131,23 +134,12 @@ public class Personaje : MonoBehaviour
                 }
                 else if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esMinijuego == true)
                 {
-                    actTiempo = true;
-                    if (scripts.GetComponent<Dado>().jugador == 1)
-                    {
-                        RestablecerValores.jugador = 2;
-                        RestablecerValores.valorSpriteLetrero = 1;
-                    }
-                    else
-                    {
-                        RestablecerValores.jugador = 1;
-                        RestablecerValores.valorSpriteLetrero = 0;
-                    }
-                   
-                    
+                    cambiarAntesMinijuego();   
                 }
               
             verificado = false;
-            condi = false; 
+            condi = false;
+                condiRobar = false;
           //  imprimePh();
             scripts.GetComponent<Habilidades>().verCasiHab1Zor = false;
         }        
@@ -187,19 +179,61 @@ public class Personaje : MonoBehaviour
 
     public void verifRobar()
     {
-        if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esDesLeonn == true)
+        if (condiRobar == false)
         {
+            if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esDesLeonn == true)
+            {
 
-            scripts.GetComponent<Habilidades>().verCasiHab1Zor = false;
-            scripts.GetComponent<Habilidades>().robar1();
-        }
-        if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esDesLeonn2 == true)
-        {
+                scripts.GetComponent<Habilidades>().verCasiHab1Zor = false;
+                scripts.GetComponent<Habilidades>().robar1();
+            }
+            if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esDesLeonn2 == true)
+            {
 
-            scripts.GetComponent<Habilidades>().verCasiHab1Zor = false;
-            scripts.GetComponent<Habilidades>().robar2();
+                scripts.GetComponent<Habilidades>().verCasiHab1Zor = false;
+                scripts.GetComponent<Habilidades>().robar2();
+            }
+            condiRobar = true;
         }
+        
     }
 
+    public void cambiarAntesMinijuego()
+    {
+        actTiempo = true;
+        if (scripts.GetComponent<Dado>().jugador == 1)
+        {
+            if (scripts.GetComponent<Habilidades>().verCasiHab1Zor)
+            {
+
+                RestablecerValores.jugador = 1;
+                RestablecerValores.valorSpriteLetrero = 0;
+                RestablecerValores.casillaActual += 3;
+                RestablecerValores.posx = gameObject.transform.position.x;
+            }
+            else
+            {
+                RestablecerValores.jugador = 2;
+                RestablecerValores.valorSpriteLetrero = 1;
+            }
+        }
+        else
+        {
+            if (scripts.GetComponent<Habilidades>().verCasiHab1Zor)
+            {
+                RestablecerValores.jugador = 2;
+                RestablecerValores.valorSpriteLetrero = 1;
+                RestablecerValores.casillaActualP2 += 3;
+                RestablecerValores.posxP2 = gameObject.transform.position.x;
+            }
+            else
+            {
+                RestablecerValores.jugador = 1;
+                RestablecerValores.valorSpriteLetrero = 0;
+            }
+        }
+        Debug.Log(RestablecerValores.casillaActualP2);
+        Debug.Log(RestablecerValores.casillaActual);
+    }
     
 }

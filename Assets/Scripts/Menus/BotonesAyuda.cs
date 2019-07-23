@@ -163,6 +163,7 @@ public class BotonesAyuda : MonoBehaviour
                 cursor.SetActive(false);
                 controlesG.SetActive(true);
                 controlSeleccion.SetActive(true);
+                arriba.SetActive(false);
                 break;
             case 1:
                 nombreM.text = "Dardos";

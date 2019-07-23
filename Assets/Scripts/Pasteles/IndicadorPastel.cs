@@ -11,8 +11,6 @@ public class IndicadorPastel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spriteR1 = indi.GetComponent<SpriteRenderer>();
-        spriteR2 = indi2.GetComponent<SpriteRenderer>();
        
     }
 

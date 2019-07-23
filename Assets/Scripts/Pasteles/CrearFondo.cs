@@ -5,10 +5,13 @@ using UnityEngine;
 public class CrearFondo : MonoBehaviour
 {
     // Start is called before the first frame update
-    private int total, idP1, idP2;
+    public int total, idP1, idP2;
     private float posx, posy;
-    public GameObject maderaPrefab, ladrilloPrefab,per1, per2;
+    public GameObject maderaPrefab, ladrilloPrefab,per1, per2, caja1, caja2;
     public Transform maderaParent, ladrilloParent;
+    public Sprite[] cajas = new Sprite[4];
+    public SpriteRenderer ca1, ca2;
+
     void Start()
     {
         Crear();
@@ -18,7 +21,7 @@ public class CrearFondo : MonoBehaviour
         {
             idP2 = Random.Range(1, 5);
         } while (idP1 == idP2);
-      
+        asignarCaja();
     }
 
     // Update is called once per frame
@@ -96,5 +99,13 @@ public class CrearFondo : MonoBehaviour
                 posx = 12;
             }
         }
+    }
+
+    public void asignarCaja()
+    {
+        ca1.sprite = cajas[idP1-1];
+        caja1.GetComponent<Caja>().idCaja = idP1;
+        ca2.sprite = cajas[idP2-1];
+        caja2.GetComponent<Caja>().idCaja = idP2;
     }
 }

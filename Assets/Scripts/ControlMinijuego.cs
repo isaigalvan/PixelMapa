@@ -24,9 +24,7 @@ public class ControlMinijuego : MonoBehaviour
     void Update()
     {
         iconoR = icono.GetComponent<SpriteRenderer>();
-        titulo();
-        descripcion();
-        icon();
+        minijuego();
         tiempo = Time.deltaTime + tiempo;
         if (tiempo >= 4)
         {
@@ -62,86 +60,47 @@ public class ControlMinijuego : MonoBehaviour
         }
     }
 
-    public void titulo()
+    public void minijuego()
     {
         switch (sel)
         {
             case 1:
                 titu.text = "Infla el globo";
-                break;
-            case 2:
-                titu.text = "Adivina el cofre";
-                break;
-            case 3:
-                titu.text = "Atrapa el robot";
-                break;
-            case 4:
-                titu.text = "Memorama";
-                break;
-            case 5:
-                titu.text = "Dardos";
-                break;
-            case 6:
-                titu.text = "Recoge Manzanas";
-                break;
-            case 7:
-                titu.text = "Ordena Pasteles";
-                break;
-        }
-    }
-
-    public void icon()
-    {
-        switch (sel)
-        {
-            case 1:
                 iconoR.sprite = spriteIcono[0];
-                break;
-            case 2:
-                iconoR.sprite = spriteIcono[1];
-                break;
-            case 3:
-                iconoR.sprite = spriteIcono[2];
-                break;
-            case 4:
-                iconoR.sprite = spriteIcono[3];
-                break;
-            case 5:
-                iconoR.sprite = spriteIcono[4];
-                break;
-            case 6:
-                iconoR.sprite = spriteIcono[5];
-                break;
-            case 7:
-                iconoR.sprite = spriteIcono[6];
-                break;
-        }
-    }
-    public void descripcion()
-    {
-        switch (sel)
-        {
-            case 1:
                 desc.text = "infla el globo hasta ser el primero que lo reviente";
                 break;
             case 2:
+                titu.text = "Adivina el cofre";
+                iconoR.sprite = spriteIcono[1];
                 desc.text = "Abre el cofre que tenga el tesoro y ganaras";
                 break;
             case 3:
+                titu.text = "Atrapa el robot";
+                iconoR.sprite = spriteIcono[2];
                 desc.text = "Atrapa la mayor cantidad de robots dentro del rancho espacial";
                 break;
             case 4:
+                titu.text = "Memorama";
+                iconoR.sprite = spriteIcono[3];
                 desc.text = "Encuentra la mayor cantidad de pares en el memorama";
                 break;
             case 5:
+                titu.text = "Dardos";
+                iconoR.sprite = spriteIcono[4];
                 desc.text = "Revienta la mayor cantidad de globos tirando el dardo";
                 break;
             case 6:
+                titu.text = "Recoge Manzanas";
+                iconoR.sprite = spriteIcono[5];
                 desc.text = "Atrapa la mayor cantidad de manzanas posibles";
                 break;
             case 7:
+                titu.text = "Ordena Pasteles";
+                iconoR.sprite = spriteIcono[6];
                 desc.text = "Toma y guarda el pastel que te toco en su respectiva caja";
                 break;
         }
     }
+
+ 
 }

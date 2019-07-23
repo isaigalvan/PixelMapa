@@ -138,14 +138,16 @@ public class Habilidades : MonoBehaviour
         {
 
             GetComponent<Dado>().btnHab1.SetActive(false);
-
+           
+            
         }
         if (tiempo >= 3.5f)
         {
 
             perZ1f.GetComponent<Personaje>().casillaActual = perZ1f.GetComponent<Personaje>().casillaActual + 3;
+           
             perZ1f.GetComponent<Animator>().SetBool("hab1", false);
-            //per.GetComponent<Personaje>().imprimeCasilla();
+            //perZ1f.GetComponent<Personaje>().imprimeCasilla();
             verCasiHab1Zor = true;
             GetComponent<Dado>().esTurno = true;
             actTiempo = false;

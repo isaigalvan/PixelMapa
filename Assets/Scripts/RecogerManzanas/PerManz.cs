@@ -54,7 +54,7 @@ public class PerManz : MonoBehaviour
         if (Input.GetKey(KeyCode.UpArrow) && saltos == 1 && tiempo >= .4f)
         {
             pisando = false;
-            rb.AddForce(Vector2.up * (jumpv), ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpv, ForceMode2D.Impulse);
             saltos = 2;
             actTiempo = false;
             tiempo = 0;

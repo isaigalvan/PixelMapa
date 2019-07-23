@@ -106,6 +106,8 @@ public class CrearPersonaje : MonoBehaviour
         }
         else
         {
+            Debug.Log(RestablecerValores.casillaActualP2);
+            Debug.Log(RestablecerValores.casillaActual);
             Crear();          
             GetComponent<Dado>().jugador = RestablecerValores.jugador;
             GetComponent<Dado>().spriteRLetrero.sprite = GetComponent<Dado>().spriteJugador[RestablecerValores.valorSpriteLetrero];       

@@ -23,6 +23,7 @@ public static class RestablecerValores
     //
     public static bool hayArbusto, Bloqueo;
     public static float Arposx, Arposy;
+    public static bool usoHab;
 
     // Update is called once per frame
 

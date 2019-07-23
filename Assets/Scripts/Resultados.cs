@@ -14,18 +14,11 @@ public class Resultados : MonoBehaviour
     public Sprite[] GanoJugador;
     public SpriteRenderer spriteGanoEmpate, spritePH, spriteJugador;
 
-    public GameObject GE, PH, J;
 
     private void Start()
     {
         PP1 = ResultadosEstaticos.PuntosP1;
         PP2 = ResultadosEstaticos.PuntosP2;
-        GE = GameObject.Find("Gano");
-        PH = GameObject.Find("ph");
-        J = GameObject.Find("Jugador");
-        spriteGanoEmpate = GE.GetComponent<SpriteRenderer>();
-        spritePH = PH.GetComponent<SpriteRenderer>();
-        spriteJugador = J.GetComponent<SpriteRenderer>();
     }
     // Update is called once per frame
     void Update()

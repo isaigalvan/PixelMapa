@@ -41,8 +41,6 @@ public class CrearCarta : MonoBehaviour
     private void Start()
     {
         Crear();
-        gameObject.AddComponent<AudioSource>();
-        objR = objImagen.GetComponent<SpriteRenderer>();
     }
 
     private void Update()
