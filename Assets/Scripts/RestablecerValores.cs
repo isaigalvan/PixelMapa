@@ -25,6 +25,9 @@ public static class RestablecerValores
     public static float Arposx, Arposy;
     public static bool usoHab;
 
+    //
+    public static float volumen;
+
     // Update is called once per frame
 
 

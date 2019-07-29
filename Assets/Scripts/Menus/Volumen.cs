@@ -1,15 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Volumen : MonoBehaviour
 {
     public AudioSource audioSrc;
-    public float musicVolume = 1f;
+    public float musicVolume;
+    public Slider barra;
 
+   
     // Use this for initialization
     void Start()
-    { 
+    {
+        if ((RestablecerValores.obtenerRespawn()) == false)
+        {
+            musicVolume = .5f;
+        }
+        else
+        {
+            musicVolume = RestablecerValores.volumen;
+            barra.value = RestablecerValores.volumen;
+        }
         audioSrc = GetComponent<AudioSource>();
     }
 
@@ -22,5 +34,6 @@ public class Volumen : MonoBehaviour
     public void ponerVolumen(float vol)
     {
         musicVolume = vol;
+        RestablecerValores.volumen = vol;
     }
 }

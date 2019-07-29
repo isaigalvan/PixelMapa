@@ -615,7 +615,7 @@ public class Habilidades : MonoBehaviour
                 Destroy(arbusto);
             }
             pusoCasPer2 = false;
-            RestablecerCasilla.pusoCasPer1 = false;
+            RestablecerCasilla.pusoCasPer2 = false;
         }
     }
 

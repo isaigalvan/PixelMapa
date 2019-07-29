@@ -969,7 +969,7 @@ MonoBehaviour:
   tiempo1: 0
   tiempo2: 0
   imagen: {fileID: 1918405154}
-  imgR: {fileID: 0}
+  imgR: {fileID: 1918405155}
   jug:
   - {fileID: 21300000, guid: 0438c0a742099b54f98bb393f6fc8b9d, type: 3}
   - {fileID: 21300000, guid: 2019660834d0c9f4f88e891c89b4a26c, type: 3}

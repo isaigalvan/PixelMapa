@@ -43,7 +43,7 @@ public class CrearCarta : MonoBehaviour
         Crear();
     }
 
-    private void Update()
+    public void Update()
     {
         actualizarImagen();
         cambiarTurno();
@@ -213,7 +213,7 @@ public class CrearCarta : MonoBehaviour
     public void actualizarTiempoJugador()
     {
         int intTiempo = Mathf.RoundToInt(tiempoTurno);
-        textT.text = ""+(4-intTiempo);
+        textT.text = ""+(5-intTiempo);
     }
 
     public void actualizarImagen()

@@ -14,6 +14,7 @@ public class CrearPersonaje : MonoBehaviour
     public int idPersonaje, idPersonaje2, total;
     public GameObject personajePrefab, per, per2, personajeTemp, personajeTemp2;
     public Transform personajeParent;
+
     //iconos
     public Sprite[] sprites;
     public GameObject IconoPrefab;
