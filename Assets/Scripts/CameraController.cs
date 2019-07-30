@@ -82,7 +82,9 @@ public class CameraController : MonoBehaviour
             temp = false;
         }
         if (tiempo >= 2)
-        {    
+        {
+            scripts.GetComponent<CrearPersonaje>().actualizarBarra();
+            scripts.GetComponent<TextoBarra>().actualizarTexto();
             scripts.GetComponent<Dado>().esTurno = true;
             scripts.GetComponent<Dado>().condiTurno = true;
             scripts.GetComponent<Dado>().movCamara = false;
@@ -91,6 +93,7 @@ public class CameraController : MonoBehaviour
             tiempo = 0;
             condiCasiEsp(temp);
             scripts.GetComponent<Habilidades>().quitar();
+            
         }
         
     }

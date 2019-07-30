@@ -148,10 +148,12 @@ public class Dado : MonoBehaviour
                 {
                     esTurno = true;
                     seDetuvo = false;
-                    GetComponent<Habilidades>().repite = false;   
+                    GetComponent<Habilidades>().repite = false;
+                  
                 }
                 else
                 {
+                    per.GetComponent<Personaje>().condiHab3Leonn = false;
                     valorDado = valHab3Len + valorDado;
                     int dif = 199 - personaje.GetComponent<Personaje>().casillaActual;
                     personaje.GetComponent<Personaje>().casillaActual = personaje.GetComponent<Personaje>().casillaActual + valorDado;

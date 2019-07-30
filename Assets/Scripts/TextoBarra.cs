@@ -20,16 +20,7 @@ public class TextoBarra : MonoBehaviour
         jugador1 = GameObject.Find("jugador1");
         jugador2 = GameObject.Find("jugador2");
 
-        if (GetComponent<Dado>().jugador == 1)
-        {
-            imprimeCasilla(jugador1);
-            imprimePh(jugador1);
-        }
-        else
-        {
-            imprimeCasilla(jugador2);
-            imprimePh(jugador2);
-        }
+       
     }
 
     /// <summary>
@@ -67,5 +58,19 @@ public class TextoBarra : MonoBehaviour
     public void imprimePh(GameObject per)
     {
         textPh.text = "" + per.GetComponent<Personaje>().ph;
+    }
+
+    public void actualizarTexto()
+    {
+        if (GetComponent<Dado>().jugador == 1)
+        {
+            imprimeCasilla(jugador1);
+            imprimePh(jugador1);
+        }
+        else
+        {
+            imprimeCasilla(jugador2);
+            imprimePh(jugador2);
+        }
     }
 }

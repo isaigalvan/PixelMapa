@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class CrearPersonaje : MonoBehaviour
 {
-    public float tiempo;
-    public bool actTiempo;
+    public float tiempo, tiempo2;
+    public bool actTiempo, actTiempo2;
     public float posx, posy;
     public float posxP2, posyP2;
     public float posx2, posy2;
@@ -28,8 +28,9 @@ public class CrearPersonaje : MonoBehaviour
     private void Update()
     {
         if (actTiempo) { tiempo = Time.deltaTime + tiempo; }
+        if (actTiempo2) { tiempo2 = Time.deltaTime + tiempo2; }
         quitarEspecial();
-        actualizarBarra();
+     //   actualizarBarra();
         if (GetComponent<Dado>().jugador == 1)
         {
             actualizar(per, per2);
@@ -40,6 +41,7 @@ public class CrearPersonaje : MonoBehaviour
         }
         actualizaPintados(per, per2);
         actualizaBloqueados(per, per2);
+        despIcono();
     }
 
 
@@ -57,7 +59,7 @@ public class CrearPersonaje : MonoBehaviour
         crearIconos();
     }
 
-
+    
     /// <summary>
     /// Crear
     /// Este metodo es llamado por "crearPer", crea un nuevo objeto el cual sera el personaje a jugar 
@@ -114,6 +116,7 @@ public class CrearPersonaje : MonoBehaviour
             GetComponent<Dado>().spriteRLetrero.sprite = GetComponent<Dado>().spriteJugador[RestablecerValores.valorSpriteLetrero];       
             asignarDatosP1();
             asignarDatosP2();
+            actTiempo2 = true;
             actTiempo = true;
         }
     }
@@ -245,8 +248,7 @@ public class CrearPersonaje : MonoBehaviour
 
     public void actualizar(GameObject perA, GameObject perNoTurno)
     {
-        if (GetComponent<Dado>().caminando == true)
-        {
+
             if (GetComponent<Dado>().jugador == 1)
             {
                 RestablecerValores.posx = posx; //posx
@@ -261,8 +263,7 @@ public class CrearPersonaje : MonoBehaviour
                 RestablecerValores.phP2 = perA.GetComponent<Personaje>().ph; //ph 
                 RestablecerValores.casillaActualP2=perA.GetComponent<Personaje>().casillaActual; //casillaActual
             }
-           
-        }       
+             
     }
     public void actualizaPintados(GameObject per, GameObject per2)
     {
@@ -378,5 +379,16 @@ public class CrearPersonaje : MonoBehaviour
             tiempo = 0;
         }
 
+    }
+
+    public void despIcono()
+    {
+        if(tiempo2 >= 0.2f)
+        {
+            actualizarBarra();
+            GetComponent<TextoBarra>().actualizarTexto();
+            actTiempo2 = false;
+            tiempo2 = 0;
+        }
     }
 }

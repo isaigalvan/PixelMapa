@@ -10,7 +10,7 @@ public class Personaje : MonoBehaviour
     public SpriteRenderer spriteR;
     public GameObject textCasilla, textPh,scripts;
     public bool esPintado, esBloqueado, esBuff, esNerf, esInmune, esAtraido, verificado, condi;
-    public bool verfi, actTiempo, condi2, condiRobar;
+    public bool verfi, actTiempo, condi2, condiRobar, condiHab3Leonn;
     public float tiempo;
 
     /// <summary>
@@ -92,7 +92,7 @@ public class Personaje : MonoBehaviour
         {
                 verifRobar();
         }
-            if ((casillaActual > 0 && verificado == false && scripts.GetComponent<Dado>().caminando == false && condi == true && scripts.GetComponent<Dado>().yaTiro == false) || (scripts.GetComponent<Habilidades>().verCasiHab1Zor == true))
+            if ((casillaActual > 0 && verificado == false && scripts.GetComponent<Dado>().caminando == false && condi == true && scripts.GetComponent<Dado>().yaTiro == false&&condiHab3Leonn==false) || (scripts.GetComponent<Habilidades>().verCasiHab1Zor == true))
         {
                 verifPintura();
                 
@@ -140,9 +140,10 @@ public class Personaje : MonoBehaviour
             verificado = false;
             condi = false;
                 condiRobar = false;
-          //  imprimePh();
+                condiHab3Leonn = false;
             scripts.GetComponent<Habilidades>().verCasiHab1Zor = false;
-        }        
+                scripts.GetComponent<TextoBarra>().actualizarTexto();
+            }        
         }
     }
 

@@ -474,7 +474,7 @@ public class Habilidades : MonoBehaviour
             GetComponent<Dado>().esTurno = true;
             actTiempo = false;
             tiempo = 0;
-
+            perL3f.GetComponent<Personaje>().condiHab3Leonn = true;
         }
     }
     //------------------------------------------------------------------------------------------------------------
