@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1707853618665419832}
   - component: {fileID: 8694018257666650146}
   - component: {fileID: 5892777507106501313}
+  - component: {fileID: 4328878449121967762}
   m_Layer: 0
   m_Name: robot0
   m_TagString: Untagged
@@ -123,7 +124,9 @@ MonoBehaviour:
   direcAnt: 1
   moviendo: 0
   tocando: 0
+  temp: 0
   sr: {fileID: 0}
+  scripts: {fileID: 0}
 --- !u!61 &8694018257666650146
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -169,3 +172,29 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &4328878449121967762
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8694018257666650145}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.028989434, y: -0.31888342}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5, y: 5}
+    newSize: {x: 5, y: 5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.506911, y: 3.2026567}
+  m_EdgeRadius: 0

@@ -6,7 +6,7 @@ public class MoverRobot : MonoBehaviour
 {
     public float tiempoMax, tiempo, velocidad;
     public int direccion, direcAnt=1;
-    public bool moviendo, tocando;
+    public bool moviendo, tocando, temp;
     public SpriteRenderer sr;
     public GameObject scripts;
     // Start is called before the first frame update
@@ -35,7 +35,7 @@ public class MoverRobot : MonoBehaviour
               direccion = Random.Range(1,9);
             } while (direccion == direcAnt);
             tiempoMax = Random.Range(1.1f, 2.1f);
-            velocidad = Random.Range(0.05f, 0.1f);
+            velocidad = Random.Range(0.06f, 0.1f);
              moviendo = true;
             direcAnt = direccion;
            
@@ -45,17 +45,17 @@ public class MoverRobot : MonoBehaviour
                 switch (direccion)
                 {
                     case 1:
-                        this.transform.position += new Vector3(0, +velocidad, 0);
+                        this.transform.position += new Vector3(0, +velocidad, 0);   //ARRIBA
                         break;
                     case 2:
-                        this.transform.position += new Vector3(0, -velocidad, 0);
+                        this.transform.position += new Vector3(0, -velocidad, 0);  //ABAJO 
                         break;
                     case 3:
-                        this.transform.position += new Vector3(velocidad, 0, 0);
+                        this.transform.position += new Vector3(velocidad, 0, 0);  //IZQUIERDA
                         sr.flipX = false;
                          break;
                     case 4:
-                        this.transform.position += new Vector3(-velocidad, 0, 0);
+                        this.transform.position += new Vector3(-velocidad, 0, 0);   //DRERECHA
                          sr.flipX = true;
                     break;
                 case 5:
@@ -90,14 +90,14 @@ public class MoverRobot : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "pared"|| collision.gameObject.tag == "obs")
+    /*    if(collision.gameObject.tag == "pared"|| collision.gameObject.tag == "obs")
         {
             moviendo = false;
             tiempo = 0;
             tocando = true;
-        }
+        }*/
         if(collision.gameObject.name== "jugador1")
         {
             scripts.GetComponent<Puntaje>().puntosP1++;
@@ -118,6 +118,43 @@ public class MoverRobot : MonoBehaviour
         { 
             tocando = false;
         }
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Arriba")
+        {
+            tiempo = 0;
+            direccion = 2;
+            tiempoMax = .5f;
+            velocidad = Random.Range(0.06f, 0.1f);
+        }
+        if (collision.gameObject.name == "Abajo")
+        {
+            tiempo = 0;
+            direccion = 1;
+            tiempoMax = .5f;
+            velocidad = Random.Range(0.06f, 0.1f);
+        }
+        if (collision.gameObject.name == "Derecha")
+        {
+            tiempo = 0;
+            direccion = 4;
+            tiempoMax = .5f;
+            velocidad = Random.Range(0.06f, 0.1f);
+        }
+        if (collision.gameObject.name == "Izquierda")
+        {
+            tiempo = 0;
+            direccion = 3;
+            tiempoMax = .5f;
+            velocidad = Random.Range(0.06f, 0.1f);
+        }
+    }
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        
     }
 }
        
