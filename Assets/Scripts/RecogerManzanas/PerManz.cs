@@ -46,16 +46,18 @@ public class PerManz : MonoBehaviour
         {
             gameObject.GetComponent<Animator>().SetBool("caminando", false);
             pisando = false;
-            rb.AddForce(Vector2.up * jumpv, ForceMode2D.Impulse);
-            saltos = 1;
+                rb.velocity = new Vector2(rb.velocity.x, 0f);
+                rb.AddForce(new Vector2(0, jumpv), ForceMode2D.Impulse);
+                saltos = 1;
             actTiempo = true;
         }
 
         if (Input.GetKey(KeyCode.UpArrow) && saltos == 1 && tiempo >= .4f)
         {
             pisando = false;
-            rb.AddForce(Vector2.up * jumpv, ForceMode2D.Impulse);
-            saltos = 2;
+                rb.velocity = new Vector2(rb.velocity.x, 0f);
+                rb.AddForce(new Vector2(0, jumpv), ForceMode2D.Impulse);
+                saltos = 2;
             actTiempo = false;
             tiempo = 0;
         }
@@ -88,16 +90,18 @@ public class PerManz : MonoBehaviour
         {
             gameObject.GetComponent<Animator>().SetBool("caminando", false);
             pisando = false;
-            rb.AddForce(Vector2.up * jumpv, ForceMode2D.Impulse);
-            saltos = 1;
+                rb.velocity = new Vector2(rb.velocity.x, 0f);
+                rb.AddForce(new Vector2(0, jumpv), ForceMode2D.Impulse);
+                saltos = 1;
             actTiempo = true;
         }
 
         if (Input.GetKey(KeyCode.W) && saltos == 1 && tiempo >= .4f)
         {
             pisando = false;
-            rb.AddForce(Vector2.up * (jumpv), ForceMode2D.Impulse);
-            saltos = 2;
+                rb.velocity = new Vector2(rb.velocity.x, 0f);
+                rb.AddForce(new Vector2(0, jumpv), ForceMode2D.Impulse);
+                saltos = 2;
             actTiempo = false;
             tiempo = 0;
         }
