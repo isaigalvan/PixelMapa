@@ -21,8 +21,8 @@ public class Habilidades : MonoBehaviour
     public bool hayPint, hayPint1;
     //Leonn
     public bool repite = false;
-    public bool hayHab2Leonn, Bloqueo, hayArbusto;
-    public int casiModif, casillaBloquear;
+    public bool hayHab2Leonn, Bloqueo, hayArbusto, sumaPuntos;
+    public int casiModif, casillaBloquear, casillaSumPuntos;
     public GameObject tronco, arbustoPrefab, arbusto;
     //Personajes (Austin, Leonn)
     public bool pusoCasPer1, pusoCasPer2;
@@ -475,6 +475,12 @@ public class Habilidades : MonoBehaviour
             actTiempo = false;
             tiempo = 0;
             perL3f.GetComponent<Personaje>().condiHab3Leonn = true;
+            if(perL3f.GetComponent<Personaje>().casillaActual<perNT.GetComponent<Personaje>().casillaActual)
+            {
+                sumaPuntos = true;
+                casillaSumPuntos = perNT.GetComponent<Personaje>().casillaActual;
+            }
+            
         }
     }
     //------------------------------------------------------------------------------------------------------------

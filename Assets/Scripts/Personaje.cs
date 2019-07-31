@@ -95,7 +95,19 @@ public class Personaje : MonoBehaviour
             if ((casillaActual > 0 && verificado == false && scripts.GetComponent<Dado>().caminando == false && condi == true && scripts.GetComponent<Dado>().yaTiro == false&&condiHab3Leonn==false) || (scripts.GetComponent<Habilidades>().verCasiHab1Zor == true))
         {
                 verifPintura();
-                
+                if (scripts.GetComponent<Habilidades>().sumaPuntos && casillaActual > scripts.GetComponent<Habilidades>().casillaSumPuntos)
+                {
+                    ph++;
+                    scripts.GetComponent<Habilidades>().sumaPuntos = false;
+                    if (scripts.GetComponent<Dado>().jugador == 1)
+                    {
+                        RestablecerValores.ph++;
+                    }
+                    else
+                    {
+                        RestablecerValores.phP2++;
+                    }
+                }
                 if (scripts.GetComponent<CrearCasilla>().casillas[casillaActual].GetComponent<Casilla>().esHabilidad == true)
                 {
                     if (ph >= 4)
@@ -136,7 +148,7 @@ public class Personaje : MonoBehaviour
                 {
                     cambiarAntesMinijuego();   
                 }
-              
+                
             verificado = false;
             condi = false;
                 condiRobar = false;

@@ -16,6 +16,7 @@ public class Volumen : MonoBehaviour
         if ((RestablecerValores.obtenerRespawn()) == false)
         {
             musicVolume = .5f;
+            RestablecerValores.volumen = .5f;
         }
         else
         {
